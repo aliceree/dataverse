@@ -1,2 +1,1 @@
-# python
-repository of study materials
+# poznámky k první lekci
