@@ -1,15 +1,14 @@
 # slicing seznamů a řetězců
 = vybírání části (výřezu) z nějaké sekvence
 
-- věnečky
-K zaznamenávání množství věnečků sněděných za posledních 7 dní slouží následující zápis.
+- k zaznamenávání množství věnečků sněděných za posledních 7 dní slouží následující zápis
 
 venecky = [1, 2, 4, 1, 6, 0, 1]
 
 **slicing seznamu sněděných věnečků**
 
-print(venecky[0]) # zobrazí množství věnečků na 1. pozici
-venecky[5] = 12 # změní číslo na 6. pozici na 12
+print(venecky[0])     # zobrazí množství věnečků na 1. pozici
+venecky[5] = 12       # změní číslo na 6. pozici na 12
 print(venecky[0:3])   # [1, 2, 4] první tři dny
 print(venecky[:5])    # [1, 2, 4, 1, 6] od PO do PÁ
 print(venecky[2:])    # [4, 1, 6, 0, 1] od ST do konce
@@ -29,12 +28,12 @@ sorted() vrátí setříděný seznam
 
 jmeno = "martin" + " " + "podlucký"
 
-print(jmeno) # 'martin podlucký'
-print(jmeno[0:6]) # 'martin' prvních 6 znaků
-print(jmeno[7:]) # 'podlucký' od mezery dál
-print(jmeno[:]) # 'martin podlucký' celý řetězec
-print(jmeno[::-1]) # 'ýkculdop niram' opačně
-print(jmeno[::2]) # 'mrt oduký' každý druhý znak
+print(jmeno)          # 'martin podlucký'
+print(jmeno[0:6])     # 'martin' prvních 6 znaků
+print(jmeno[7:])      # 'podlucký' od mezery dál
+print(jmeno[:])       # 'martin podlucký' celý řetězec
+print(jmeno[::-1])    # 'ýkculdop niram' opačně
+print(jmeno[::2])     # 'mrt oduký' každý druhý znak
 
 podobně jako u seznamů funguje také **funkce** len()
 
