@@ -1,7 +1,7 @@
 # slicing seznamů a řetězců
 = vybírání části (výřezu) z nějaké sekvence
 
-věnečky
+- věnečky
 K zaznamenávání množství věnečků sněděných za posledních 7 dní slouží následující zápis.
 
 venecky = [1, 2, 4, 1, 6, 0, 1]
