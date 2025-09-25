@@ -3,7 +3,7 @@
 
 K zaznamenávání množství věnečků sněděných za posledních 7 dní slouží následující zápis.
 
-venecky = [1, 2, 4, 1, 6, 0, 1]
+`venecky = [1, 2, 4, 1, 6, 0, 1]`
 
 **slicing seznamu sněděných věnečků**
 
@@ -26,7 +26,7 @@ venecky = [1, 2, 4, 1, 6, 0, 1]
 
 **řetězce** se v něčem chovají podobně jako seznamy
 
-jmeno = "martin" + " " + "podlucký"
+`jmeno = "martin" + " " + "podlucký"`
 
 - print(jmeno)          # 'martin podlucký'
 - print(jmeno[0:6])     # 'martin' prvních 6 znaků
@@ -37,19 +37,19 @@ jmeno = "martin" + " " + "podlucký"
 
 podobně jako u seznamů funguje také **funkce** len()
 
-print(len(jmeno))
+`print(len(jmeno))`
 
 Lze též zkotrolovat, zda se nějaký řetězec nachází v jiném řetězci s pomocí operátoru `in`.
 
-inzerat = "Na této pracovní pozici budete využívat Python a SQL."
+`inzerat = "Na této pracovní pozici budete využívat Python a SQL."`
 
-if "Python" in inzerat:  
-    print("Je to pro mě!")
+`if "Python" in inzerat:`  
+    `print("Je to pro mě!")`
 
 Podobně lze využít i operátor `not in` vracející opačná výsledeků.
 
-email = "spatny-mail.cz"  
-if "@" not in email:  
-    print("V e-mailu chybí zavináč!")
+`email = "spatny-mail.cz"`  
+`if "@" not in email:`  
+    `print("V e-mailu chybí zavináč!")`
 
 **zdroj a cvičení:** https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/slicing-metody-moduly/slicing
