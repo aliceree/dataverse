@@ -18,11 +18,11 @@ venecky = [1, 2, 4, 1, 6, 0, 1]
 
 **vybrané funkce pro seznamy**
 
-len() vrátí délku seznamu
-sum() vrátí součet všech prvků v seznamu
-min() vrátí nejmenší prvek seznamu
-max() vrátí největší prvek seznamu
-sorted() vrátí setříděný seznam
+- len() vrátí délku seznamu
+- sum() vrátí součet všech prvků v seznamu
+- min() vrátí nejmenší prvek seznamu
+- max() vrátí největší prvek seznamu
+- sorted() vrátí setříděný seznam
 
 **řetězce** se v něčem chovají podobně jako seznamy
 
@@ -43,13 +43,13 @@ Lze též zkotrolovat, zda se nějaký řetězec nachází v jiném řetězci s 
 
 inzerat = "Na této pracovní pozici budete využívat Python a SQL."
 
-if "Python" in inzerat:
+if "Python" in inzerat:  
     print("Je to pro mě!")
 
 Podobně lze využít i operátor `not in` vracející opačná výsledeků.
 
-email = "spatny-mail.cz"
-if "@" not in email:
+email = "spatny-mail.cz"  
+if "@" not in email:  
     print("V e-mailu chybí zavináč!")
 
 **zdroj a cvičení:** https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/slicing-metody-moduly/slicing
