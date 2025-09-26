@@ -52,4 +52,4 @@ Podobně lze využít i operátor `not in` vracející opačná výsledeků.
 `if "@" not in email:`  
     `print("V e-mailu chybí zavináč!")`
 
-**zdroj a cvičení:** https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/slicing-metody-moduly/slicing
+zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/slicing-metody-moduly/slicing
