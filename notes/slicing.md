@@ -28,12 +28,12 @@ K zaznamenávání množství věnečků sněděných za posledních 7 dní slou
 
 `jmeno = "martin" + " " + "podlucký"`
 
-- print(jmeno)          # 'martin podlucký'
-- print(jmeno[0:6])     # 'martin' prvních 6 znaků
-- print(jmeno[7:])      # 'podlucký' od mezery dál
-- print(jmeno[:])       # 'martin podlucký' celý řetězec
-- print(jmeno[::-1])    # 'ýkculdop niram' opačně
-- print(jmeno[::2])     # 'mrt oduký' každý druhý znak
+- `print(jmeno)` # 'martin podlucký'
+- `print(jmeno[0:6])` # 'martin' prvních 6 znaků
+- `print(jmeno[7:])` # 'podlucký' od mezery dál
+- `print(jmeno[:])` # 'martin podlucký' celý řetězec
+- `print(jmeno[::-1])` # 'ýkculdop niram' opačně
+- `print(jmeno[::2])` # 'mrt oduký' každý druhý znak
 
 podobně jako u seznamů funguje také **funkce** len()
 
