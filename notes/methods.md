@@ -1,2 +1,4 @@
 # metody pro řetězce
-= způsob práce s textem
+= způsob analýzy řetězce
+
+- `print("martin".upper())` #
