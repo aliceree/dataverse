@@ -37,7 +37,7 @@ total_price = sum_two_numbers(250, 135)
 print(total_price) #vytiskne výsledek sčítání
 
 
-**dělení**
+**dělení**  
 `# zaokrouhlí číslo 12.34567 na celé číslo`  
 `result = round(12.34567)`  
 `print(result)  # výsledek bude 12`  
@@ -49,13 +49,13 @@ print(total_price) #vytiskne výsledek sčítání
 `        result = a / b  # vydělíme číslo a číslem b`  
 `        return result   # vrátíme výsledek`  
 `    else:`  
-`        # Pokud je b == 0, nelze dělit (matematicky nesmysl)`
+`        # Pokud je b == 0, nelze dělit (matematicky nesmysl)`  
 `        return "Nulou nelze dělit."`  
 
 `# zavolá funkci s hodnotami a=120, b=4`  
 `# podmínka b != 0 je splněna → proběhne dělení 120 / 4`  
 `division_result = divide_two_numbers(120, 4)`  
-`print(division_result)  # yýsledek bude 30.0 (float)`  
+`print(division_result)  # výsledek bude 30.0 (float)`  
 
 `# zavolá funkci s hodnotami a=120, b=0`  
 `# podmínka b != 0 není splněna → spustí se větev else`  
