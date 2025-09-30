@@ -1,6 +1,4 @@
-guest_list = ["Jirka", "Klára", "Natálie"]
-# Vypíše Natálie
-print(guest_list[-1])
-guest_list.append("Adéla")
-# Vypíše Adéla
-print(guest_list[-1])
+def greet_user(name):
+    print(f"Ahoj {name}!")
+greet_user("Honzo")
+greet_user("Zuzko")
