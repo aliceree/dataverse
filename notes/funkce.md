@@ -60,7 +60,73 @@ print(total_price) #vytiskne výsledek sčítání
 `# zavolá funkci s hodnotami a=120, b=0`  
 `# podmínka b != 0 není splněna → spustí se větev else`  
 `division_result_2 = divide_two_numbers(120, 0)`  
-`print(division_result_2)  # vypíše "Nulou nelze dělit"`  
+`print(division_result_2)  # vypíše "Nulou nelze dělit"` 
+
+**cvičení násobení**
+moje řešení:
+def mult(a, b):
+    result = a * b
+    return result
+
+mult_result = mult(2, 2)
+print(mult_result) #vytiskne výsledek násobení
+
+rešení koučky:
+def mult(a,b):
+    return a* b
+print(f'Nasobeni: {mult(10,15)}')
+
+**převod jednotek**
+def kilometry_na_mile(kilometry):
+    return kilometry * 0.621
+
+def mile_na_kilometry(mile):
+    return mile / 0.621
+
+print(f'10 mile je {mile_na_kilometry(10)} kilometru.')
+
+
+**datum narození**
+Takhle to stačí pro muže:
+def month_of_birth(birth_number):
+   month = birth_number[2:4]
+
+   print(month)
+
+birth_month = month_of_birth("6708120000")
+birth_month = month_of_birth("6759120000")
+birth_month = month_of_birth("6762120000")
+
+Navíc a sofistikovanější pro ženy.
+def month_of_birth(birth_number):
+    month = int(birth_number[2:4]) % 50
+    return month
+print(f"Month of birth: {month_of_birth('6708120000')}")
+# birth_month = month_of_birth("6759120000")
+# birth_month = month_of_birth("6762120000")
+
+
+**převod vzdálenosti z mil na kilometry**
+# Parametry:
+# - mile: hodnota ve statute miles (tzv. "pozemské" míle)
+# - namorni: volitelný parametr (False = běžná míle, True = námořní míle)
+def mile_na_kilometry(mile, namorni=False):
+    # Pokud se nejedná o námořní míle
+    if not namorni:
+        # Převod běžné míle na kilometry (1 míle ≈ 1.609344 km)
+        return mile * 1.609344
+    else:
+        # Převod námořní míle na kilometry (1 námořní míle = 1.852 km)
+        return mile * 1.852
+
+# Výpočet vzdálenosti Londýn–Oxford (59.7 běžných mil)
+london_oxford_km = mile_na_kilometry(59.7)
+print(london_oxford_km)  # vypíše cca 96.06 km
+
+# Výpočet vzdálenosti Belfast–New York (2758.13 námořních mil)
+belfast_new_york = mile_na_kilometry(2758.13, True)
+print(belfast_new_york)  # vypíše cca 5110.55 km
+
 
 
 zdroj a procvičování: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/vlastni-funkce/funkce

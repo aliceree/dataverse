@@ -4,4 +4,4 @@ def mile_na_kilometry(mile, namorni: bool=False):
     if not namorni:
         return mile * 1.609344
     else:
-        return mile * 1.852
+        return mile * 1.85210
