@@ -5,36 +5,39 @@ Kromě předefinovaných funkcí např.
 `print(cele_cislo)`  
 si mohu definovat funkci vlastní, např.  
 `def greet_user():`  
-`   print("Ahoj!")`  
-`greet_user()`. 
+`   print("Ahoj Alice!")`  
+`greet_user()`.  
 
+Navíc lze funkci rozšířit o f-string, který umožňuje vložení proměnné do textu, díky čemuž lze při volání funkce definovat (v tomto konkrétním případě) jméno oslovoaného.  
 
-def greet_user(name):
-    print(f"Ahoj {name}!")
-greet_user("Honzo")
-greet_user("Zuzko")
+`def greet_user(name):`  
+`    print(f"Ahoj {name}!")`  
+`greet_user("Alice")`  
+`greet_user("Richarde")`  
 
+Dalším příkladem flexibility funkce může být jazyková mutace pozdravu.  
 
-def greet_user(language_code): #vytvoří funkci, která pozdraví uživatele podle zadaného jazyka
-    if language_code == 'cs':
-        print("Ahoj!")
-    elif language_code == 'de':
-        print("Hallo!")
-    else:
-        print("Hello!")
-greet_user('cs')  # Outputs: Ahoj!
-greet_user('fr')  # Outputs: Hallo!
+`def greet_user(language_code):`  
+`    if language_code == 'cs':`  
+`        print("Ahoj!")`  
+`    elif language_code == 'de':`  
+`        print("Hallo!")`  
+`    else:`  
+`        print("Hello!")`  
+`greet_user('cs')`  
+`greet_user('fr')` # vypíše Hello!   
 
+Kromě vypisování lze také po funkci požadovat nějaký výstup. Hodnotu, kterou má vrátit díky klíčovému slovu `return`.
 
-result = round(12.34567)
-print(result) #zaokrouhlí číslo na celé číslo a vytiskne ho
+`def sum_two_numbers(a, b):`  
+`    result = a + b`  
+`    return result`  
+`print(sum_two_numbers(1, 1))`  
 
-def sum_two_numbers(a, b): #vytvoří funkci, která sečte dvě čísla
-    result = a + b
-    return result
+Dále mohu kód obohatit o další dva řádky kódu se stejnou logikou.
 
-total_price = sum_two_numbers(250, 135)
-print(total_price) #vytiskne výsledek sčítání
+`total_price = sum_two_numbers(250, 135)`  
+`print(total_price)`  
 
 
 **dělení**  
