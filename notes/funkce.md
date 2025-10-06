@@ -1,6 +1,7 @@
 # funkce
 
-Kromě předefinovaných funkcí např.  
+Kromě předefinovaných funkcí např. 
+```python 
 `cele_cislo = round(12.34567)`  
 `print(cele_cislo)`  
 si mohu definovat funkci vlastní, např.  
