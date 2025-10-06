@@ -48,7 +48,7 @@ GROUP BY category;
 
 ## příklady
 
-Zadání 1: Zjistit průměr, minimum, maximum, sumu a pocet pro cenu (Price) za kategorii (Category).
+**Zadání 1**: Zjistit průměr, minimum, maximum, sumu a pocet pro cenu (Price) za kategorii (Category).
 
 ```sql
 SELECT Category,
@@ -60,7 +60,7 @@ COUNT (Price)
 FROM Product GROUP BY Category;
 ```
 
-Zadáná 2: Jaké byli celkové tržby za rok 2014?
+**Zadáná 2**: Jaké byli celkové tržby za rok 2014?
 ```sql
 SELECT SUM(revenue)
 FROM sales
