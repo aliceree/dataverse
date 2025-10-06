@@ -39,6 +39,12 @@ Dále mohu kód obohatit o další dva řádky kódu se stejnou logikou.
 `total_price = sum_two_numbers(250, 135)`  
 `print(total_price)`  
 
+**fuknce kódu**
+Může se stát, že je evidentní potřeba nějaké funkce, ale zatím není protstor proto ji naprogramovat. pro takový případ slouží funkce `pass`.  
+
+`def code_me_later(par1, par2):`  
+`    pass`
+
 
 **dělení**  
 `# zaokrouhlí číslo 12.34567 na celé číslo`  
