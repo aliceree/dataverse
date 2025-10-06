@@ -12,8 +12,7 @@
 | IN, NOT IN     | number, string  | `... WHERE sloupec1 IN ('hodnota1', 'hodnota2')`                               |
 | IS NULL/IS NOT NULL | number, string | `... WHERE sloupec1 IS NULL`                                                |
 
-# agregační funkce
-- GROUP BY  
+# agregační funkce GROUP BY
 Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
 
 ```sql
@@ -67,14 +66,14 @@ FROM sales
 WHERE date LIKE '2014%';
 ```
 
-Zadání 3: Jaká byla průměrná tržba za 1 prodej v lichých letech?
+**Zadání 3**: Jaká byla průměrná tržba za 1 prodej v lichých letech?
 ```sql
 SELECT AVG(revenue)
 from sales 
 where date like '2013%' OR date like '2015%'; --WHERE date >: '2013-01-01' AND < '2014-01-01') OR (date >='2015-01-01' AND < '2016-01-01')
 ```
 
-Zadání 4: Který produkt (Productid) měl v roce 2014 největší tržby?
+**Zadání 4**: Který produkt (Productid) měl v roce 2014 největší tržby?
 ```sql
 SELECT ProductID,SUM(Revenue)
 FROM Sales
@@ -83,17 +82,54 @@ GROUP BY ProductID
 ORDER BY SUM(Revenue) DESC;
 ```
 
-Zadání 5: Kolik máme produktů v kategorii Rural? Výsledný sloupec přejmenujte na „ProductCount“.
+**Zadání 5**: Kolik máme produktů v kategorii Rural? Výsledný sloupec přejmenujte na „ProductCount“.
 ```sql
 SELECT COUNT(productid) AS ProductCount
 FROM product
 WHERE category = 'Rural'
 ```
 
-Zadání 6: Průměrná cena (výsledek přejmenujte na „Prum_cena“) za kategorii? Zajímají nás pouze ceny větší jak 0 a kategorie Mix a Urban.
+**Zadání 6**: Průměrná cena (výsledek přejmenujte na „Prum_cena“) za kategorii? Zajímají nás pouze ceny větší jak 0 a kategorie Mix a Urban.
 ```sql
 SELECT category, AVG(pricenew) AS Prum_cena
 FROM product
 WHERE pricenew > 0 AND category IN ('Mix', 'Urban')
 GROUP BY category;
+```
+
+## agregační funkce HAVING
+**Zadání 7**: Produkty, jejichž celkové tržby přesáhly 10 miliónů.
+```sql
+SELECT productid, sum(revenue) AS 'Trzby'
+from sales
+GROUP by productid
+having Trzby > 10000000
+ORDER by Trzby DESC;
+```
+Ještě varianta bez aliasu.
+```sql
+seleCT productid, sum(revenue)
+from sales
+GROUP by productid
+having sum(revenue) > 10000000
+ORDER by sum(revenue) DESC;
+```
+
+**Zadání 8**: Čeho se prodalo v roce 2013 nejvíce (počet kusů). Zajímají nás produkty, kterých jsme prodali více jak 5000.
+```sql
+SELECT ProductID, SUM(Units) AS Pocet_kusu
+FROM Sales
+WHERE date LIKE '2013%'
+GROUP BY ProductID
+HAVING SUM(Units) > 5000
+ORDER BY Pocet_kusu DESC;
+```
+
+**Zadání 9**: Kterých 10 výrobců má nejvíce různorodých kategorií výrobků?
+```sql
+SELECT manufacturerid, COUNT(DISTINCT category) AS 'Pocet_kategorii'
+from product
+group by manufacturerid
+ORDER by Pocet_kategorii DESC
+LIMIT 10;
 ```
