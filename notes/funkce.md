@@ -69,58 +69,32 @@ Napište funkci `mult`, která bude mít dva číselné parametry. Funkce oba pa
 `    return a * b`  
 `print(mult(1, 1))`  
 
-**převod jednotek**
+**cvičení převod jednotek**
 Vytvořte funkci `km_na_mile`, které převede kilometry na míle.  
 
 `def kilometry_na_mile(kilometry):`  
 `    return kilometry * 0.621`  
 
-`print(f'10 mile je {kilometry_na_mile(10)} kilometru.')`  
+`print(f'10 miles is {kilometry_na_mile(10)} kilometers.')`  
 
 Použití f-stringu `f` a `{}` ulehčuje práci s textem a výsledkem funkce. Všechno, co je uvnitř složených závorek, se vyhodnotí jako Python výraz a dosadí do výsledného řetězce. Bez `f` by Python závorky nevnímal a vypsal by je doslova, nebo by bylo zapotřebí spojovat řetězce pomocí + nebo čárkami.
 
-**datum narození**
-Takhle to stačí pro muže:
-def month_of_birth(birth_number):
-   month = birth_number[2:4]
+**cvičení datum narození**
+Vytvořte funkci `month_of_birth` s parametrem `birth_number`, která z rodného čísla vyčte měsíc narození.  
 
-   print(month)
+Varianta pro muže:
+`def month_of_number(birth_number):`  
+`    result = str(birth_number)[2:4]`  
+`    return int(result)`  
+`print(month_of_number(9207054439))`  
 
-birth_month = month_of_birth("6708120000")
-birth_month = month_of_birth("6759120000")
-birth_month = month_of_birth("6762120000")
+Pro ženy i muže:
+`def month_of_birth(birth_number):`  
+`    month = int(str(birth_number)[2:4])`  
+`    if month > 50:`  
+`        month - 50`  
+`    return month`  
+`print(month_of_birth(9207054439))`  
 
-Navíc a sofistikovanější pro ženy.
-def month_of_birth(birth_number):
-    month = int(birth_number[2:4]) % 50
-    return month
-print(f"Month of birth: {month_of_birth('6708120000')}")
-# birth_month = month_of_birth("6759120000")
-# birth_month = month_of_birth("6762120000")
-
-
-**převod vzdálenosti z mil na kilometry**
-# Parametry:
-# - mile: hodnota ve statute miles (tzv. "pozemské" míle)
-# - namorni: volitelný parametr (False = běžná míle, True = námořní míle)
-def mile_na_kilometry(mile, namorni=False):
-    # Pokud se nejedná o námořní míle
-    if not namorni:
-        # Převod běžné míle na kilometry (1 míle ≈ 1.609344 km)
-        return mile * 1.609344
-    else:
-        # Převod námořní míle na kilometry (1 námořní míle = 1.852 km)
-        return mile * 1.852
-
-# Výpočet vzdálenosti Londýn–Oxford (59.7 běžných mil)
-london_oxford_km = mile_na_kilometry(59.7)
-print(london_oxford_km)  # vypíše cca 96.06 km
-
-# Výpočet vzdálenosti Belfast–New York (2758.13 námořních mil)
-belfast_new_york = mile_na_kilometry(2758.13, True)
-print(belfast_new_york)  # vypíše cca 5110.55 km
-
-
-
-zdroj a procvičování: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/vlastni-funkce/funkce
+zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/vlastni-funkce/funkce
 
