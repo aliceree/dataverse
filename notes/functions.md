@@ -74,7 +74,9 @@ result = divide_two_numbers(a, b)
 print("Výsledek dělení je:", result)
 ```
 
-**cvičení násobení**  
+# cvičení
+
+**ásobení**  
 Napište funkci `mult`, která bude mít dva číselné parametry. Funkce oba parametry vynásobí a vrátí výsledek.  
 
 ```python
@@ -83,7 +85,7 @@ def mult(a, b):
 print(mult(1, 1))
 ```
 
-**cvičení převod jednotek**  
+**převod jednotek**  
 Vytvořte funkci `km_na_mile`, které převede kilometry na míle.  
 
 ```python
@@ -94,7 +96,7 @@ print(f'10 miles is {kilometry_na_mile(10)} kilometers.')
 
 Použití f-stringu `f` a `{}` ulehčuje práci s textem a výsledkem funkce. Všechno, co je uvnitř složených závorek, se vyhodnotí jako Python výraz a dosadí do výsledného řetězce. Bez `f` by Python závorky nevnímal a vypsal by je doslova, nebo by bylo zapotřebí spojovat řetězce pomocí + nebo čárkami.  
 
-**cvičení datum narození**  
+**datum narození**  
 Vytvořte funkci `month_of_birth` s parametrem `birth_number`, která z rodného čísla vyčte měsíc narození.  
 
 Varianta pro muže:  
