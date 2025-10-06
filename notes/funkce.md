@@ -39,14 +39,11 @@ Dále mohu kód obohatit o další dva řádky kódu se stejnou logikou.
 `total_price = sum_two_numbers(250, 135)`  
 `print(total_price)`  
 
-**fuknce kódu**
-Může se stát, že je evidentní potřeba nějaké funkce, ale zatím není protstor proto ji naprogramovat. pro takový případ slouží funkce `pass`.  
+**fuknce kódu**  
+Může se stát, že je evidentní potřeba nějaké funkce, ale zatím není protstor proto ji naprogramovat, pro takový případ slouží funkce `pass`.  
 
 `def code_me_later(par1, par2):`  
 `    pass`
-
-def divide_two_numbers(a, b):
-
 
 **dělení**  
 Konkrétní příklad dělení se zadáním dělence a dělitele.  
@@ -56,7 +53,6 @@ Konkrétní příklad dělení se zadáním dělence a dělitele.
 `        return None`  
 `    else:`  
 `        return a / b`  
-
 `a = float(input("Zadej dělenec: "))`  
 `b = float(input("Zadej dělitel: "))`  
 `result = divide_two_numbers(a, b)`  
@@ -93,6 +89,14 @@ Pro ženy i muže:
 `    if month > 50:`  
 `        month - 50`  
 `    return month`  
+`print(month_of_birth(9207054439))`  
+
+Navíc obohacené o f-string:  
+`def month_of_birth(birth_number):`  
+`    month = int(str(birth_number)[2:4])`  
+`    if month > 50:`  
+`        month - 50`  
+`    return f'Month of birth is {month}.'`  
 `print(month_of_birth(9207054439))`  
 
 zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/vlastni-funkce/funkce
