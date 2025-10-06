@@ -57,34 +57,27 @@ Konkrétní příklad dělení se zadáním dělence a dělitele.
 `    else:`  
 `        return a / b`  
 
-`a = float(input("Zadej dělenec: "))`
-`b = float(input("Zadej dělitel: "))`
-`result = divide_two_numbers(a, b)`
-`print("Výsledek dělení je:", result)`
+`a = float(input("Zadej dělenec: "))`  
+`b = float(input("Zadej dělitel: "))`  
+`result = divide_two_numbers(a, b)`  
+`print("Výsledek dělení je:", result)`  
 
 **cvičení násobení**
-moje řešení:
-def mult(a, b):
-    result = a * b
-    return result
+Napište funkci `mult`, která bude mít dva číselné parametry. Funkce oba parametry vynásobí a vrátí výsledek.  
 
-mult_result = mult(2, 2)
-print(mult_result) #vytiskne výsledek násobení
-
-rešení koučky:
-def mult(a,b):
-    return a* b
-print(f'Nasobeni: {mult(10,15)}')
+`def mult(a, b):`  
+`    return a * b`  
+`print(mult(1, 1))`  
 
 **převod jednotek**
-def kilometry_na_mile(kilometry):
-    return kilometry * 0.621
+Vytvořte funkci `km_na_mile`, které převede kilometry na míle.  
 
-def mile_na_kilometry(mile):
-    return mile / 0.621
+`def kilometry_na_mile(kilometry):`  
+`    return kilometry * 0.621`  
 
-print(f'10 mile je {mile_na_kilometry(10)} kilometru.')
+`print(f'10 mile je {kilometry_na_mile(10)} kilometru.')`  
 
+Použití f-stringu `f` a `{}` ulehčuje práci s textem a výsledkem funkce. Všechno, co je uvnitř složených závorek, se vyhodnotí jako Python výraz a dosadí do výsledného řetězce. Bez `f` by Python závorky nevnímal a vypsal by je doslova, nebo by bylo zapotřebí spojovat řetězce pomocí + nebo čárkami.
 
 **datum narození**
 Takhle to stačí pro muže:

@@ -1,10 +1,4 @@
-#Napiš funkci mult, která bude mít dva číselné parametry. Funkce oba parametry vynásobí a vrátí výsledek.
+def kilometry_na_mile(kilometry):
+    return kilometry * 0.621
 
-def mult(a, b):
-    return a * b
-
-print(mult(1, 1))
-
-def mult(a,b):
-    return a * b
-print(f'Nasobeni: {mult(10,15)}')
+print(f'10 mile je {kilometry_na_mile(10)} kilometru.')
