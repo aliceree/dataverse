@@ -73,3 +73,27 @@ SELECT AVG(revenue)
 from sales 
 where date like '2013%' OR date like '2015%'; --WHERE date >: '2013-01-01' AND < '2014-01-01') OR (date >='2015-01-01' AND < '2016-01-01')
 ```
+
+Zadání 4: Který produkt (Productid) měl v roce 2014 největší tržby?
+```sql
+SELECT ProductID,SUM(Revenue)
+FROM Sales
+WHERE Date >= '2014-01-01' AND Date < '2015-01-01'
+GROUP BY ProductID
+ORDER BY SUM(Revenue) DESC;
+```
+
+Zadání 5: Kolik máme produktů v kategorii Rural? Výsledný sloupec přejmenujte na „ProductCount“.
+```sql
+SELECT COUNT(productid) AS ProductCount
+FROM product
+WHERE category = 'Rural'
+```
+
+Zadání 6: Průměrná cena (výsledek přejmenujte na „Prum_cena“) za kategorii? Zajímají nás pouze ceny větší jak 0 a kategorie Mix a Urban.
+```sql
+SELECT category, AVG(pricenew) AS Prum_cena
+FROM product
+WHERE pricenew > 0 AND category IN ('Mix', 'Urban')
+GROUP BY category;
+```
