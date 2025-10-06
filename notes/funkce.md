@@ -45,31 +45,22 @@ Může se stát, že je evidentní potřeba nějaké funkce, ale zatím není pr
 `def code_me_later(par1, par2):`  
 `    pass`
 
+def divide_two_numbers(a, b):
+
 
 **dělení**  
-`# zaokrouhlí číslo 12.34567 na celé číslo`  
-`result = round(12.34567)`  
-`print(result)  # výsledek bude 12`  
+Konkrétní příklad dělení se zadáním dělence a dělitele.  
 
-`# definuje funkci, která umí vydělit dvě čísla`  
 `def divide_two_numbers(a, b):`  
-`    # podmínka: pokud jmenovatel b není nula`  
-`    if b != 0:`  
-`        result = a / b  # vydělíme číslo a číslem b`  
-`        return result   # vrátíme výsledek`  
+`    if b == 0:`  
+`        return None`  
 `    else:`  
-`        # Pokud je b == 0, nelze dělit (matematicky nesmysl)`  
-`        return "Nulou nelze dělit."`  
+`        return a / b`  
 
-`# zavolá funkci s hodnotami a=120, b=4`  
-`# podmínka b != 0 je splněna → proběhne dělení 120 / 4`  
-`division_result = divide_two_numbers(120, 4)`  
-`print(division_result)  # výsledek bude 30.0 (float)`  
-
-`# zavolá funkci s hodnotami a=120, b=0`  
-`# podmínka b != 0 není splněna → spustí se větev else`  
-`division_result_2 = divide_two_numbers(120, 0)`  
-`print(division_result_2)  # vypíše "Nulou nelze dělit"` 
+`a = float(input("Zadej dělenec: "))`
+`b = float(input("Zadej dělitel: "))`
+`result = divide_two_numbers(a, b)`
+`print("Výsledek dělení je:", result)`
 
 **cvičení násobení**
 moje řešení:

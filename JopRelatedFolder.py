@@ -1,6 +1,10 @@
-def sum_two_numbers(a, b):
-    result = a + b
-    return result
+#Napiš funkci mult, která bude mít dva číselné parametry. Funkce oba parametry vynásobí a vrátí výsledek.
 
-total_price = sum_two_numbers(1, 2)
-print(total_price)
+def mult(a, b):
+    return a * b
+
+print(mult(1, 1))
+
+def mult(a,b):
+    return a * b
+print(f'Nasobeni: {mult(10,15)}')
