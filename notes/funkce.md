@@ -2,8 +2,9 @@
 
 Kromě předefinovaných funkcí např. 
 ```python 
-`cele_cislo = round(12.34567)`  
-`print(cele_cislo)`  
+cele_cislo = round(12.34567)
+print(cele_cislo)
+```
 si mohu definovat funkci vlastní, např.  
 `def greet_user():`  
 `   print("Ahoj Alice!")`  
