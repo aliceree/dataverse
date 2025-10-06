@@ -108,7 +108,7 @@ ORDER by Trzby DESC;
 ```
 Ještě varianta bez aliasu.
 ```sql
-seleCT productid, sum(revenue)
+SELECT productid, sum(revenue)
 from sales
 GROUP by productid
 having sum(revenue) > 10000000
