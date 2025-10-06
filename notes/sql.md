@@ -45,3 +45,31 @@ SELECT category, SUM(pricenew)
 FROM product
 GROUP BY category;
 ```
+
+##příklady
+
+Zadání 1: Zjistit průměr, minimum, maximum, sumu a pocet pro cenu (Price) za kategorii (Category).
+
+```sql
+SELECT Category,
+AVG(Price),
+MIN(Price),
+MAX(Price),
+SUM(Price),
+COUNT (Price)
+FROM Product GROUP BY Category;
+```
+
+Zadáná 2: Jaké byli celkové tržby za rok 2014?
+```sql
+SELECT SUM(revenue)
+FROM sales
+WHERE date LIKE '2014%';
+```
+
+Zadání 3: Jaká byla průměrná tržba za 1 prodej v lichých letech?
+```sql
+SELECT AVG(revenue)
+from sales 
+where date like '2013%' OR date like '2015%'; --WHERE date >: '2013-01-01' AND < '2014-01-01') OR (date >='2015-01-01' AND < '2016-01-01')
+```
