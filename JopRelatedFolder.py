@@ -1,7 +1,4 @@
-def month_of_birth(birth_number):
-    month = int(str(birth_number)[2:4])
-    if month > 50:
-        month - 50
-    return f'Month of birth is {month}.'
+def kofein_za_den(pocet_espresso, pocet_filtrovana=0):
+    return pocet_espresso * 75 + pocet_filtrovana * 150
 
-print(month_of_birth(9207054439))
+print(kofein_za_den(3, 2))
