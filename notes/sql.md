@@ -1,4 +1,4 @@
-#SQL
+# SQL
 
 # operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
@@ -13,7 +13,7 @@
 | IS NULL/IS NOT NULL | number, string | `... WHERE sloupec1 IS NULL`                                                |
 
 # agregační funkce
-- GROUP BY
+- GROUP BY  
 Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
 
 ```sql
