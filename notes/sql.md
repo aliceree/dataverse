@@ -46,7 +46,7 @@ FROM product
 GROUP BY category;
 ```
 
-##příklady
+## příklady
 
 Zadání 1: Zjistit průměr, minimum, maximum, sumu a pocet pro cenu (Price) za kategorii (Category).
 
