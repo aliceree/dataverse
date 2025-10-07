@@ -108,7 +108,42 @@ ORDER BY Manufacturer DESC;
 ```
 
 ### cvičení
+**Zadání:** Vyberte jedinečné Regiony z tabulky Country a zobrazte pouze první záznam.
+```sql
+SELECT DISTINCT Region
+FROM Country
+LIMIT 1;
+```
 
+**Zadání:** Vyberte všechny sloupce z tabulky Sales a seřaďte výsledky sestupně dle výše Revenue. Omezte výsledek na pouze 5 řádků.
+```sql
+SELECT *
+FROM Sales
+ORDER BY Revenue DESC
+LIMIT 5;
+```
+
+### SELECT WHERE + AND/OR
+- podmínka v dotazu
+- např. Vybrat všechny záznamy o prodeji produktu s ProductID 428.
+```sql
+SELECT *
+FROM Sales
+WHERE ProductID = 428;
+```
+- lze spojit také více podmínek klauzulemi `AND` nebo `OR`
+- `AND` dotaz vybere záznamy, pokud jsou splněné obě podmínky
+```sql
+SELECT sloupce
+FROM tabulka
+WHERE sloupec1 = 'Hodnota' AND sloupec2 = 'Hodnota';
+```
+- `OR` dotaz vybere záznamy, pokud je alespoň jedna z podmínek splněna
+```sql
+SELECT sloupce
+FROM tabulka
+WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
+```
 
 ## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
