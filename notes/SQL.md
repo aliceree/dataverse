@@ -17,7 +17,7 @@
 - používán k práci s daty v relačních databázích
 - nejčastěji MS SQL, MySQL, Oracle, PostgreSQL, SQLite
 - dokumentace pro různé variace SQL
-- - https://sqlite.org/lang_select.html
+ - https://sqlite.org/lang_select.html
 
 ## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
