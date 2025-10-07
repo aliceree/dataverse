@@ -53,7 +53,7 @@ FROM tabulka;
 -- komnetář na více řádků /* */
 ```
 
-## cvičení
+### cvičení
 
 - cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu  
 
