@@ -12,6 +12,8 @@
 - **logický:** boolen
 
 # SQL
+- [druhy příkazů SQL](#druhy příkazů SQL)
+
 - structured query language
 - standardizovaný strukturovaný dotazovací jazyk
 - používán k práci s daty v relačních databázích
