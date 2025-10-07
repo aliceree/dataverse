@@ -1,0 +1,7 @@
+SELECT *
+FROM Product
+LIMIT 3;
+
+SELECT *
+FROM Product
+LIMIT 5;
