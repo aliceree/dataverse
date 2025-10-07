@@ -1,4 +1,4 @@
-# slovník
+# slovníky
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 # klíč (key): hodnota (value)
@@ -44,7 +44,7 @@ my_key = "title"
 print(item[my_key])
 ```
 
-# cvičení
+## cvičení
 **Zadání:** Vytvoř slovník, který reprezentuje vysvědčení. Klíč slovníku bude název předmětu a hodnota známka z daného předmětu. Pro zjednodušení vlož do slovníku pouze tři předměty (například český jazyk, matematiku a dějepis). Vypiš obsah slovníku pomocí funkce `print()`.
 
 ```python
@@ -112,4 +112,43 @@ else:
     print("Bohužel Vaše číslo není výherní.")
 ```
 
+# cykly
+- pracujeme stále se slovníkem, tentokrát s knihami
+```python
+sales = {
+    "Zkus mě chytit": 4165,
+    "Vrah zavolá v deset": 5681,
+    "Zločinný steh": 2565,
+}
+```
+- cyklus na vypsání všech knih
+```python
+sales = {
+    "Zkus mě chytit": 4165,
+    "Vrah zavolá v deset": 5681,
+    "Zločinný steh": 2565,
+}
 
+for key in sales:
+    print(key)
+```
+- konrétně python narazí na for a ví, že bude pracovat s cyklem, proto se jde podívat za in, s čím bude pracovat - pracovat bude se sales
+- jde tedy pracovat na další řádek, kde je print(key), do (key) vytiskne titul Zkus mě chystit a vrátí se zpátky (protože cyklus a protože neprošel celý slovník) a odoplní (key) o Vrah zavolá v deset a pak ze stejného důvodu o Zločinný steh  
+  
+- pokud si budu chtít vypsat i množství prodejů
+```python
+
+sales = {
+    "Zkus mě chytit": 4165,
+    "Vrah zavolá v deset": 5681,
+    "Zločinný steh": 2565,
+}
+
+# názvy proměnných (key) si určujeme sami
+# do první proměné uloží klíč, do druhé proměnné hodnotu
+for key, value in sales.items(): # když dám .items mohu procházet i klíč i hodnotu
+    # v proměnné je key je řetězec Zkus mě chytit
+    # v proměnné je value je číslo 4165
+    print(key)
+    print(value)
+```
