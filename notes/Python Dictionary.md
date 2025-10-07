@@ -76,7 +76,7 @@ sales["Vrah zavolá v deset"] = sales["Vrah zavolá v deset"] + 100
 print(sales)
 ```
 
-**příklad:** V následujícím slovníku jsou uložena čísla lístků tomboly a příslušné výhry.
+**Zadání:** V následujícím slovníku jsou uložena čísla lístků tomboly a příslušné výhry.
 ```python
 tombola = {
     7: "Láhev kvalitního vína Château Headache",
@@ -180,4 +180,66 @@ for key, value in sales.items():
     print(f"Knihy {key} bylo prodáno {value} výtisků.")
 total = sum(sales.values())
 print(f"Celkem bylo prodáno {total} výtisků.")
+```
+
+## dvourozměrné tabulky
+- slovník, se kterým nyní pracuji, má v sobě 3 další slovníky (u každé publikace ještě informace o ní)
+```python
+books = [
+    {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
+    {"title": "Vrah zavolá v deset", "sold": 5681, "price": 299, "year": 2019},
+    {"title": "Zločinný steh", "sold": 2565, "price": 369, "year": 2019},
+]
+```
+- chci si spočítat celkové tržby nakladatelství
+```python
+books = [
+    {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
+    {"title": "Vrah zavolá v deset", "sold": 5681, "price": 299, "year": 2019},
+    {"title": "Zločinný steh", "sold": 2565, "price": 369, "year": 2019},
+]
+
+total = 0
+for item in books:
+    # při prvním běhu bude uložený celý slovník {"title": "Zkus mě ch...}
+    # při druhém běhu bude uložený celý slovník {"title": "Vrah zavolá v deset"...}
+    # při třetím běhu bude uložený celý slovník {"title": "Zločinný steh"...}
+    total = total + item["sold"] * item["price"] # má přednost násobení (jako v matematice)
+print(total)
+```
+- nebo zjistit jen tržby z knih z roku 2019
+```python
+books = [
+    {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
+    {"title": "Vrah zavolá v deset", "sold": 5681, "price": 299, "year": 2019},
+    {"title": "Zločinný steh", "sold": 2565, "price": 369, "year": 2019},
+]
+
+total = 0
+for item in books:
+    # při prvním běhu bude uložený celý slovník {"title": "Zkus mě ch...}
+    # při druhém běhu bude uložený celý slovník {"title": "Vrah zavolá v deset"...}
+    # při třetím běhu bude uložený celý slovník {"title": "Zločinný steh"...}
+    if item["year"] >= 2019:
+        total = total + item["sold"] * item["price"] # má přednost násobení (jako v matematice)
+print(total)
+```
+
+## cvičení
+**Zadání:** Uvažujme vysvědčení, které máme zapsané jako slovník.
+- Napište program, který spočte průměrnou známku ze všech předmětů.
+- Upravte program, aby vypsal všechny předměty, ve kterých získal student známku 1.
+```python
+school_report = {
+    "Český jazyk": 1,
+    "Anglický jazyk": 1,
+    "Matematika": 1,
+    "Přírodopis": 2,
+    "Dějepis": 1,
+    "Fyzika": 2,
+    "Hudební výchova": 4,
+    "Výtvarná výchova": 2,
+    "Tělesná výchova": 3,
+    "Chemie": 4,
+}
 ```
