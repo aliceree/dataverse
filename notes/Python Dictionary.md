@@ -150,5 +150,34 @@ for key, value in sales.items(): # když dám .items mohu procházet i klíč i 
     # v proměnné je key je řetězec Zkus mě chytit
     # v proměnné je value je číslo 4165
     print(key)
-    print(value)
+    print(value) # případně vyšší levec programování: print(f"Titulu {key} bylo prodáno {value} výtisků.")
+```
+
+- Pokud chci zjistit kolik celkem prodalo nakladatelství výtisků musím naprogramovat proces sčítání.
+```python
+sales = {
+    "Zkus mě chytit": 4165,
+    "Vrah zavolá v deset": 5681,
+    "Zločinný steh": 2565,
+}
+
+total = 0
+for key, value in sales.items(): 
+    print(f"Knihy {key} bylo prodáno {value} výtisků.")
+    total = total + value
+print(f"Celkem bylo prodáno {total} výtisků.")
+```
+- nebo použiji funkci sum()
+```python
+sales = {
+    "Zkus mě chytit": 4165,
+    "Vrah zavolá v deset": 5681,
+    "Zločinný steh": 2565,
+}
+
+total = 0
+for key, value in sales.items(): 
+    print(f"Knihy {key} bylo prodáno {value} výtisků.")
+total = sum(sales.values())
+print(f"Celkem bylo prodáno {total} výtisků.")
 ```
