@@ -147,13 +147,13 @@ WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 
 ### SELECT WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
 - s pomocí operátorů lze počítat a porovnávat číselné i textové hodnoty
-- porovnávání číselných hodnot např.
+- porovnávání **číselných hodnot** např.
 ```sql
 WHERE Units = 1;
 WHERE Units <= 10;
 WHERE Units BETWEEN 2 AND 8;
 ```
-- pozovnávání textových řetězců, např.
+- pozovnávání **textových řetězců**, např.
 ```sql
 SELECT *
 FROM Manufacturer
@@ -177,6 +177,25 @@ WHERE Manufacturer LIKE 'Abba%'; --vypíše i výrobce Abbas
 SELECT *
 FROM osoba
 WHERE prijmeni LIKE '_avel' --vypíše osoby s příjmením Havel, Pavel, ale ne s příjmením Šťavel, Havelka
+```
+- pro porovnání **datumových hodnot** lze použít metody pro porovnání číselných i textových hodnot, včetně operátoru LIKE
+```sql
+SELECT *
+FROM Sales
+WHERE date > ‘2015-05-31‘; --vypíše všechny prodeje po 31. květnu 2015
+
+SELECT *
+FROM Sales
+WHERE date >= ‘2015-05-01‘ AND date <= ‘2015-05-31‘; --vypíše všechny prodeje v květnu 2015
+
+SELECT *
+FROM Sales
+WHERE date LIKE ‘2015-05%‘; --vypíše stejně všechny prodeje v květnu 2015
+
+
+SELECT *
+FROM Sales
+WHERE date BETWEEN ‘2015-05-01‘ AND ‘2015-05-31‘; --vypíše stejně všechny prodeje v květnu 2015
 ```
 
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
