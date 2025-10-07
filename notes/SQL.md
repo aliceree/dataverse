@@ -19,6 +19,7 @@
 
 ## druhy příkazů SQL
 - **Data Desinition Language (DDL):** vytváření a změna objetů (tabulek apod.)
+`CREATE, Drop, AFTER, TRUNCATE`
 - **Data Manipulation Language:** manipulace s daty (vkládání, mazání, změna)
 - **Transacton Control Language:** práce s transakcemi
 - **Data Query Language:** dotazování na data
