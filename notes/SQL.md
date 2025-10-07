@@ -210,6 +210,7 @@ WHERE date BETWEEN ‘2015-05-01‘ AND ‘2015-05-31‘; --vypíše stejně vš
 | BETWEEN        | number          | `... WHERE sloupec1 BETWEEN hodnota1 AND hodnota2` <br> (same as x >= y AND x <= z) |
 | IN, NOT IN     | number, string  | `... WHERE sloupec1 IN ('hodnota1', 'hodnota2')`                               |
 | IS NULL/IS NOT NULL | number, string | `... WHERE sloupec1 IS NULL`                                                |
+
 ### cvičení
 **Zadání:** Co všechno firma prodala (Sales) za rok 2014? Výsledky je střeba seřadit sestupně podle data prodeje (Date). Zadání má minimálně 3 možná řešení.
 ```sql
@@ -231,11 +232,12 @@ ORDER BY date DESC;
 
 **Zadání:** Zjistěte rok a název měsíce, kdy rok je mezi 2013 a 2015 a měsíc začíná na písmeno 'J' nebo obsahuje písmeno 'a'. Pracujte s tabulkou Date.
 ```sql
-SELECT Year, Monthname
+SELECT DISTINCT Year, MonthName
 FROM Date
-WHERE Year BETWEEN 2013 AND 2015 AND Month LIKE 'J%' OR '%a%';
+WHERE Year BETWEEN 2013 AND 2015 AND (MonthName LIKE 'J%' OR MonthName LIKE '%a%');
+--V SQL má AND vyšší prioritu než OR
+--pokud by bylo řešení bez závorky, SQL by vyhodnocovalo AND dřív než OR
 ```
-
 
 ### GROUP BY
 Agregační funkce. Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
