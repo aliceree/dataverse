@@ -145,7 +145,7 @@ FROM tabulka
 WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 ```
 
-### SELECT WHERE + operátory
+### SELECT WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
 - s pomocí operátorů lze počítat a porovnávat číselné i textové hodnoty
 - porovnávání číselných hodnot např.
 ```sql
@@ -153,13 +153,24 @@ WHERE Units = 1;
 WHERE Units <= 10;
 WHERE Units BETWEEN 2 AND 8;
 ```
-- pozovnávání textových řetězců např.
+- pozovnávání textových řetězců, např.
 ```sql
 SELECT *
 FROM Manufacturer
 WHERE Manufacturer = 'Abbas' -- vypíše jednoho výrobce s názevm Abbas
 ```
+- čtení textových řetězců je Case Sensitive, např.
+```sql
+SELECT *
+FROM Manufacturer
+WHERE Manufacturer = 'abbas' --nevypíše nic
 
+WHERE Manufacturer = 'Abba' --nevypíše také nic
+```
+- textové řetezce lze porovnávat pomocí `LIKE`
+- `LIKE` doplňují Wild Cards
+  `'%'` (zastupuje 0 až N znaků)
+  `'_'` (zastupuje právě jeden znak)
 
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
