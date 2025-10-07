@@ -236,20 +236,17 @@ SELECT DISTINCT Year, MonthName
 FROM Date
 WHERE Year BETWEEN 2013 AND 2015 AND (MonthName LIKE 'J%' OR MonthName LIKE '%a%');
 --V SQL má AND vyšší prioritu než OR
---pokud by bylo řešení bez závorky, SQL by vyhodnocovalo AND dřív než OR
+--pokud by bylo řešení bez závorky, SQL by vyhodnocovalo AND dříve než OR
 ```
 
-### GROUP BY
-Agregační funkce. Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
-
+### GROUP BY + agregační funkce
+- seskupí řádky podle vybraných sloupců, např.
 ```sql
-SELECT category
-FROM product
-GROUP BY category;
+SELECT Category
+FROM Product
+GROUP BY Category;
 ```
-
-- funkce pro získávání některých souhrnných údajů:  
-- v dotazu umožní spočítat výsledek dle zvolené funkce
+- agregační funkce na těchto skupinách něco počítají
 
 | Funkce             | Význam                    |
 |--------------------|---------------------------|
