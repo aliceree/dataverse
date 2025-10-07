@@ -230,7 +230,7 @@ WHERE Date >= '2014-01-01' AND Date < '2015-01-01'
 ORDER BY date DESC;
 ```
 
-**Zadání:** Zjistěte rok a název měsíce, kdy rok je mezi 2013 a 2015 a měsíc začíná na písmeno 'J' nebo obsahuje písmeno 'a'. Pracujte s tabulkou Date.
+**Zadání:** Zjistěte rok a název měsíce, kdy rok je mezi 2013 a 2015 a měsíc začíná na písmeno `J` nebo obsahuje písmeno `a`. Pracujte s tabulkou Date.
 ```sql
 SELECT DISTINCT Year, MonthName
 FROM Date
