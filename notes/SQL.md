@@ -69,8 +69,8 @@ SELECT ProductID, Product
 FROM Sales;
 ```
 
-## SELECT AS
-- přejmenování sloupců
+### SELECT AS
+- přejmenování sloupců s pomocí klauzule `AS`
 ```sql
 SELECT
 sloupec1 AS NovyNazevSloupce1,
@@ -79,6 +79,24 @@ sloupec3,
 sloupec4 AS NovyNazevSloupce4
 FROM tabulka;
 ```
+
+### SELECT DISTRICT
+- vybere pouze jedinečné záznamy z tabulky
+- např. vybrat kategorie ze seznamu produktů
+```sql
+SELECT DISTINCT Category
+FROM Product;
+```
+
+### SELECT LIMIT
+- vybere pouze konkrétní počet záznamů z tabulky
+- např. vybrat první 3 výrobce ze seznamu výrobců
+```sql
+SELECT Manufacturer
+FROM Manufacturer
+LIMIT 3;
+```
+
 
 ## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
@@ -125,7 +143,7 @@ FROM product
 GROUP BY category;
 ```
 
-## cvičení
+### cvičení
 
 **Zadání:** Zjistit průměr, minimum, maximum, sumu a pocet pro cenu (Price) za kategorii (Category).
 
