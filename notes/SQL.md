@@ -38,7 +38,8 @@ FROM zdrojová tabulka
 WHERE podmínka
 GROUP BY seznam sloupců
 HAVING podmínka pro výsledek agregace
-ORDER BY seznam sloupců;
+ORDER BY seznam sloupců
+(LIMIT);
 ```
 
 ## operátory
