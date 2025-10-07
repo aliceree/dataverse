@@ -246,9 +246,9 @@ SELECT Category
 FROM Product
 GROUP BY Category;
 ```
-- agregační funkce na těchto skupinách něco počítají
-
-| Funkce             | Význam                    |
+- agregační funkce na takto seskupených datech pak dle zadání provádí operace
+- lze tak jedním příkazem např. získat průměrnou cenu celé kategorie hračky
+| Agregační funkce   | Význam                    |
 |--------------------|---------------------------|
 | `AVG(sloupec)`     | Průměr hodnot sloupce     |
 | `MAX(sloupec)`     | Maximální hodnota sloupce |
@@ -256,17 +256,17 @@ GROUP BY Category;
 | `SUM(sloupec)`     | Součet hodnot sloupce     |
 | `COUNT(sloupec)`   | Počet hodnot v tabulce    |
 
-- lze je použít samostatně i ve spojení s GROUP BY
+- agregační funkce lze použít samostatně i ve spojení s `GROUP BY`
 - samostatně:
 ```sql
 SELECT SUM(pricenew)
-FROM product;
+FROM product; --vrátí součet cen všech produktů
 ```
 - ve spojení s GROUP BY:
 ```sql
 SELECT category, SUM(pricenew)
 FROM product
-GROUP BY category;
+GROUP BY category; --vrátí součet cen všech produktů dané kategorie
 ```
 
 ### cvičení
@@ -279,27 +279,27 @@ AVG(Price),
 MIN(Price),
 MAX(Price),
 SUM(Price),
-COUNT (Price)
+COUNT(Price)
 FROM Product GROUP BY Category;
 ```
 
 **Zadáná:** Jaké byli celkové tržby za rok 2014?
 ```sql
-SELECT SUM(revenue)
-FROM sales
-WHERE date LIKE '2014%';
+SELECT SUM(Revenue)
+FROM Sales
+WHERE Date LIKE '2014%';
 ```
 
 **Zadání:** Jaká byla průměrná tržba za 1 prodej v lichých letech?
 ```sql
 SELECT AVG(revenue)
 from sales 
-where date like '2013%' OR date like '2015%'; --WHERE date >: '2013-01-01' AND < '2014-01-01') OR (date >='2015-01-01' AND < '2016-01-01')
+where date like '2013%' OR date like '2015%';
 ```
 
 **Zadání:** Který produkt (Productid) měl v roce 2014 největší tržby?
 ```sql
-SELECT ProductID,SUM(Revenue)
+SELECT ProductID, SUM(Revenue)
 FROM Sales
 WHERE Date >= '2014-01-01' AND Date < '2015-01-01'
 GROUP BY ProductID
@@ -322,7 +322,14 @@ GROUP BY category;
 ```
 
 ### HAVING
-- agregační funkce
+- umožňuje vytvořit podmínku pro výsledek agregační funkce
+- musí být součástí klauzuje `GROUP BY`, např.
+```sql
+SELECT SIM(sloupec), sloupec2
+FROM tabulka
+GROUP BY sloupec2
+HAVING SUM(soupec) > 0;
+```
 
 **Zadání:** Produkty, jejichž celkové tržby přesáhly 10 miliónů.
 ```sql
