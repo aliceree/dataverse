@@ -1,35 +1,14 @@
-'''
-**příklad:** V následujícím slovníku jsou uložena čísla lístků tomboly a příslušné výhry.
+books = [
+    {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
+    {"title": "Vrah zavolá v deset", "sold": 5681, "price": 299, "year": 2019},
+    {"title": "Zločinný steh", "sold": 2565, "price": 369, "year": 2019},
+]
 
-tombola = {
-    7: "Láhev kvalitního vína Château Headache",
-    15: "Pytel brambor z místního družstva",
-    23: "Čokoládový dort",
-    47: "Kniha o historii města",
-    55: "Šiška salámu",
-    67: "Vyhlídkový let balónem",
-    79: "Moderní televizor",
-    91: "Roční předplatné městského zpravodaje",
-    93: "Společenská hra Sázky a dostihy",
-}
-
-- Napiš program, který se nejprve zeptá uživatele na číslo jeho lístku. Vstup uživatele si převeď na int!
-- Zkontroluj, zda je číslo lístku ve slovníku. Pokud ne, vypiš text "Bohužel nevyhráváš nic." Pokud číslo ve slovníku je, vypiš uživateli, co vyhrál.
-'''
-tombola = {
-    7: "Láhev kvalitního vína Château Headache",
-    15: "Pytel brambor z místního družstva",
-    23: "Čokoládový dort",
-    47: "Kniha o historii města",
-    55: "Šiška salámu",
-    67: "Vyhlídkový let balónem",
-    79: "Moderní televizor",
-    91: "Roční předplatné městského zpravodaje",
-    93: "Společenská hra Sázky a dostihy",
-}
-
-cislo_listku = int(input("Jaké je Vaše číslo lístku? "))
-if cislo_listku in tombola:
-    print(f"Gratuluji! Vyhráváte {tombola[cislo_listku]}!")
-else:
-    print("Bohužel Vaše číslo není výherní.")
+total = 0
+for item in books:
+    # při prvním běhu bude uložený celý slovník {"title": "Zkus mě ch...}
+    # při druhém běhu bude uložený celý slovník {"title": "Vrah zavolá v deset"...}
+    # při třetím běhu bude uložený celý slovník {"title": "Zločinný steh"...}
+    if item["year"] >= 2019:
+        total = total + item["sold"] * item["price"] # má přednost násobení (jako v matematice)
+print(total)
