@@ -18,15 +18,15 @@
 - nejčastěji MS SQL, MySQL, Oracle, PostgreSQL, SQLite
 
 ## druhy příkazů SQL
-- **Data Desinition Language (DDL):** vytváření a změna objetů (tabulek apod.)
+- **Data Desinition Language (DDL):** vytváření a změna objetů (tabulek apod.)  
 `CREATE, Drop, AFTER, TRUNCATE`
-- **Data Manipulation Language:** manipulace s daty (vkládání, mazání, změna)
+- **Data Manipulation Language:** manipulace s daty (vkládání, mazání, změna)  
 `INSERT, UPDATE, DELETE, CALL, EXPLAIN CALL, LOCK`
-- **Transacton Control Language:** práce s transakcemi
+- **Transacton Control Language:** práce s transakcemi  
 `COMMIT, SAVEPOINT, ROLLBACK, SET Transaction, SET Constraint`
-- **Data Query Language:** dotazování na data
+- **Data Query Language:** dotazování na data  
 `SELECT`
-- **Data Control Language:** řízení přístupu k datům
+- **Data Control Language:** řízení přístupu k datům  
 `GRANT, REVOKE`
 
 ## operátory
