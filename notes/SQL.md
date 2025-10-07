@@ -1,7 +1,7 @@
 ## obsah
 - [SQL](#sql)
 - [SELECT](#dselect)
-- [SELECT AS](#select-as)
+  - [AS](#select-as)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
