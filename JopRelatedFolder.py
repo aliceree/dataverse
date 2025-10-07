@@ -1,8 +1,6 @@
-a = int(input("Enter a number: "))
-b = int(input("Enter another number: "))
+km = int(input("Zadej vzdálenost v km: "))
 
-def mult(a, b):
-    result = a * b
-    return result
+def km_na_m(km):
+    return km / 0.001
 
-print(mult(a, b))
+print(int(km_na_m(km)))
