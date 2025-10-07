@@ -2,6 +2,10 @@
 - [SQL](#sql)
 - [SELECT](#dselect)
   - [AS](#select-as)
+  - [DISTRICT](#select-district)
+  - [LIMIT](select-limit)
+  - [ORDER BY](select-order-by-desc/asc)
+  - [WHERE](select-where-+-and/or)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
