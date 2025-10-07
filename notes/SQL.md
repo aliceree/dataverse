@@ -55,12 +55,29 @@ FROM tabulka;
 
 ## cvičení
 
-- cvičnou databázi poskytuje Czechitas v rámci svého kurzu  
+- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu  
 
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
 ```sql
 SELECT *
 FROM Sales"
+```
+
+**Zadání:** Vyber sloupce ProductID a Product z tabulky Product.
+```sql
+SELECT ProductID, Product
+FROM Sales;
+```
+
+## SELECT AS
+- přejmenování sloupců
+```sql
+SELECT
+sloupec1 AS NovyNazevSloupce1,
+sloupec2 AS NovyNazevSloupce2,
+sloupec3,
+sloupec4 AS NovyNazevSloupce4
+FROM tabulka;
 ```
 
 ## operátory
