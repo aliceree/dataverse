@@ -50,6 +50,7 @@ FROM tabulka;
 -- klíčová slova (SELECT, FROM) se oddělují mezerami
 -- mezi názvy sloupců se vkládá čárka
 -- dotaz se ukončuje středníkem
+-- komnetář na více řádků /* */
 ```
 
 ## operátory
