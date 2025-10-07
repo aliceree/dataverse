@@ -29,6 +29,18 @@
 - **Data Control Language:** řízení přístupu k datům  
 `GRANT, REVOKE`
 
+## SELECT
+- dotaz na data do tabulek, výsledkem je vždy tabulka
+- obecná struktura příkazu, pořadí jednotlivých částí
+```sql
+SELECT seznam sloupců, agregační funkce
+FROM zdrojová tabulka
+WHERE podmínka
+GROUP BY seznam sloupců
+HAVING podmínka pro výsledek agregace
+ORDER BY seznam sloupců;
+```
+
 ## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
@@ -41,8 +53,8 @@
 | IN, NOT IN     | number, string  | `... WHERE sloupec1 IN ('hodnota1', 'hodnota2')`                               |
 | IS NULL/IS NOT NULL | number, string | `... WHERE sloupec1 IS NULL`                                                |
 
-## agregační funkce GROUP BY
-Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
+## GROUP BY
+Agregační funkce. Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
 
 ```sql
 SELECT category
