@@ -7,9 +7,8 @@
   - [ORDER BY](#select-order-by-descasc)
   - [WHERE + AND/OR](#select-where--andor)
   - [WHERE + operátory](#select-where--operátory---between-like-in-is-null)
-    - [GROUP BY + agregační funkce](#group-by--agregační-funkce)
-    - [cvičení](#cvičení-3)
-    - [HAVING](#having)
+  - [GROUP BY + agregační funkce](#group-by--agregační-funkce)
+  - [HAVING](#having)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
