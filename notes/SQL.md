@@ -1,5 +1,5 @@
 - [SQL](#sql)
-- [SELECT](#dselect)
+- [SELECT](#select)
 - [AS](#select-as)
 - [DISTRICT](#select-district)
 - [LIMIT](#select-limit)
