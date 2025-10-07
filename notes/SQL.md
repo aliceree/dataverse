@@ -168,9 +168,16 @@ WHERE Manufacturer = 'abbas' --nevypíše nic
 WHERE Manufacturer = 'Abba' --nevypíše také nic
 ```
 - textové řetezce lze porovnávat pomocí `LIKE`
-- `LIKE` doplňují Wild Cards
-  `'%'` (zastupuje 0 až N znaků)
-  `'_'` (zastupuje právě jeden znak)
+- `LIKE` doplňují Wild Cards `'%'` (zastupuje 0 až N znaků) a `'_'` (zastupuje právě jeden znak), např.
+```sql
+SELECT *
+FROM Manufacturer
+WHERE Manufacturer LIKE 'Abba%'; --vypíše i výrobce Abbas
+
+SELECT *
+FROM osoba
+WHERE prijmeni LIKE '_avel' --vypíše osoby s příjmením Havel, Pavel, ale ne s příjmením Šťavel, Havelka
+```
 
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
