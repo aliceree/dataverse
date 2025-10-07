@@ -339,7 +339,7 @@ GROUP by productid
 having Trzby > 10000000
 ORDER by Trzby DESC;
 ```
-Ještě varianta bez aliasu.
+- ještě varianta bez aliasu
 ```sql
 SELECT productid, sum(revenue)
 from sales
