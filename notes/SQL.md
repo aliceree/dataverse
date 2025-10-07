@@ -1,4 +1,3 @@
-# SQL
 - [SELECT](#dselect)
 - [AS](#select-as)
 - [DISTRICT](#select-district)
