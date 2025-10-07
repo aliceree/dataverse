@@ -44,14 +44,15 @@ my_key = "title"
 print(item[my_key])
 ```
 
-**příklad:** Vytvoř slovník, který reprezentuje vysvědčení. Klíč slovníku bude název předmětu a hodnota známka z daného předmětu. Pro zjednodušení vlož do slovníku pouze tři předměty (například český jazyk, matematiku a dějepis). Vypiš obsah slovníku pomocí funkce `print()`.
+# cvičení
+**Zadání:** Vytvoř slovník, který reprezentuje vysvědčení. Klíč slovníku bude název předmětu a hodnota známka z daného předmětu. Pro zjednodušení vlož do slovníku pouze tři předměty (například český jazyk, matematiku a dějepis). Vypiš obsah slovníku pomocí funkce `print()`.
 
 ```python
 vysvedceni = {"M": 1, "ČJ": 2, "D": 1}
 print(f"Z matematiky máte známku: {vysvedceni['M']}.")
 ```
 
-**příklad:** Vydavatel detektivek si eviduje prodané kusy u jednotlivých knih. V následujícím slovníku najdeš tři knihy a u každé z nich je počet prodaných kusů.
+**Zadání:** Vydavatel detektivek si eviduje prodané kusy u jednotlivých knih. V následujícím slovníku najdeš tři knihy a u každé z nich je počet prodaných kusů.
 ```python
 sales = {
     "Zkus mě chytit": 4165,
