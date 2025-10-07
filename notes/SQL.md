@@ -1,3 +1,7 @@
+## obsah
+- [SQL](#sql)
+- [druhy příkazů SQL](#druhy-příkazů-sql)
+
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
 - **informace:** smysluplná interpretace dat  
@@ -12,8 +16,6 @@
 - **logický:** boolen
 
 # SQL
-- [druhy příkazů SQL](#druhy-příkazů-sql)
-
 - structured query language
 - standardizovaný strukturovaný dotazovací jazyk
 - používán k práci s daty v relačních databázích
