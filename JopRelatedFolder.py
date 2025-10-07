@@ -1,4 +1,8 @@
-def kofein_za_den(pocet_espresso, pocet_filtrovana=0):
-    return pocet_espresso * 75 + pocet_filtrovana * 150
+a = int(input("Největší hodnota je: "))
+b = int(input("Nejmenší hodnota je: "))
+result = a - b
 
-print(kofein_za_den(3, 2))
+if result < 0:
+    print("Chyba: Největší hodnota musí být větší než nejmenší hodnota.")
+else:
+    print("Rozpětí je: ", result)
