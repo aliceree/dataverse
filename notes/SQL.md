@@ -16,8 +16,7 @@
 - standardizovaný strukturovaný dotazovací jazyk
 - používán k práci s daty v relačních databázích
 - nejčastěji MS SQL, MySQL, Oracle, PostgreSQL, SQLite
-- dokumentace pro různé variace SQL (https://sqlite.org/lang_select.html, https://sqlite.org/lang_createtable.html, https://docs.oracle.com/cd/B28359_01/server.111/b28286/statements_
-10002.htm#SQLRF01702, https://docs.oracle.com/en/database/oracle/oracle-
+- dokumentace pro různé variace SQL (https://sqlite.org/lang_select.html, https://sqlite.org/lang_createtable.html, https://docs.oracle.com/cd/B28359_01/server.111/b28286/statements_10002.htm#SQLRF01702, https://docs.oracle.com/en/database/oracle/oracle-
 database/19/sqlrf/CREATE-TABLE.html#GUID-F9CE0CC3-13AE-4744-A43C-EAC7A71AAAB6, https://dev.mysql.com/doc/refman/8.0/en/select.html, https://dev.mysql.com/doc/refman/8.0/en/create-table.html
 
 ## operátory
