@@ -7,6 +7,20 @@
   - [ORDER BY](select-order-by-desc/asc)
   - [WHERE](select-where-+-and/or)
 
+  - [SELECT](#select)
+    - [cvičení](#cvičení)
+    - [SELECT AS](#select-as)
+    - [SELECT DISTRICT](#select-district)
+    - [SELECT LIMIT](#select-limit)
+    - [SELECT ORDER BY DESC/ASC](#select-order-by-descasc)
+    - [cvičení](#cvičení-1)
+    - [SELECT WHERE + AND/OR](#select-where--andor)
+    - [SELECT WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)](#select-where--operátory---between-like-in-is-null)
+    - [cvičení](#cvičení-2)
+    - [GROUP BY + agregační funkce](#group-by--agregační-funkce)
+    - [cvičení](#cvičení-3)
+    - [HAVING](#having)
+
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
 - **informace:** smysluplná interpretace dat  
