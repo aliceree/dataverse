@@ -55,7 +55,7 @@ FROM tabulka;
 
 ### cvičení
 
-- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu  
+- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu a pracuje se s ní prostřednictvím SQLite Online  
 
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
 ```sql
