@@ -12,8 +12,7 @@
 - **logický:** boolen
 
 # SQL
-## obsah
-- [druhy příkazů SQL](## druhy příkazů SQL)
+- [druhy příkazů SQL](#druhy-příkazů-sql)
 
 - structured query language
 - standardizovaný strukturovaný dotazovací jazyk
