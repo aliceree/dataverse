@@ -45,6 +45,7 @@ ORDER BY seznam sloupců
 ```sql
 SELECT sloupec1,..., sloupecN
 FROM tabulka;
+
 -- dotaz nerozlišuje psaní malými/velkými písmeny
 -- klíčová slova (SELECT, FROM) se oddělují mezerami
 -- mezi názvy sloupců se vkládá čárka
