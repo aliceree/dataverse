@@ -53,6 +53,15 @@ FROM tabulka;
 -- komnetář na více řádků /* */
 ```
 
+## cvičení
+
+- cvičnou databázi poskytuje Czechitas v rámci svého kurzu
+**Zadání:** Vyber všechny sloupce z tabulky Sales.
+```sql
+SELECT *
+FROM Sales"
+```
+
 ## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
@@ -98,7 +107,7 @@ FROM product
 GROUP BY category;
 ```
 
-## příklady
+## cvičení
 
 **Zadání 1**: Zjistit průměr, minimum, maximum, sumu a pocet pro cenu (Price) za kategorii (Category).
 
