@@ -1,4 +1,3 @@
-# SQL
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
 - **informace:** smysluplná interpretace dat  
@@ -12,8 +11,15 @@
 - **datum a čas:** date, datetime, timestamp
 - **logický:** boolen
 
+# SQL
+- structured query language
+- standardizovaný strukturovaný dotazovací jazyk
+- používán k práci s daty v relačních databázích
+- nejčastěji MS SQL, MySQL, Oracle, PostgreSQL, SQLite
+- dokumentace pro různé variace SQL
+-- https://sqlite.org/lang_select.html
 
-# operátory
+## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
 | * / + -        | number          | `... WHERE sloupec1 = hodnota1 * hodnota2`                                     |
@@ -25,7 +31,7 @@
 | IN, NOT IN     | number, string  | `... WHERE sloupec1 IN ('hodnota1', 'hodnota2')`                               |
 | IS NULL/IS NOT NULL | number, string | `... WHERE sloupec1 IS NULL`                                                |
 
-# agregační funkce GROUP BY
+## agregační funkce GROUP BY
 Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
 
 ```sql
