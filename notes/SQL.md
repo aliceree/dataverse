@@ -198,7 +198,7 @@ FROM Sales
 WHERE date BETWEEN ‘2015-05-01‘ AND ‘2015-05-31‘; --vypíše stejně všechny prodeje v květnu 2015
 ```
 
-
+- seznam oparátorů
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
 | * / + -        | number          | `... WHERE sloupec1 = hodnota1 * hodnota2`                                     |
