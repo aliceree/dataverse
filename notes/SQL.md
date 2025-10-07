@@ -259,6 +259,7 @@ GROUP BY Category;
 ```
 - agregační funkce na takto seskupených datech pak dle zadání provádí operace
 - lze tak jedním příkazem např. získat průměrnou cenu celé kategorie hračky
+
 | Agregační funkce   | Význam                    |
 |--------------------|---------------------------|
 | `AVG(sloupec)`     | Průměr hodnot sloupce     |
