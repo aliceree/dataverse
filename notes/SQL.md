@@ -56,6 +56,7 @@ FROM tabulka;
 ## cvičení
 
 - cvičnou databázi poskytuje Czechitas v rámci svého kurzu  
+
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
 ```sql
 SELECT *
