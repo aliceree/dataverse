@@ -97,6 +97,18 @@ FROM Manufacturer
 LIMIT 3;
 ```
 
+### SELECT DESC/ASC
+- řezení výsledků `DESC` (descending) od největšího k nejmenšímu
+- řezení výsledků `ASC` (ascending) od nejmenšího k největšímu
+- např. vybrat z tabulky výrobců jednotlivé výrobce a seřadit je abecedně
+```sql
+SELECT Manufacturer
+FROM Manufacturer
+ORDER BY Manufactirer DESC;
+```
+
+### cvičení
+
 
 ## operátory
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
