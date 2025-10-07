@@ -146,7 +146,20 @@ WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 ```
 
 ### SELECT WHERE + operátory
-- počítání a porovnávání sloupců
+- s pomocí operátorů lze počítat a porovnávat číselné i textové hodnoty
+- porovnávání číselných hodnot např.
+```sql
+WHERE Units = 1;
+WHERE Units <= 10;
+WHERE Units BETWEEN 2 AND 8;
+```
+- pozovnávání textových řetězců např.
+```sql
+SELECT *
+FROM Manufacturer
+WHERE Manufacturer = 'Abbas' -- vypíše jednoho výrobce s názevm Abbas
+```
+
 
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
@@ -159,7 +172,7 @@ WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 | IN, NOT IN     | number, string  | `... WHERE sloupec1 IN ('hodnota1', 'hodnota2')`                               |
 | IS NULL/IS NOT NULL | number, string | `... WHERE sloupec1 IS NULL`                                                |
 
-## GROUP BY
+### GROUP BY
 Agregační funkce. Seskupování řádků podle vybraných sloupců umožňuje lépe analyzovat data a získávat souhrnná data v rámci jednoho dotazu. Seskupování se provádí pomocí klauzule GROUP BY společně s názvem sloupce, podle kterého chceme seskupovat.
 
 ```sql
@@ -244,7 +257,7 @@ WHERE pricenew > 0 AND category IN ('Mix', 'Urban')
 GROUP BY category;
 ```
 
-## HAVING
+### HAVING
 - agregační funkce
 
 **Zadání:** Produkty, jejichž celkové tržby přesáhly 10 miliónů.
