@@ -1,16 +1,16 @@
 # SQL
 ## základní pojmy
-**data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
-**informace:** smysluplná interpretace dat  
-**databáze:** organizovaný soubor strukturovaných dat  
-**systém řízení bází dat:** softwarové vybavení, zajišťující práci s databízí  
-**databázový systém:** systém řízení bází dat + databíze
+- **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
+- **informace:** smysluplná interpretace dat  
+- **databáze:** organizovaný soubor strukturovaných dat  
+- **systém řízení bází dat:** softwarové vybavení, zajišťující práci s databízí  
+- **databázový systém:** systém řízení bází dat + databíze
 
 ## datové typy
-- číselné (integer, numeric/decimal)
-- řetězcové (char, varchat, nchar, nvarchar, text)
-- datum a čas (date, datetime, timestamp)
-- logický (boolen)
+- **číselné:** integer, numeric/decimal
+- **řetězcové:** char, varchat, nchar, nvarchar, text
+- **datum a čas:** date, datetime, timestamp
+- **logický:** boolen
 
 
 # operátory
