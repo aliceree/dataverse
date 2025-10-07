@@ -145,7 +145,9 @@ FROM tabulka
 WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 ```
 
-## operátory
+### SELECT WHERE + operátory
+- počítání a porovnávání sloupců
+
 | Operátor       | Datový typ      | Příklad zápisu                                                                 |
 |----------------|-----------------|--------------------------------------------------------------------------------|
 | * / + -        | number          | `... WHERE sloupec1 = hodnota1 * hodnota2`                                     |
