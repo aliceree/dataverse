@@ -1,4 +1,5 @@
 # slovníky
+
 - seznam, krerý navíc obsahuje klíč `key` a hodnotu `value`
 - jako `key` mohou sloužit datové typy `int`, `float`, `bool`, `str` a další
 - hodnotou `value` může být libovolný datový typ
@@ -14,17 +15,16 @@ item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 print(f"Vybraný produkt je {item['title']}")
 ```
 
-- je možné též použít `f-string` jen uvnitř `[]` je nutné mít jednoduché závorky
+- je možné též použít `f-string`, jen je nutné mít uvnitř `[]` jednoduché uvozovky `''`
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
 print(f"Vybraný předmět je {item['title']} a stojí {item['price']} Kč.")
 ```
 
-- k ověření, zda je `key` ve slovníku slouží operátor `in`
+- k ověření, zda je `key` ve slovníku, slouží operátor `in`
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
-#item["weight"] = 0.9
 
 if "weight" in item:
     print(item["weight"])
@@ -68,6 +68,7 @@ empty_dict = {}
 **Zadání:** Vytvořte `dictionary` vysvědčení. `key` slovníku bude název předmětu a `value` známka z daného předmětu. Vypište obsah slovníku pomocí funkce `print()`.
 ```python
 vysvedceni = {"M": 1, "ČJ": 2, "D": 1}
+
 print(f"Z matematiky máte známku: {vysvedceni['M']}.")
 ```
 
@@ -133,15 +134,8 @@ else:
 ```
 
 # cykly
-- pracujeme stále se slovníkem, tentokrát s knihami
-```python
-sales = {
-    "Zkus mě chytit": 4165,
-    "Vrah zavolá v deset": 5681,
-    "Zločinný steh": 2565,
-}
-```
-- cyklus na vypsání všech knih
+
+- cyklus na vypsání všech knih ve slovníku
 ```python
 sales = {
     "Zkus mě chytit": 4165,
@@ -152,8 +146,11 @@ sales = {
 for key in sales:
     print(key)
 ```
-- konrétně python narazí na for a ví, že bude pracovat s cyklem, proto se jde podívat za in, s čím bude pracovat - pracovat bude se sales
-- jde tedy pracovat na další řádek, kde je print(key), do (key) vytiskne titul Zkus mě chystit a vrátí se zpátky (protože cyklus a protože neprošel celý slovník) a odoplní (key) o Vrah zavolá v deset a pak ze stejného důvodu o Zločinný steh  
+- program si přečte `for`, proto ví, že bude pracovat s cyklem
+- jako první se podívá za `in`, s čím konkrétně bude pracovat (pracovat bude se sales)
+- jde tedy pracovat na další řádek, kde je `print(key)`
+- do `key` uloží titul `Zkus mě chystit` a vrátí se zpátky, protože zatím neprošel celý slovník
+- dále odoplní `key` o `Vrah zavolá v deset` a pak i o `Zločinný steh`  
   
 - pokud si budu chtít vypsat i množství prodejů
 ```python
