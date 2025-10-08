@@ -167,7 +167,8 @@ for key, value in sales.items(): # pro každou dvojici klíče a hodnoty ve slov
     print(f"Titulu {key} bylo prodáno {value} výtisků.") # ..vytiskni tuto větu obohacenou o klíč a hodnotu
 ```
 
-- Pokud chci zjistit kolik celkem prodalo nakladatelství výtisků musím naprogramovat proces sčítání.
+### sčítání
+- pro výpočet celkových prodejů nakladetelství mohu naprograovat operaci sčítání
 ```python
 sales = {
     "Zkus mě chytit": 4165,
@@ -175,13 +176,13 @@ sales = {
     "Zločinný steh": 2565,
 }
 
-total = 0
+total = 0 # vytvoření proměnné total a pro každou knihu do ní přičteme počet prodaných kusů
 for key, value in sales.items(): 
     print(f"Knihy {key} bylo prodáno {value} výtisků.")
     total = total + value
 print(f"Celkem bylo prodáno {total} výtisků.")
 ```
-- nebo použiji funkci sum()
+- místo programování operace sčítání lze také využít funkce `sum()`
 ```python
 sales = {
     "Zkus mě chytit": 4165,
@@ -192,12 +193,13 @@ sales = {
 total = 0
 for key, value in sales.items(): 
     print(f"Knihy {key} bylo prodáno {value} výtisků.")
-total = sum(sales.values())
+    total = sum(sales.values())
 print(f"Celkem bylo prodáno {total} výtisků.")
 ```
 
 ## dvourozměrné tabulky
-- slovník, se kterým nyní pracuji, má v sobě 3 další slovníky (u každé publikace ještě informace o ní)
+- slovník, který v sobě může mít několik dalších slovníků
+- např. `dictionary` jako název publikace a `items` informace o publikaci
 ```python
 books = [
     {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
@@ -205,7 +207,8 @@ books = [
     {"title": "Zločinný steh", "sold": 2565, "price": 369, "year": 2019},
 ]
 ```
-- chci si spočítat celkové tržby nakladatelství
+
+- celkové třžby nakladatelství
 ```python
 books = [
     {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
@@ -215,13 +218,11 @@ books = [
 
 total = 0
 for item in books:
-    # při prvním běhu bude uložený celý slovník {"title": "Zkus mě ch...}
-    # při druhém běhu bude uložený celý slovník {"title": "Vrah zavolá v deset"...}
-    # při třetím běhu bude uložený celý slovník {"title": "Zločinný steh"...}
-    total = total + item["sold"] * item["price"] # má přednost násobení (jako v matematice)
-print(total)
+    total = total + item["sold"] * item["price"] # * / má přednost před + -
+print(f"Celkové tržby nakladatelství jsou: {total} Kč.")
 ```
-- nebo zjistit jen tržby z knih z roku 2019
+
+- celkové tržby nakladatelství z roku 2019
 ```python
 books = [
     {"title": "Zkus mě chytit", "sold": 4165, "price": 347, "year": 2018},
@@ -231,18 +232,13 @@ books = [
 
 total = 0
 for item in books:
-    # při prvním běhu bude uložený celý slovník {"title": "Zkus mě ch...}
-    # při druhém běhu bude uložený celý slovník {"title": "Vrah zavolá v deset"...}
-    # při třetím běhu bude uložený celý slovník {"title": "Zločinný steh"...}
     if item["year"] >= 2019:
-        total = total + item["sold"] * item["price"] # má přednost násobení (jako v matematice)
-print(total)
+        total = total + item["sold"] * item["price"]
+print(f"Celkové tržby nakladatelství za rok 2019 jsou: {total} Kč.")
 ```
 
 ## cvičení
-**Zadání:** Uvažujme vysvědčení, které máme zapsané jako slovník.
-- Napište program, který spočte průměrnou známku ze všech předmětů.
-- Upravte program, aby vypsal všechny předměty, ve kterých získal student známku 1.
+**Zadání:** Napište program, který spočítá průměrnou známku ze všech předmětů. Dále jej doplňte o to, aby vypsal všechny předměty, ve kterých získal student známku 1.
 ```python
 school_report = {
     "Český jazyk": 1,
@@ -256,22 +252,17 @@ school_report = {
     "Tělesná výchova": 3,
     "Chemie": 4,
 }
-# Napiš program, který spočte průměrnou známku ze všech předmětů.
 average_grade = sum(school_report.values())/len(school_report)
-print(average_grade)
-# Uprav program, aby vypsal všechny předměty, ve kterých získal student známku 1.
+print(f"Průměr Vašeho vysvědčení je: {average_grade}.")
 for key,value in school_report.items():
     if value == 1:
-        print(key)
+        print(f"Známku 1 máte z předmětu: {key}")
 ```
 
-**Zadání:** Gustav je vášnivým čtenářem detektivek z našeho nakladatelství a navíc si zapisuje knihy, které přečetl. Níže ve slovníku vidíme, jaké informace si eviduje - název knihy, počet stran a hodnocení od 0 do 10.
-- Napište program, který spočte celkový počet stran, které Gustav přečetl.
-- Připište do programu výpočet počtu knih, kterým dal Gustav hodnocení alespoň 8.
+**Zadání:** Gustav je vášnivým čtenářem detektivek z našeho nakladatelství a navíc si zapisuje knihy, které přečetl. Níže ve slovníku vidíme, jaké informace si eviduje (název knihy, počet stran a hodnocení od 0 do 10).
+- napište program, který spočítá celkový počet stran, které Gustav přečetl
+- připište do programu výpočet počtu knih, kterým dal Gustav hodnocení alespoň 8
 ```python
-# Napište program, který spočte celkový počet stran, které Gustav přečetl.
-# Připište do programu výpočet počtu knih, kterým dal Gustav hodnocení alespoň 8.
-
 books = [
     {"title": "Vražda s příliš mnoha notami", "pages": 450, "rating": 5},
     {"title": "Vražda podle knihy", "pages": 524, "rating": 9},
@@ -294,3 +285,5 @@ for item in books:
 print(f"Gustav celkem přečetl {page_count} stran.")
 print(f"Počet knih s hodnocením alespoň 8: {favourite_books}.")
 ```
+
+zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/slovniky/slovniky
