@@ -1,42 +1,57 @@
 # slovníky
+- seznam, krerý navíc obsahuje klíč `key` a hodnotu `value`
+- jako `key` mohou sloužit datové typy `int`, `float`, `bool`, `str` a další
+- hodnotou `value` může být libovolný datový typ
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
-# klíč (key): hodnota (value)
+# dictionary = {key: hodnota}
 ```
 
-- vypsání konkrétní položky ze slovníku
+- z `dictionary` lze získat jen jednu hodnotu
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+
 print(f"Vybraný produkt je {item['title']}")
 ```
 
-- vložení nové položky do seznamu
+- je možné též použít `f-string` jen uvnitř `[]` je nutné mít jednoduché závorky
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
-item["weight"] = 0.9
-print(item["weight"])
+
+print(f"Vybraný předmět je {item['title']} a stojí {item['price']} Kč.")
 ```
 
-- pokud položka není na seznamu (a chci používat program, který nevyhazuje chybu) musím přidat podmínku
+- k ověření, zda je `key` ve slovníku slouží operátor `in`
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 #item["weight"] = 0.9
+
 if "weight" in item:
     print(item["weight"])
 else:
     print("Hmotnost není uvedena.")
 ```
 
-- mohu vyhledávát také v hodnotách, ne jen v klíčích
+- s operátorem `in` lze také vyhledávat ve `value` ne jen v `key`
 ```python
 sklad = {"A1": "Čajová konvička s hrnky", "A2": "Zubní kartáček"}
+
 if "Zubní kartáček" in sklad.values():
     print("Zubní kartáček máme skladem.")
 else:
     print("Zubní kartáček nemáme skladem.")
 ```
 
-- klíč může být také proměnná
+- vložení nové nebo přepsání stávající položky slovníku
+```python
+item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+
+item["weight"] = 0.9 # vložení nové položky
+item["price"] = 799 # přepsání stávající položky
+print(f"Položka váží {item['weight']} a stojí {item['price']} Kč.")
+```
+
+- jako `key` slovníku lze používat také proměnnou
 ```python
 item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
@@ -44,15 +59,19 @@ my_key = "title"
 print(item[my_key])
 ```
 
-## cvičení
-**Zadání:** Vytvoř slovník, který reprezentuje vysvědčení. Klíč slovníku bude název předmětu a hodnota známka z daného předmětu. Pro zjednodušení vlož do slovníku pouze tři předměty (například český jazyk, matematiku a dějepis). Vypiš obsah slovníku pomocí funkce `print()`.
+- prázdný slovník je možné vytvořit s pomocí `{}`
+```python
+empty_dict = {}
+```
 
+## cvičení
+**Zadání:** Vytvořte `dictionary` vysvědčení. `key` slovníku bude název předmětu a `value` známka z daného předmětu. Vypište obsah slovníku pomocí funkce `print()`.
 ```python
 vysvedceni = {"M": 1, "ČJ": 2, "D": 1}
 print(f"Z matematiky máte známku: {vysvedceni['M']}.")
 ```
 
-**Zadání:** Vydavatel detektivek si eviduje prodané kusy u jednotlivých knih. V následujícím slovníku najdeš tři knihy a u každé z nich je počet prodaných kusů.
+**Zadání:** Vydavatel detektivek si eviduje prodané kusy u jednotlivých knih. V následujícím slovníku najdete 3 knihy a u každé z nich počet prodaných kusů.
 ```python
 sales = {
     "Zkus mě chytit": 4165,
@@ -60,9 +79,8 @@ sales = {
     "Zločinný steh": 2565,
 }
 ```
-- Zkopíruj si slovník do svého programu.
-- Přidej do slovníku nově vydanou detektivku `Noc, která mě zabila`, která zatím nebyla uvedena na trh, je tedy prodáno 0 kusů.
-- U knihy `Vrah zavolá v deset` zvyš počet prodaných kusů o 100.
+- přidejte do slovníku nově vydanou detektivku `Noc, která mě zabila`, která zatím nebyla uvedena na trh, je tedy prodáno 0 kusů
+- u knihy `Vrah zavolá v deset` zvyšte počet prodaných kusů o 100
 ```python
 sales = {
     "Zkus mě chytit": 4165,
@@ -90,8 +108,10 @@ tombola = {
     93: "Společenská hra Sázky a dostihy",
 }
 ```
-- Napište program, který se nejprve zeptá uživatele na číslo jeho lístku. Vstup uživatele si převeďte na int!
-- Zkontrolujte, zda je číslo lístku ve slovníku. Pokud ne, vypište text "Bohužel nevyhráváte nic." Pokud číslo ve slovníku je, vypiš uživateli, co vyhrál.
+- napište program, který se nejprve zeptá uživatele na číslo jeho lístku (vstup uživatele si převeďte na int!)
+- zkontrolujte, zda je číslo lístku ve slovníku
+- pokud ne, vypište text "Bohužel Vaše číslo není výherní."
+- pokud číslo ve slovníku je, vypište uživateli, co vyhrál
 ```python
 tombola = {
     7: "Láhev kvalitního vína Château Headache",
