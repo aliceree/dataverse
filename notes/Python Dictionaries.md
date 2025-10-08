@@ -152,6 +152,7 @@ for key in sales:
 - do `key` uloží titul `Zkus mě chystit` a vrátí se zpátky, protože zatím neprošel celý slovník
 - dále odoplní `key` o `Vrah zavolá v deset` a pak i o `Zločinný steh`  
   
+  
 - pokud si budu chtít vypsat i množství prodejů
 ```python
 
