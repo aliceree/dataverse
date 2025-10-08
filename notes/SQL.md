@@ -71,7 +71,7 @@ FROM tabulka;
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
 ```sql
 SELECT *
-FROM Sales"
+FROM Sales;
 ```
 
 **Zadání:** Vyber sloupce ProductID a Product z tabulky Product.
