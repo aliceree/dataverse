@@ -150,9 +150,7 @@ for key in sales:
 - jako první se podívá za `in`, s čím konkrétně bude pracovat (pracovat bude se sales)
 - jde tedy pracovat na další řádek, kde je `print(key)`
 - do `key` uloží titul `Zkus mě chystit` a vrátí se zpátky, protože zatím neprošel celý slovník
-- dále odoplní `key` o `Vrah zavolá v deset` a pak i o `Zločinný steh`  
-  
-  
+- dále odoplní `key` o `Vrah zavolá v deset` a pak i o `Zločinný steh`
 - pokud si budu chtít vypsat i množství prodejů
 ```python
 
