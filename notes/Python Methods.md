@@ -5,7 +5,7 @@ K zaznamenávání množství věnečků sněděných za posledních 7 dní slou
 
 `venecky = [1, 2, 4, 1, 6, 0, 1]`
 
-**slicing seznamu sněděných věnečků**
+### slicing seznamu sněděných věnečků
 
 - `print(venecky[0])` # zobrazí množství věnečků na 1. pozici
 - `venecky[5] = 12` # změní číslo na 6. pozici na 12
@@ -16,7 +16,7 @@ K zaznamenávání množství věnečků sněděných za posledních 7 dní slou
 - `print(venecky[::-1])` # [1, 0, 6, 1, 4, 2, 1] opačně
 - `print(venecky[1:6:2])` # [2, 1, 0] ÚT, ČT, SO
 
-**vybrané funkce pro seznamy**
+### vybrané funkce pro seznamy
 
 - `len()` # vrátí délku seznamu
 - `sum()` # vrátí součet všech prvků v seznamu
@@ -24,7 +24,7 @@ K zaznamenávání množství věnečků sněděných za posledních 7 dní slou
 - `max()` # vrátí největší prvek seznamu
 - `sorted()` #vrátí setříděný seznam
 
-**řetězce** se v něčem chovají podobně jako seznamy
+### řetězce se v něčem chovají podobně jako seznamy
 
 `jmeno = "martin" + " " + "podlucký"`
 
@@ -35,14 +35,12 @@ K zaznamenávání množství věnečků sněděných za posledních 7 dní slou
 - `print(jmeno[::-1])` # 'ýkculdop niram' opačně
 - `print(jmeno[::2])` # 'mrt oduký' každý druhý znak
 
-podobně jako u seznamů funguje také **funkce** len()
-
+Podobně jako u seznamů funguje také **funkce** `len()`.
 ```python
 print(len(jmeno))
 ```
 
 Lze též zkotrolovat, zda se nějaký řetězec nachází v jiném řetězci s pomocí operátoru `in`.
-
 ```python
 inzerat = "Na této pracovní pozici budete využívat Python a SQL."
 
@@ -51,7 +49,6 @@ if "Python" in inzerat:
 ```
 
 Podobně lze využít i operátor `not in` vracející opačná výsledeků.
-
 ```python
 email = "spatny-mail.cz"
 if "@" not in email:
@@ -60,7 +57,6 @@ if "@" not in email:
 
 # metody pro řetězce
 = způsob analýzy řetězce
-
 ```python
 print("martin".upper()) # všechna písmena verzálkama  
 print("   martin   ".strip()) # odstraní mezery navíc  
