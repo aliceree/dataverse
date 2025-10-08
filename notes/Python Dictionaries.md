@@ -1,33 +1,33 @@
 # slovníky
-
 - seznam, krerý navíc obsahuje klíč `key` a hodnotu `value`
 - jako `key` mohou sloužit datové typy `int`, `float`, `bool`, `str` a další
 - hodnotou `value` může být libovolný datový typ
 ```python
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
-# dictionary = {key: hodnota}
+deco = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+# dictionary = {key: value}
+# celá dvojice {key: value} je item
 ```
 
 - z `dictionary` lze získat jen jednu hodnotu
 ```python
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+deco = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
-print(f"Vybraný produkt je {item['title']}")
+print(f"Vybraný produkt je {deco['title']}")
 ```
 
 - je možné též použít `f-string`, jen je nutné mít uvnitř `[]` jednoduché uvozovky `''`
 ```python
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+deco = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
-print(f"Vybraný předmět je {item['title']} a stojí {item['price']} Kč.")
+print(f"Vybraný předmět je {deco['title']} a stojí {deco['price']} Kč.")
 ```
 
 - k ověření, zda je `key` ve slovníku, slouží operátor `in`
 ```python
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+deco = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
-if "weight" in item:
-    print(item["weight"])
+if "weight" in deco:
+    print(deco["weight"])
 else:
     print("Hmotnost není uvedena.")
 ```
@@ -44,19 +44,19 @@ else:
 
 - vložení nové nebo přepsání stávající položky slovníku
 ```python
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+deco = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
-item["weight"] = 0.9 # vložení nové položky
-item["price"] = 799 # přepsání stávající položky
-print(f"Položka váží {item['weight']} a stojí {item['price']} Kč.")
+deco["weight"] = 0.9 # vložení nové položky
+deco["price"] = 799 # přepsání stávající položky
+print(f"Položka váží {deco['weight']} a stojí {deco['price']} Kč.")
 ```
 
 - jako `key` slovníku lze používat také proměnnou
 ```python
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+deco = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
 
 my_key = "title"
-print(item[my_key])
+print(deco[my_key])
 ```
 
 - prázdný slovník je možné vytvořit s pomocí `{}`
@@ -133,16 +133,9 @@ else:
     print("Bohužel Vaše číslo není výherní.")
 ```
 
-# cykly
-
-- cyklus na vypsání všech knih ve slovníku
+# slovníky a cykly
+- syntax cyklu pro vypsání všech položek `dictionaries`
 ```python
-sales = {
-    "Zkus mě chytit": 4165,
-    "Vrah zavolá v deset": 5681,
-    "Zločinný steh": 2565,
-}
-
 for key in sales:
     print(key)
 ```
@@ -151,22 +144,27 @@ for key in sales:
 - jde tedy pracovat na další řádek, kde je `print(key)`
 - do `key` uloží titul `Zkus mě chystit` a vrátí se zpátky, protože zatím neprošel celý slovník
 - dále odoplní `key` o `Vrah zavolá v deset` a pak i o `Zločinný steh`
-- pokud si budu chtít vypsat i množství prodejů
 ```python
-
 sales = {
     "Zkus mě chytit": 4165,
     "Vrah zavolá v deset": 5681,
     "Zločinný steh": 2565,
 }
 
-# názvy proměnných (key) si určujeme sami
-# do první proměné uloží klíč, do druhé proměnné hodnotu
-for key, value in sales.items(): # když dám .items mohu procházet i klíč i hodnotu
-    # v proměnné je key je řetězec Zkus mě chytit
-    # v proměnné je value je číslo 4165
-    print(key)
-    print(value) # případně vyšší levec programování: print(f"Titulu {key} bylo prodáno {value} výtisků.")
+for key in sales: # pro každý klíč ve slovníku sales..
+    print(key) # ..vytiskni znění tohoto klíče
+```
+
+- pro vypsání navíc prodejů slouží `.items()` (ve skutečnosti tam, kde je použito jen `sales` bez metody `.items()`, python automaticky volá metodu `sales.keys()`)
+```python
+sales = {
+    "Zkus mě chytit": 4165,
+    "Vrah zavolá v deset": 5681,
+    "Zločinný steh": 2565,
+}
+
+for key, value in sales.items(): # pro každou dvojici klíče a hodnoty ve slovníku sales..
+    print(f"Titulu {key} bylo prodáno {value} výtisků.") # ..vytiskni tuto větu obohacenou o klíč a hodnotu
 ```
 
 - Pokud chci zjistit kolik celkem prodalo nakladatelství výtisků musím naprogramovat proces sčítání.

@@ -1,3 +1,3 @@
-item = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
-key = "price"
-print(item[key])
+books = {"title": "Čajová konvička s hrnky", "price": 899, "in_stock": True}
+
+print(f"Vybraný produkt je {books['title']}")
