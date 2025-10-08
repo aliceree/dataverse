@@ -26,7 +26,9 @@ K zaznamenávání množství věnečků sněděných za posledních 7 dní slou
 
 ### řetězce se v něčem chovají podobně jako seznamy
 
-`jmeno = "martin" + " " + "podlucký"`
+```python
+jmeno = "martin" + " " + "podlucký"
+```
 
 - `print(jmeno)` # 'martin podlucký'
 - `print(jmeno[0:6])` # 'martin' prvních 6 znaků

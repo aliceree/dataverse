@@ -1,5 +1,5 @@
 # funkce
-- romě předefinovaných funkcí
+- kromě předefinovaných funkcí
 ```python 
 cele_cislo = round(12.34567)
 print(cele_cislo)
