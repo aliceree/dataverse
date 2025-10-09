@@ -184,3 +184,4 @@ from product
 group by manufacturerid
 ORDER by Pocet_kategorii DESC
 LIMIT 10;
+
