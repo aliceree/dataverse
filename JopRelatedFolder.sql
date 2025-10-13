@@ -196,3 +196,93 @@ SELECT productid, AVG(revenue)
 from sales
 GROUP by productid
 ORDER by AVG(revenue) DESC;
+
+SELECT productid, AVG(revenue)
+FROM sales
+WHERE date LIKE '2013%' AND units >=5
+GROUP BY productid
+ORDER BY sum(revenue) DESC
+LIMIT 1;
+
+--ve kterém segmentu působí nejvíce výrobců
+SELECT Segment, COUNT(DISTINCT manufacturerid) AS pocet_vyrobcu
+FROM product
+GROUP BY Segment
+ORDER BY pocet_vyrobcu DESC;
+
+SELECT * FROM country
+WHERE 1=1
+AND (city LIKE '_t%' OR city LIKE '%stown%')
+AND region IN ('East', 'Central')
+AND (District LIKE '%District #05%')
+ORDER BY city;
+
+SELECT *
+from country
+WHERE (region = 'Central' OR region = 'East') 
+AND (city LIKE '_t%' OR city LIKE '%stown%')
+AND district = 'District #05'
+ORDER by city;
+
+--Vypište města a k nim ostatní údaje z tabulky Country,
+--která jsou z východního nebo centrálního regionu,
+--(a zároveň) jejichž název má druhé písmeno `t`
+--nebo mají ve svém názvu `stown`,
+--a (zároveň) jsou z oblasti (district) `District #05`.
+--Výstup seřaďte podle názvu města vzestupně.
+--Pozor, v řetězci `District #05` je mezi `t` a `#` mezera.
+
+SELECT * FROM Country
+WHERE (Region = 'East' OR Region = 'Central')
+	AND (City LIKE '_t%'
+		OR City LIKE '%stown%')
+	AND District = 'District #05'
+ORDER BY City ASC;
+
+SELECT *
+FROM sales AS S
+INNER JOIN Country AS C ON s.Zip = c.Zip
+LIMIT 10;
+
+--Vyber produkty, kterých bylo prodáno najednou více jak 40 kusů,
+--k tomuto datu toho prodeje a počet prodaných kusů
+--a z tabulky Product vyberte odpovídající název produktu.
+SELECT s.ProductID, p.Product, s.Date, s.Units
+FROM sales AS s
+JOIN product AS p ON s.ProductID = p.ProductID
+WHERE Units > 40
+ORDER BY s.Units DESC;
+
+--Zjisti TOP 100 prodejů dle tržby
+--a k nim náležící informace
+--z tabulky Country.
+SELECT *
+FROM sales AS s
+JOIN Country AS c ON s.zip = c.Zip
+ORDER BY s.Revenue DESC
+LIMIT 100;
+
+--Ve kterých státech jsme měli největší tržby?
+SELECT c.State, SUM(s.Revenue) AS 'trzby'
+FROM Country AS c
+JOIN Sales AS s ON c.Zip = s.Zip
+ORDER BY trzby DESC;
+
+--Který výrobce vyrábí nejvíce různých / jedinečných výrobků?
+SELECT m.Manufacturer, COUNT(p.ProductID) AS Pocet_vyrobku
+FROM Manufacturer AS m
+JOIN Product AS p ON m.ManufacturerID = p.ManufacturerID
+GROUP BY m.Manufacturer
+ORDER BY Pocet_vyrobku DESC
+LIMIT 10;
+
+--vypište seznam prodktů (název, kategorie, název výrobce), u který byla jednorázová tržba
+--větší než 10 000 dolarů a dále vypiště prodeje, kdy k tomu došlo
+-- sales, product, manufacturer
+
+SELECT p.product, p.category, m.manufacturer, s.date, s.revenue
+from sales s 
+join product p on s.ProductID = p.ProductID
+join manufacturer m on p.ManufacturerID = m.ManufacturerID
+where revenue > 10000
+order by p.Product;

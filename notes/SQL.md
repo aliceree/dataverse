@@ -436,16 +436,17 @@ ORDER BY city;
 - teorie
 
 ### INNER JOIN
- - vnitrní spojení vybere z obou tabulek ty řádky, které mají svého „protějška" v obou tabulkách (existuje „průnik" tabulek)
- - ty řádky, které nemají svého „protějška" se nezobrazí
+ - tzv. vnitřní spojení
+ - vybere z obou tabulek ty řádky, které mají svého „protějška" v obou tabulkách (tj. primární a cizí klíč)
 ```sql
- SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka.sloupec1
- FROM tabulka1
- INNER JOIN tabulka2
-    ON tabulka1. sloupec1 = tabulka2.sloupec1;
- ```
- **Zadání:** Vyber produkty, kterých bylo prodáno najednou více jak 40 kusů, k tomuto datu toho prodeje a počet prodaných kusů a z tabulky Product vyberte odpovídající název produktu.
- ```sql
+SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka.sloupec1
+FROM tabulka1
+INNER JOIN tabulka2
+ON tabulka1. sloupec1 = tabulka2.sloupec1;
+```
+
+**Zadání:** Vyber produkty, kterých bylo prodáno najednou více jak 40 kusů, k tomuto datu toho prodeje a počet prodaných kusů a z tabulky Product vyberte odpovídající název produktu.
+```sql
 SELECT s.ProductID, p.Product, s.Date, s.Units
 FROM sales AS s
 JOIN product AS p ON s.ProductID = p.ProductID
@@ -479,3 +480,17 @@ GROUP BY m.Manufacturer
 ORDER BY Pocet_vyrobku DESC
 LIMIT 10;
 ```
+
+### JOIN (spojení více tabulek)
+**Zadáná:** Vypište seznam prodktů (název, kategorie, název výrobce), u kterých byla jednorázová tržba větší než 10 000 dolarů. Dále vypiště prodeje, kdy k tomu došlo (sales, product, manufacturer).
+
+```sql
+SELECT p.product, p.category, m.manufacturer, s.date, s.revenue
+from sales s 
+join product p on s.ProductID = p.ProductID
+join manufacturer m on p.ManufacturerID = m.ManufacturerID
+where revenue > 10000
+order by p.Product;
+```
+
+**Zadání:** Left JOIN sale
