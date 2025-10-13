@@ -378,3 +378,104 @@ group by manufacturerid
 ORDER by Pocet_kategorii DESC
 LIMIT 10;
 ```
+
+### cvičení
+**Zadání:** Ve které kategorii je nejvíce výrobků?
+```SQL
+SELECT Category, COUNT(productid) 
+FROM roduct
+GROUP BY category
+ORDER by COUNT(productid) DESC
+limit 1;
+```
+
+**Zadání:** Jaké jsou průměrné tržby za jednotlivé produkty Výsledek seřadte dle průměrné tržby sestupně.
+```SQL
+SELECT productid, AVG(revenue)
+from sales
+GROUP by productid
+ORDER by AVG(revenue) DESC;
+```
+
+**Zadání:** Který výrobek, kterého bylo najednou prodáno alespoň 5 kusů, měl v roce 2013 největší tržby. Uveďte jen jeden záznam.
+```sql
+SELECT productid, AVG(revenue)
+FROM sales
+WHERE date LIKE '2013%' AND units >=5
+GROUP BY productid
+ORDER BY sum(revenue) DESC
+LIMIT 1;
+```
+
+**Zadání:** Ve kterém segmentu působí nejvíce výrobců?
+```sql
+SELECT Segment, COUNT(DISTINCT manufacturerid) AS pocet_vyrobcu
+FROM product
+GROUP BY Segment
+ORDER BY pocet_vyrobcu DESC;
+```
+
+**Zadání:** Vypište města a k nim ostatní údaje z tabulky Country, která jsou z východního nebo centrálního regionu, (a zároveň) jejichž název má druhé písmeno `t` nebo mají ve svém názvu `stown`, a (zároveň) jsou z oblasti (district) `District #05`. Výstup seřaďte podle názvu města vzestupně. Pozor, v řetězci `District #05` je mezi `t` a `#` mezera.
+```sql
+SELECT * FROM Country
+WHERE (Region = 'East' OR Region = 'Central')
+	AND (City LIKE '_t%'
+		OR City LIKE '%stown%')
+	AND District = 'District #05'
+ORDER BY City ASC;
+
+--řešení s trochu jinou strukturou
+SELECT * FROM country
+WHERE 1=1
+AND (city LIKE '_t%' OR city LIKE '%stown%')
+AND region IN ('East', 'Central')
+AND (District LIKE '%District #05%')
+ORDER BY city;
+```
+### INNER
+- teorie
+
+### INNER JOIN
+ - vnitrní spojení vybere z obou tabulek ty řádky, které mají svého „protějška" v obou tabulkách (existuje „průnik" tabulek)
+ - ty řádky, které nemají svého „protějška" se nezobrazí
+```sql
+ SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka.sloupec1
+ FROM tabulka1
+ INNER JOIN tabulka2
+    ON tabulka1. sloupec1 = tabulka2.sloupec1;
+ ```
+ **Zadání:** Vyber produkty, kterých bylo prodáno najednou více jak 40 kusů, k tomuto datu toho prodeje a počet prodaných kusů a z tabulky Product vyberte odpovídající název produktu.
+ ```sql
+SELECT s.ProductID, p.Product, s.Date, s.Units
+FROM sales AS s
+JOIN product AS p ON s.ProductID = p.ProductID
+WHERE Units > 40
+ORDER BY s.Units DESC;
+```
+
+**Zadání:** Zjisti TOP 100 prodejů dle tržby a k nim náležící informace z tabulky Country.
+```sql
+SELECT *
+from sales s
+join country c on s.zip=c.Zip
+ORDER by revenue DESC
+limit 100;
+```
+
+**Zadání:** Ve kterých státech jsme měli největší tržby?
+```sql
+SELECT c.State, SUM(s.Revenue) AS 'trzby'
+FROM Country AS c
+JOIN Sales AS s ON c.Zip = s.Zip
+ORDER BY trzby DESC;
+```
+
+**Zadání:** Který výrobce vyrábí nejvíce různých/jedinečných výrobků?
+```sql
+SELECT m.Manufacturer, COUNT(p.ProductID) AS Pocet_vyrobku
+FROM Manufacturer AS m
+JOIN Product AS p ON m.ManufacturerID = p.ManufacturerID
+GROUP BY m.Manufacturer
+ORDER BY Pocet_vyrobku DESC
+LIMIT 10;
+```

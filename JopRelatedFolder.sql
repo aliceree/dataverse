@@ -185,3 +185,14 @@ group by manufacturerid
 ORDER by Pocet_kategorii DESC
 LIMIT 10;
 
+--ve které kategorii je nejvíce výrobků
+SELECT Category, COUNT(productid)
+FROM product
+GROUP BY Category
+ORDER BY COUNT(productid) DESC
+LIMIT 1;
+
+SELECT productid, AVG(revenue)
+from sales
+GROUP by productid
+ORDER by AVG(revenue) DESC;
