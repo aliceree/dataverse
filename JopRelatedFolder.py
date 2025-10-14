@@ -21,7 +21,6 @@ class Package:
             self.state = "dorucen"
             return "Doručení uloženo"
 
-
 balik = Package ("V jircharich 13", 25.0, "nedorucen")
 print(balik)
 print(balik.deliver())
