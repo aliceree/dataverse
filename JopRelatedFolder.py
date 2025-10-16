@@ -1,20 +1,18 @@
-class Package:
-    def __init__(self, address, weight, state):
-        self.address = address
-        self.weight = weight
-        self.state = state
+class Employee:
+    def __init__(self, name, position, holiday_entitlement):
+        self.name = name
+        self.position = position
+        self.holiday_entitlement = holiday_entitlement
 
-    def delivery_price(self):
-        if self.weight < 10:
-            return 129
-        elif self.weight < 20:
-            return 159
+    def __str__(self):
+        return f"Zaměstnanec {self.name} pracuje na pozici {self.position}."
+
+    def take_holiday(self, days):
+        if self.holiday_entitlement >= days:
+            self.holiday_entitlement -= days
+            return f"Užij si to."
         else:
-            return 359
+            return f"Bohužel už máš nárok jen na {self.holiday_entitlement} dní."
 
-    def get_info(self):
-        return f"Balík na adresu {self.address} má hmotnost {self.weight} kg, cena za jeho dopravu je {self.delivery_price()} a momentálně je ve stavu {self.state}."
-    
-balik = Package("Krakovksá 583/9, Praha", 11, "doručen")
-balik2 = Package("Vinohradská 1234/45, Praha", 2.5, "nedoručen")
-print(balik.get_info())
+frantisek = Employee("František Novák", "konstruktér", 25)
+print(frantisek)
