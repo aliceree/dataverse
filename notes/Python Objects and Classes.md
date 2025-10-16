@@ -1,34 +1,40 @@
-# Objekty a třídy
-- objekty jsou na sobě nezávislé (datum narození mnou vyplněné nezmění datum narození vyplněné např. kolegyní)
-- objekty mají hodnoty, ty nazýváme atributy (např. jméno v daňovém přiznání)
-- metoda je uvnitř nějaké třídy
-- název třídy je vždy s velkým písmenem na začátku
-- metoda `__init__()`
+# objekty a třídy
+- základ OOP je užití tříd a objektů
+- vztah mezi objekty a třídami lze připodobnit formuláři (objekt) a jeho kolonkám (třídám)
+- objekty jsou na sobě nezávislé (encapsulation), úprava jednoho neovlivní druhý
+- třídy mají atributy (v nich uchováváme hodnoty) a metody (vykonávají příkazy)
+- název třídy, je vždy s velkým písmenem
 
 ```python
 class Employee:
     def __init__(self, name, position, holiday_entitlement):
+        # metoda __init__ má parametry self, name, position a holiday_..
         # self.name je atribut třídy Employee
-        # name je jen parametr metody __init__
+        # aby bylo možné se self.name pracovat i v ostatních metodách musí být tyto 3 řádky níže
         self.name = name
         self. position = position
         self.holiday_entitlement = holiday_entitlement
+
     def get_info(self):
         return f"Zaměstanec {self.name} pracuje na pozici {self.position}."
+
 frantisek = Employee("František Novák", "konstruktér", 25)
 klara = Employee("Klara Nová", "konstruktérka", 25)
 print(frantisek.get_info())
 print(klara.get_info())
 ```
 
+## metoda `__innit__`
+
 ## cvičení
 
 **Zadání:** Návrh software pro zásilkovou společnost.
-- Vytvořte třídu `Package`, která bude mít tři atributy `address`, `weight` a `state`. Dále vytvořte metodu `__init__`, která uloží hodnoty parametrů metody do atributů.
+- Vytvořte třídu `Package`, která bude mít tři atributy `address`, `weight` a `state`
+- Vytvořte metodu `__init__`, která uloží hodnoty parametrů metody do atributů.
 - Přidejte metodu `get_info()`, která vrátí informace o balíku jako řetězec. Například větu "Balík na adresu Krakovská 583/9, Praha má hmotnost 0.25 kg je ve stavu nedoručen".
-- Zkuste si vytvořit alespoň dva objekty ze třídy `Balik`. U `address` uvažujeme typ řetězec `str`, u `weight` desetinné číslo. U atributu `state! zadávejte pro zjednodušení pouze dva stavy: doručen a nedoručen.
+- Vytvořte alespoň dva objekty ze třídy `Balik`. U `address` bude datový typ řetězec `str`, u `weight` desetinné číslo. U atributu `state` zadávejte pro zjednodušení pouze dva stavy: doručen a nedoručen.
 - Vypište informace, které generuje metoda `get_info()`, na obrazovku, a ověřte, že je vše v pořádku.
-- Vytvořte metodu `delivery_price()`, která vypočítá cenu přepravy balíku. Cena přepravy je daná hmotností balíku. Cena přepravy balíku do 10 kg je 129 Kč, cena přepravy balíku od 10 kg do 20 kg je 159 Kč a cena přepravy balíků těžších než 20 kg je 359 Kč. Metoda spočítá cenu a vrátí ji jako číslo.
+- Nakonec vytvořte metodu `delivery_price()`, která vypočítá cenu přepravy balíku. Cena přepravy je daná hmotností balíku. Do 10 kg je 129 Kč, od 10 kg do 20 kg je 159 Kč a pro balíky těžších než 20 kg je 359 Kč. Metoda spočítá cenu a vrátí ji jako číslo.
 ```python
 class Package:
     def __init__(self, address, weight, state):
@@ -39,15 +45,16 @@ class Package:
     def delivery_price(self):
         if self.weight < 10:
             return 129
-        elif self.weight <= 20:
+        elif self.weight < 20:
             return 159
         else:
             return 359
-    
-    def get_info(self):
-        return f"Balík na adresu {self.address} má hmotnost {self.weight} kg a je ve stavu {self.state}. Cena za dopravu byla {self.delivery_price()}."
 
-balik = Package("Krakovská 583/9, Praha", 0.25, "doručen")
+    def get_info(self):
+        return f"Balík na adresu {self.address} má hmotnost {self.weight} kg, cena za jeho dopravu je {self.delivery_price()} a momentálně je ve stavu {self.state}."
+    
+balik = Package("Krakovksá 583/9, Praha", 11, "doručen")
+balik2 = Package("Vinohradská 1234/45, Praha", 2.5, "nedoručen")
 print(balik.get_info())
 ```
 
