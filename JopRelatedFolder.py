@@ -15,3 +15,4 @@ kniha = Book("Nesnesitelná lehkost bytí", 342, 343)
 print(kniha.get_info())
 print(kniha.get_time_to_read())
 print(f"Při pomalejším čtení za {kniha.get_time_to_read(5)} hodin.")
+

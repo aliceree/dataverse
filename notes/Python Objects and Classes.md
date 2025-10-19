@@ -173,6 +173,10 @@ print(balik.deliver())
 print(balik)
 ```
 
-**Zadání:** Vrať
+**Zadání:** Vraťme se k práci se třídou `Book`.
+- U knihy chceme evidovat, kolik kusů bylo prodáno.
+- Přidejte atribut `sold`, jehož hodnotu bude možné nastavit v metodě `__init__()`. Dále přidejte atribut `costs`, které představují náklady na jednu knihu (např. tisk, doprava do knihkupectví, podíl autora (autorky) atd.).
+- Přidejte metodu `profit()`, která vrátí celkový zisk z knihy. Zisk vypočítáte na základě vzorce: `prodané kusy * (cena - náklady)`.
+- Přidejte metodu `rating()`, která vrátí hodnocení knihy na základě jejího zisku. Pokud bude zisk méně než 50 tisíc, vraťte hodnotu "propadák". Pokud bude zisk mezi 50 tisíc a 500 tisíc, vrať hodnotu "průměr". Pokud bude vyšší než 500 tisíc, vrať hodnotu "bestseller".
 
 zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/tridy/tridy
