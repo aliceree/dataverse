@@ -5,6 +5,8 @@
 - třídy mají atributy (v nich uchováváme hodnoty) a metody (vykonávají příkazy)
 - název třídy, je vždy s velkým písmenem
 
+![názvosloví](<Python OOP Terminology.jpeg>)
+
 ## metoda `__innit__`
 - stará se o vytvoření objetu a nastavení hodnot jeho atributů
 - paramety `self`, `name`, `position` a `holiday_entitlement` budou hodnotami, které budeme zadávat při vytváření nového objektu
@@ -56,6 +58,30 @@ class Package:
 balik = Package("Krakovksá 583/9, Praha", 11, "doručen")
 balik2 = Package("Vinohradská 1234/45, Praha", 2.5, "nedoručen")
 print(balik.get_info())
+```
+
+**Zadání:** Vytvořte pro nakladatelství software s využitím tříd a objektů. Vytvořte třídu Book, která reprezentuje knihu. Každá kniha bude mít atributy `title`, `pages` a `price`. Hodnoty nastavte ve funkci `__init__`.
+- Přidejte knize funkci `get_info()`, která vypíše informace o knize v nějakém pěkném formátu.
+- Přidejte metodu `get_time_to_read()`. Metoda vrátí čas potřebný na přečtení knihy v hodinách. S využitím atributu `pages` vypočítejte čas na přečtení knihy. Metoda bude mít nepovinný parametr, který udává počet minut potřebných pro přečtení jedné stránky knihy. Dobu potřebnou na přečtení knihy získáte jako násobek doby potřebné na přečtení jedné stránky knihy a počet stránek knihy. Výchozí hodnota nepovinného parametru je 4.
+
+```python
+class Book:
+    def __init__(self, title, pages, price):
+        self.title = title
+        self.pages = pages
+        self.price = price
+    
+    def get_info(self):
+        return f"Kniha {self.title} má {self.pages} stran a lze ji zakoupit za {self.price} Kč."
+    
+    def get_time_to_read(self, minutes_per_page=4):
+        time_hours = self.pages * minutes_per_page / 60
+        return f"Čtením této knihy strávíte {time_hours} hodin."
+    
+kniha = Book("Nesnesitelná lehkost bytí", 342, 343)
+print(kniha.get_info())
+print(kniha.get_time_to_read())
+print(f"Při pomalejším čtení za {kniha.get_time_to_read(5)} hodin.")
 ```
 
 ## metoda `__str__`
@@ -146,28 +172,6 @@ print(balik.deliver())
 print(balik)
 ```
 
-**Zadání:** Vytvořte pro nakladatelství software s využitím tříd a objektů. Vytvořte třídu Book, která reprezentuje knihu. Každá kniha bude mít atributy `title`, `pages` a `price`. Hodnoty nastavte ve funkci `__init__`.
-- Přidejte knize funkci `get_info()`, která vypíše informace o knize v nějakém pěkném formátu.
-- Přidejte metodu `get_time_to_read()`. Metoda vrátí čas potřebný na přečtení knihy v hodinách. S využitím atributu `pages` vypočítejte čas na přečtení knihy. Metoda bude mít nepovinný parametr, který udává počet minut potřebných pro přečtení jedné stránky knihy. Dobu potřebnou na přečtení knihy získáte jako násobek doby potřebné na přečtení jedné stránky knihy a počet stránek knihy. Výchozí hodnota nepovinného parametru je 4.
-
-```python
-class Book:
-    def __init__(self, title, pages, price):
-        self.title = title
-        self.pages = pages
-        self.price = price
-    
-    def get_info(self):
-        return f"Kniha {self.title} má {self.pages} stran a lze ji zakoupit za {self.price} Kč."
-    
-    def get_time_to_read(self, minutes_per_page=4):
-        time_hours = self.pages * minutes_per_page / 60
-        return f"Čtením této knihy strávíte {time_hours} hodin."
-    
-kniha = Book("Nesnesitelná lehkost bytí", 342, 343)
-print(kniha.get_info())
-print(kniha.get_time_to_read())
-print(f"Při pomalejším čtení za {kniha.get_time_to_read(5)} hodin.")
-```
+**Zadání:** Vrať
 
 zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/tridy/tridy
