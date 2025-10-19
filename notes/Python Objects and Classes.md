@@ -5,6 +5,7 @@
 - třídy mají atributy (v nich uchováváme hodnoty) a metody (vykonávají příkazy)
 - název třídy, je vždy s velkým písmenem
 - konkrétní názvosloví v OOP:
+
 ![názvosloví](<Python OOP Terminology.jpeg>)
 
 ## metoda `__innit__`
