@@ -79,7 +79,7 @@ class Employee:
 teo = Employee("Teodor Will", "designér", 25)
 
 print(teo.take_holiday(5)) # vypíše Hezkou dovolenou!
-print(teo.take_holiday(15)) # vypíše UHezkou dovolenou!
+print(teo.take_holiday(15)) # vypíše Hezkou dovolenou!
 print(teo.take_holiday(10)) # vypíše Bohužel už nemáš nárok, jen na 5 dnů.
 print(teo) # vypíše <__main__.Employee object at 0x1043cdfd0>
 ```
@@ -138,12 +138,36 @@ class Package:
             self.state = "dorucen"
             return "Doručení uloženo"
 
-balik = Package ("V jircharich 13", 25.0, "nedorucen")
+balik = Package ("U potoka 134/12", 25.0, "nedorucen")
 print(balik)
 print(balik.deliver())
 print(balik)
 print(balik.deliver())
 print(balik)
+```
+
+**Zadání:** Vytvořte pro nakladatelství software s využitím tříd a objektů. Vytvořte třídu Book, která reprezentuje knihu. Každá kniha bude mít atributy `title`, `pages` a `price`. Hodnoty nastavte ve funkci `__init__`.
+- Přidejte knize funkci `get_info()`, která vypíše informace o knize v nějakém pěkném formátu.
+- Přidejte metodu `get_time_to_read()`. Metoda vrátí čas potřebný na přečtení knihy v hodinách. S využitím atributu `pages` vypočítejte čas na přečtení knihy. Metoda bude mít nepovinný parametr, který udává počet minut potřebných pro přečtení jedné stránky knihy. Dobu potřebnou na přečtení knihy získáte jako násobek doby potřebné na přečtení jedné stránky knihy a počet stránek knihy. Výchozí hodnota nepovinného parametru je 4.
+
+```python
+class Book:
+    def __init__(self, title, pages, price):
+        self.title = title
+        self.pages = pages
+        self.price = price
+    
+    def get_info(self):
+        return f"Kniha {self.title} má {self.pages} stran a lze ji zakoupit za {self.price} Kč."
+    
+    def get_time_to_read(self, minutes_per_page=4):
+        time_hours = self.pages * minutes_per_page / 60
+        return f"Čtením této knihy strávíte {time_hours} hodin."
+    
+kniha = Book("Nesnesitelná lehkost bytí", 342, 343)
+print(kniha.get_info())
+print(kniha.get_time_to_read())
+print(f"Při pomalejším čtení za {kniha.get_time_to_read(5)} hodin.")
 ```
 
 zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/tridy/tridy
