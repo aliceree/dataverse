@@ -482,7 +482,7 @@ LIMIT 10;
 ```
 
 ### JOIN (spojení více tabulek)
-**Zadáná:** Vypište seznam prodktů (název, kategorie, název výrobce), u kterých byla jednorázová tržba větší než 10 000 dolarů. Dále vypiště prodeje, kdy k tomu došlo (sales, product, manufacturer).
+**Zadání:** Vypište seznam prodktů (název, kategorie, název výrobce), u kterých byla jednorázová tržba větší než 10 000 dolarů. Dále vypiště prodeje, kdy k tomu došlo (sales, product, manufacturer).
 
 ```sql
 SELECT p.product, p.category, m.manufacturer, s.date, s.revenue
@@ -493,4 +493,48 @@ where revenue > 10000
 order by p.Product;
 ```
 
-**Zadání:** Left JOIN sale
+# doplnit
+
+Úkol č. 1
+Zpracujte přehled TOP 10 prodejů dle počtu kusů za měsíc duben roku 2014. Ve výstupu uveďte ID produktu, název produktu a počet prodaných kusů.
+(Nejvíce produkt Maximus UM-70, 3027 kusů)
+Úkol č. 2
+Vypište, které produkty a kolik kusů se prodalo ve městě New York (všechna zip) v roce 2013. Ve výstupu bude kód produktu, název produktu a počet prodaných kusů.
+(247 produktů)
+Úkol č. 3
+Vypište TOP 10 nejprodávanějších produktů dle počtu prodaných kusů za rok 2014 z kategorie Youth. Ve výstupu bude kód produktu, název produktu, kategorie a počet prodaných kusů.
+(Nejvíce produkt Natura YY-10, 3443 kusů)
+
+Řešení
+Úkol č. 1
+SELECT p.productid, p.product, SUM(s.units) FROM sales s
+JOIN product p ON p.ProductID = s.ProductID
+WHERE s.date BETWEEN "2014-04-01" and "2014-04-30"
+GROUP BY p.ProductID
+ORDER BY SUM(s.units) DESC
+LIMIT 10;
+Úkol č. 2
+SELECT s.productid, p.product, SUM(s.units) FROM sales s
+JOIN product p ON p.ProductID = s.ProductID
+JOIN country c ON s.Zip = c.Zip
+WHERE c.City like "New York%" AND s.Date LIKE "2013%"
+GROUP BY s.ProductID
+Úkol č. 3
+SELECT p.productid, p.product,p.Category, sum(s.units) FROM sales s
+INNER JOIN product p ON p.ProductID=s.ProductID
+WHERE p.Category = "Youth" and s.Date LIKE "2014%"
+GROUP BY p.ProductID
+ORDER BY sum(s.Units) DESC
+LIMIT 10
+
+# samostatná práce
+Příklad č. 5:
+Jaká byla výše příjmů v roce 2015 v jednotlivých měsících? Zajímají nás všechny měsíce (i ty, kde nenastaly žádné příjmy). Výstup seřaďte podle měsíců v roce.
+Příklad č. 6:
+Kolik různorodých produktů se prodalo v každém z měst? Zobrazte i města, kde se neprodal žádný výrobek.
+
+Příklad č. 9:
+Kteří jsou nejvíc vydělávající výrobci? Použijte pohled vwStateManufacturer.
+Příklad č. 10: Ve kterých státech jsou nejvyšší tržby? Opět využijte pohled vwStateManufacturer.
+
+![alt text](<ERDiagram.png>)
