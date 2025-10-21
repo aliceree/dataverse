@@ -210,4 +210,22 @@ print(kniha.profit())
 print(kniha.rating())
 ```
 
+**Zadání:** Vytvořte program pro evidenci aut malé autopůjčovny. Půjčovna má 2 automobily:
+| Registrační značka | Značka a typ vozidla | Počet najetých kilometrů |
+|---------------------|----------------------|---------------------------|
+| 4A2 3020            | Peugeot 403 Cabrio   | 47 534                    |
+| 1P3 4747            | Škoda Octavia        | 41 253                    |
+Vytvořte třídu `Car`, která bude obsahovat informace o autech, které půjčovna nabízí. Třída bude mít tyto atributy:
+- registrační značka automobilu,
+- značka a typ vozidla,
+- počet najetých kilometrů,
+- informaci o tom, jestli je vozidlo aktuálně volné (pravdivostní hodnota `True` pokud je volné a `False` pokud je vypůjčené).
+Vytvořte funkci `__init__` pro třídu `Car`. Registrační značku, značku a typ vozidla a počet kilometrů získejte jako parametry funkce `__init__` a uložte je jako atributy objektu. Poslední atribut nastavte jako `True`, tj. na začátku je vozidlo volné.
+
+Vytvořte objekty, které reprezentují všechny automobily půjčovny.
+
+```python
+class Car():
+```
+
 zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/tridy/tridy
