@@ -1,28 +1,30 @@
-class Book:
-    def __init__(self, title, pages, price, sold, costs):
-        self.title = title
-        self.pages = pages
-        self.price = price
-        self.sold = sold
-        self.costs = costs
-    
-    def get_info(self):
-        return f"Kniha {self.title} má {self.pages} stran a lze ji zakoupit za {self.price} Kč."
-    
-    def profit(self):
-        book_profit = self.sold * (self.price - self.costs)
-        return f"Zisk z knihy {self.title} je {book_profit} Kč."
-    
-    def rating(self):
-        sales = int(input("Kolik výtisků se prodalo? "))
-        if sales < 50000:
-            return "Tak to je propadák."
-        elif sales < 500000:
-            return "Tak to je průměr."
+class Employee:
+    def __init__(self, name: str, position, holiday_entitlement):
+        self.name = name
+        self.position = position
+        self.holiday_entitlement = holiday_entitlement
+   
+    def __str__(self):
+        return f"Zaměstnanec {self.name} pracuje na pozici {self.position}."
+   
+    def take_holiday(self, days):
+        if self.holiday_entitlement >= days:
+            self.holiday_entitlement -= days
+            return "Schváleno"
         else:
-            return "Tak to je bestseller!"
-
+            return "Na tolik dní nemáš nárok"
         
-kniha = Book("Nesnesitelná lehkost bytí", 342, 343, 53000, 132)
-print(kniha.profit())
-print(kniha.rating())
+class Manager(Employee):
+    def __init__(self, name: str, position, holiday_entitlement, subordinates, car):
+        super().__init__(name, position, holiday_entitlement)
+        self.subordinates = subordinates
+        self.car = car
+
+    def __str__(self):
+        text = super().__str__()
+        return f"{text} Má {self.subordinates} podřízené."
+
+frantisek = Employee("František Novák", "konstruktér", 25)
+klara = Employee("Klára Nová", "konstruktérka", 25)
+marian = Manager("Marian Přísný", "vedoucí", 25, 2, "Škoda Octavia")
+print(marian)
