@@ -8,7 +8,7 @@
 - [WHERE + operátory](#select-where--operátory---between-like-in-is-null)
 - [GROUP BY + agregační funkce](#group-by--agregační-funkce)
 - [HAVING](#having)
-- [INNER] (#inner)
+- [JOIN] (#join)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -433,10 +433,7 @@ AND region IN ('East', 'Central')
 AND (District LIKE '%District #05%')
 ORDER BY city;
 ```
-### INNER
-- teorie
-
-### INNER JOIN
+### JOIN
  - tzv. vnitřní spojení
  - vybere z obou tabulek ty řádky, které mají svého „protějška" v obou tabulkách (tj. primární a cizí klíč)
 ```sql
@@ -482,7 +479,6 @@ ORDER BY Pocet_vyrobku DESC
 LIMIT 10;
 ```
 
-### JOIN (spojení více tabulek)
 **Zadání:** Vypište seznam prodktů (název, kategorie, název výrobce), u kterých byla jednorázová tržba větší než 10 000 dolarů. Dále vypiště prodeje, kdy k tomu došlo (sales, product, manufacturer).
 
 ```sql
@@ -493,6 +489,32 @@ join manufacturer m on p.ManufacturerID = m.ManufacturerID
 where revenue > 10000
 order by p.Product;
 ```
+
+příklady:
+--Jaké jsou v jednotlivých regionech tržby za výrobky společnosti Currus?
+--regiony = country
+--tržby = sales
+--výrobce = manufacturer
+--product --> spojení s manufacturer
+
+SELECT c.region, SUM(s.revenue)
+from sales s 
+JOIN country c on s.zip = c.Zip
+join product p on s.ProductID = p.ProductID
+join manufacturer m on p.ManufacturerID = m.ManufacturerID
+WHERE manufacturer = 'Currus'
+GROUP by c.Region
+ORDER by SUM(s.revenue) DESC;
+
+--Kteří výrobci jsou nejprodávanější dle počtu různých produktů v regionu east?
+SELECT count(DISTINCT s.productid) AS PocetProduktu, m.manufacturer
+from sales s
+JOIN country c on s.zip = c.Zip
+join product p on s.ProductID = p.ProductID
+join manufacturer m on p.ManufacturerID = m.ManufacturerID
+where region = 'East'
+GROUP by m.manufacturer
+ORDER by PocetProduktu DESC;
 
 # doplnit
 
@@ -529,13 +551,88 @@ ORDER BY sum(s.Units) DESC
 LIMIT 10
 
 # samostatná práce
-Příklad č. 5:
-Jaká byla výše příjmů v roce 2015 v jednotlivých měsících? Zajímají nás všechny měsíce (i ty, kde nenastaly žádné příjmy). Výstup seřaďte podle měsíců v roce.
-Příklad č. 6:
-Kolik různorodých produktů se prodalo v každém z měst? Zobrazte i města, kde se neprodal žádný výrobek.
-
 Příklad č. 9:
 Kteří jsou nejvíc vydělávající výrobci? Použijte pohled vwStateManufacturer.
 Příklad č. 10: Ve kterých státech jsou nejvyšší tržby? Opět využijte pohled vwStateManufacturer.
 
 ![alt text](<ERDiagram.png>)
+
+### LEFT JOIN
+- vybere z tabulky, která je nalevo ve výrazu pro spojení a z pravé tabulky vybere
+požadovaná data, pokud existuje spojení –
+protějšek, pokud ne, budou přiřazeny hodnoty
+NULL.
+
+**Zadání:** Které výrobky výrobce VanARsdel se vůbec nepordaly?
+```sql
+SELECT m.manufacturer, p.product, s.units
+from product p
+left join sales s on p.ProductID = s.ProductID
+JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
+where m.Manufacturer = 'VanArsdel' AND s.units ISNULL;
+```
+
+**Zadání:** Jaká byla výše příjmů v roce 2015 v jednotlivých měsících? Zajímají nás všechny měsíce (i ty, kde nenastaly žádné příjmy). Výstup seřaďte podle měsíců v roce.
+```sql
+SELECT d.MonthName, SUM(s.Revenue) AS total_revenue
+FROM date d
+LEFT JOIN sales s ON s.Date = d.Date
+WHERE d.Year = '2015'
+GROUP BY d.MonthName
+ORDER BY d.MonthNo
+```
+
+**Zadání:** Kolik různorodých produktů se prodalo v každém z měst? Zobrazte i města, kde se neprodal žádný výrobek.
+```sql
+SELECT c.City, COUNT(DISTINCT s.ProductID) 
+FROM Country c
+LEFT JOIN Sales s ON c.Zip = s.Zip
+GROUP BY c.City
+ORDER BY COUNT(DISTINCT s.ProductID);
+```
+
+### RIGHT JOIN
+- vybere z tabulky, která je napravo ve výrazu pro spojení, všechny záznamy a z levé tabulky vybere požadovaná data, pokud existuje spojení (protějšek)
+- pokud neexistuje, budou přiřazeny hodnoty NULL
+- každý RIGHT JOIN můžeme přepsat na LEFT JOIN a naopak
+
+### FULL JOIN
+- podobný INNER JOIN, ale na rozdíl od INNER JOIN vrací z obou tabulek všechny záznamy; ne jen ty, u kterých existuje shoda
+- u záznamů, u kterých neexistuje shoda, bud v příslušných sloupcích
+hodnota NULL
+- je to tedy kombinace LEFT a RIGHT JOINů
+
+### CROSS JOIN
+- CROSS JOIN je vlastně tzv. kartézský součin/spojení
+- záznam z první tabulky spojíme se všemi záznamy z druhé tabulky
+- toto provedeme pro všechny záznamy z první tabulky
+- výsledkem je tabulka/množina všech možných kombinací řádků z obou
+tabulek
+- u CROSS JOIN se neuvádí podmínka spojení ON, je vlastně zbytečná
+
+## WIEWs
+- jsou to taková „kukátka“ do dat v databázi
+- v podstatě jde o uložené dotazy
+- pohled sám o sobě neobsahuje žádná data
+- výsledkem pohledu je tabulka
+- data pomocí pohledu získáváme tak, že uděláme dotaz/SELECT nad tímto pohledem
+- s pohledy lze pracovat téměř stejně jako s tabulkami – SELECT, JOIN apod.
+- DML příkazy vedoucí ke změně dat (INSERT, UPDATE, DELETE) však mají určitá omezení.
+
+**Zadání:** Které výrobky (ProductID, název produktu) se vůbec neprodaly?
+- Nejprve si vytvořím SELECT.
+```sql
+SELECT p.ProductID, p.Product, S.Units
+FROM Product p
+LEFT JOIN Sales s ON p.ProductID = s.ProductID
+WHERE s.Units ISNULL;
+```
+
+- Poté postavím View
+```sql
+CREATE VIEW vwNeprodaneProdukty AS
+SELECT p.ProductID, p.Product, S.Units
+FROM Product p
+LEFT JOIN Sales s ON p.ProductID = s.ProductID
+WHERE s.Units ISNULL;
+```

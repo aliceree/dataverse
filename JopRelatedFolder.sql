@@ -286,3 +286,66 @@ join product p on s.ProductID = p.ProductID
 join manufacturer m on p.ManufacturerID = m.ManufacturerID
 where revenue > 10000
 order by p.Product;
+
+--Jaké jsou v jednotlivých regionech tržby za výrobky společnosti Currus?
+--regiony = country
+--tržby = sales
+--výrobce = manufacturer
+--product --> spojení s manufacturer
+
+SELECT c.region, SUM(s.revenue)
+from sales s 
+JOIN country c on s.zip = c.Zip
+join product p on s.ProductID = p.ProductID
+join manufacturer m on p.ManufacturerID = m.ManufacturerID
+WHERE manufacturer = 'Currus'
+GROUP by c.Region
+ORDER by SUM(s.revenue) DESC;
+
+--Kteří výrobci jsou nejprodávanější dle počtu různých produktů v regionu east?
+SELECT count(DISTINCT s.productid) AS PocetProduktu, m.manufacturer
+from sales s
+JOIN country c on s.zip = c.Zip
+join product p on s.ProductID = p.ProductID
+join manufacturer m on p.ManufacturerID = m.ManufacturerID
+where region = 'East'
+GROUP by m.manufacturer
+ORDER by PocetProduktu DESC;
+
+--Které výrobky výrobce VanARsdel se vůbec nepordaly?
+SELECT m.manufacturer, p.product, s.units
+from product p
+left join sales s on p.ProductID = s.ProductID
+JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
+where m.Manufacturer = 'VanArsdel' AND s.units ISNULL;
+
+--Jaká byla výše příjmů v roce 2015 v jednotlivých měsících?
+--Zajímají nás všechny měsíce (i ty, kde nenastaly žádné příjmy).
+--Výstup seřaďte podle měsíců v roce.
+
+SELECT d.MonthName, SUM(s.Revenue) AS total_revenue
+FROM date d
+LEFT JOIN sales s ON s.Date = d.Date
+WHERE d.Year = '2015'
+GROUP BY d.MonthName
+ORDER BY d.MonthNo;
+
+--Kolik různorodých produktů se prodalo v každém z měst?
+--Zobrazte i města, kde se neprodal žádný výrobek.
+
+SELECT c.City, COUNT(DISTINCT s.ProductID) 
+FROM Country c
+LEFT JOIN Sales s ON c.Zip = s.Zip
+GROUP BY c.City
+ORDER BY COUNT(DISTINCT s.ProductID);
+
+CREATE VIEW vwNeprodaneProdukty AS
+SELECT p.ProductID, p.Product, S.Units
+FROM Product p
+LEFT JOIN Sales s ON p.ProductID = s.ProductID
+WHERE s.Units ISNULL;
+
+SELECT *
+
+
+
