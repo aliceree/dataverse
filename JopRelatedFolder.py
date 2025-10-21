@@ -1,18 +1,28 @@
 class Book:
-    def __init__(self, title, pages, price):
+    def __init__(self, title, pages, price, sold, costs):
         self.title = title
         self.pages = pages
         self.price = price
+        self.sold = sold
+        self.costs = costs
     
     def get_info(self):
         return f"Kniha {self.title} má {self.pages} stran a lze ji zakoupit za {self.price} Kč."
     
-    def get_time_to_read(self, minutes_per_page=4):
-        time_hours = self.pages * minutes_per_page / 60
-        return f"Čtením této knihy strávíte {time_hours} hodin."
+    def profit(self):
+        book_profit = self.sold * (self.price - self.costs)
+        return f"Zisk z knihy {self.title} je {book_profit} Kč."
     
-kniha = Book("Nesnesitelná lehkost bytí", 342, 343)
-print(kniha.get_info())
-print(kniha.get_time_to_read())
-print(f"Při pomalejším čtení za {kniha.get_time_to_read(5)} hodin.")
+    def rating(self):
+        sales = int(input("Kolik výtisků se prodalo? "))
+        if sales < 50000:
+            return "Tak to je propadák."
+        elif sales < 500000:
+            return "Tak to je průměr."
+        else:
+            return "Tak to je bestseller!"
 
+        
+kniha = Book("Nesnesitelná lehkost bytí", 342, 343, 53000, 132)
+print(kniha.profit())
+print(kniha.rating())

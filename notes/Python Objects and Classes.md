@@ -179,4 +179,35 @@ print(balik)
 - Přidejte metodu `profit()`, která vrátí celkový zisk z knihy. Zisk vypočítáte na základě vzorce: `prodané kusy * (cena - náklady)`.
 - Přidejte metodu `rating()`, která vrátí hodnocení knihy na základě jejího zisku. Pokud bude zisk méně než 50 tisíc, vraťte hodnotu "propadák". Pokud bude zisk mezi 50 tisíc a 500 tisíc, vrať hodnotu "průměr". Pokud bude vyšší než 500 tisíc, vrať hodnotu "bestseller".
 
+```python
+class Book:
+    def __init__(self, title, pages, price, sold, costs):
+        self.title = title
+        self.pages = pages
+        self.price = price
+        self.sold = sold
+        self.costs = costs
+    
+    def get_info(self):
+        return f"Kniha {self.title} má {self.pages} stran a lze ji zakoupit za {self.price} Kč."
+    
+    def profit(self):
+        book_profit = self.sold * (self.price - self.costs)
+        return f"Zisk z knihy {self.title} je {book_profit} Kč."
+    
+    def rating(self):
+        sales = int(input("Kolik výtisků se prodalo? "))
+        if sales < 50000:
+            return "Tak to je propadák."
+        elif sales < 500000:
+            return "Tak to je průměr."
+        else:
+            return "Tak to je bestseller!"
+
+        
+kniha = Book("Nesnesitelná lehkost bytí", 342, 343, 53000, 132)
+print(kniha.profit())
+print(kniha.rating())
+```
+
 zdroj a cvičení: https://kodim.cz/czechitas/uvod-do-progr-2/uvod-do-programovani-2/tridy/tridy
