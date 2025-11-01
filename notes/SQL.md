@@ -25,7 +25,7 @@
 - **logický:** boolen
 
 # SQL
-- structured query language
+- Structured Query Language
 - standardizovaný strukturovaný dotazovací jazyk
 - používán k práci s daty v relačních databázích
 - nejčastěji MS SQL, MySQL, Oracle, PostgreSQL, SQLite
