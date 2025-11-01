@@ -3,10 +3,9 @@
 - [ALIAS](#alias)
 - [DISTRICT](#district)
 - [LIMIT](#limit)
-- [ORDER BY](#select-order-by-descasc)
-- [WHERE + AND/OR](#select-where--andor)
-- [WHERE + operátory](#select-where--operátory---between-like-in-is-null)
-- [GROUP BY + agregační funkce](#group-by--agregační-funkce)
+- [ORDER BY](#order-by-descasc)
+- [WHERE](#where)
+- [GROUP BY](#group-by--agregační-funkce)
 - [HAVING](#having)
 - [JOIN](#join)
 
@@ -135,7 +134,9 @@ ORDER BY Revenue DESC
 LIMIT 5;
 ```
 
-## WHERE + AND/OR
+## WHERE
+
+### WHERE + AND/OR
 - podmínka v dotazu
 - např. Vybrat všechny záznamy o prodeji produktu s ProductID 428.
 ```sql
@@ -157,7 +158,7 @@ FROM tabulka
 WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 ```
 
-## WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
+### WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
 - s pomocí operátorů lze počítat a porovnávat číselné i textové hodnoty
 - porovnávání **číselných hodnot** např.
 ```sql
