@@ -8,7 +8,7 @@
 - [WHERE + operátory](#select-where--operátory---between-like-in-is-null)
 - [GROUP BY + agregační funkce](#group-by--agregační-funkce)
 - [HAVING](#having)
-- [JOIN] (#join)
+- [JOIN] (#)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -67,7 +67,7 @@ FROM tabulka;
 
 ### cvičení
 
-- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu a pracuje se s ní prostřednictvím SQLite Online  
+- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu  
 
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
 ```sql
@@ -92,7 +92,7 @@ sloupec4 AS NovyNazevSloupce4
 FROM tabulka;
 ```
 
-### SELECT DISTRICT
+## SELECT DISTRICT
 - vybere pouze jedinečné záznamy z tabulky
 - např. vybrat kategorie ze seznamu produktů
 ```sql
@@ -100,7 +100,7 @@ SELECT DISTINCT Category
 FROM Product;
 ```
 
-### SELECT LIMIT
+## SELECT LIMIT
 - vybere pouze konkrétní počet záznamů z tabulky
 - např. vybrat první 3 výrobce ze seznamu výrobců
 ```sql
@@ -109,7 +109,7 @@ FROM Manufacturer
 LIMIT 3;
 ```
 
-### SELECT ORDER BY DESC/ASC
+## SELECT ORDER BY DESC/ASC
 - řezení výsledků `DESC` (descending) od největšího k nejmenšímu
 - řezení výsledků `ASC` (ascending) od nejmenšího k největšímu
 - např. vybrat z tabulky výrobců jednotlivé výrobce a seřadit je abecedně
@@ -135,7 +135,7 @@ ORDER BY Revenue DESC
 LIMIT 5;
 ```
 
-### SELECT WHERE + AND/OR
+## SELECT WHERE + AND/OR
 - podmínka v dotazu
 - např. Vybrat všechny záznamy o prodeji produktu s ProductID 428.
 ```sql
@@ -157,7 +157,7 @@ FROM tabulka
 WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 ```
 
-### SELECT WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
+## SELECT WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
 - s pomocí operátorů lze počítat a porovnávat číselné i textové hodnoty
 - porovnávání **číselných hodnot** např.
 ```sql
@@ -203,7 +203,6 @@ WHERE date >= ‘2015-05-01‘ AND date <= ‘2015-05-31‘; --vypíše všechny
 SELECT *
 FROM Sales
 WHERE date LIKE ‘2015-05%‘; --vypíše stejně všechny prodeje v květnu 2015
-
 
 SELECT *
 FROM Sales
@@ -251,7 +250,7 @@ WHERE Year BETWEEN 2013 AND 2015 AND (MonthName LIKE 'J%' OR MonthName LIKE '%a%
 --pokud by bylo řešení bez závorky, SQL by vyhodnocovalo AND dříve než OR
 ```
 
-### GROUP BY + agregační funkce
+## GROUP BY + agregační funkce
 - seskupí řádky podle vybraných sloupců, např.
 ```sql
 SELECT Category
@@ -334,14 +333,16 @@ WHERE pricenew > 0 AND category IN ('Mix', 'Urban')
 GROUP BY category;
 ```
 
-### HAVING
-- umožňuje vytvořit podmínku pro výsledek agregační funkce
-- musí být součástí klauzuje `GROUP BY`, např.
+## HAVING
+- filtr na úrovni skupin
+- používá se spolu s GROUP BY, aby z výsledků agregací (např. SUM, COUNT, AVG) vybral jen ty skupiny, které splní podmínku
+- zatímco WHERE filtruje jednotlivé řádky před seskupením, HAVING filtruje celé skupiny po seskupení
+- zjednodušené pořadí vyhodnocení: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
 ```sql
-SELECT SIM(sloupec), sloupec2
+SELECT SUM(sloupec), sloupec2
 FROM tabulka
 GROUP BY sloupec2
-HAVING SUM(soupec) > 0;
+HAVING SUM(sloupec) > 0;
 ```
 
 **Zadání:** Produkty, jejichž celkové tržby přesáhly 10 miliónů.
@@ -349,7 +350,7 @@ HAVING SUM(soupec) > 0;
 SELECT productid, sum(revenue) AS 'Trzby'
 from sales
 GROUP by productid
-having Trzby > 10000000
+HAVING Trzby > 10000000
 ORDER by Trzby DESC;
 ```
 - ještě varianta bez aliasu
@@ -357,7 +358,7 @@ ORDER by Trzby DESC;
 SELECT productid, sum(revenue)
 from sales
 GROUP by productid
-having sum(revenue) > 10000000
+HAVING sum(revenue) > 10000000
 ORDER by sum(revenue) DESC;
 ```
 
@@ -433,7 +434,7 @@ AND region IN ('East', 'Central')
 AND (District LIKE '%District #05%')
 ORDER BY city;
 ```
-### JOIN
+## JOIN
  - tzv. vnitřní spojení
  - vybere z obou tabulek ty řádky, které mají svého „protějška" v obou tabulkách (tj. primární a cizí klíč)
 ```sql
