@@ -345,7 +345,116 @@ FROM Product p
 LEFT JOIN Sales s ON p.ProductID = s.ProductID
 WHERE s.Units ISNULL;
 
+-- Produkty, jejichž celkové tržby přesáhly 10 milionů.
+SELECT productid, SUM(revenue)
+FROM sales
+GROUP BY ProductID
+HAVING SUM(revenue) > 10000000
+ORDER BY SUM(revenue) DESC
+;
+
+--Čeho se prodalo v roce 2013 nejvíce (počet kusů).
+--Zajímají nás produkty, kterých jsme prodali více jak 5000.
+SELECT productid, SUM(units)
+FROM sales
+WHERE date LIKE '2013%'
+GROUP BY productid
+HAVING SUM(units) > 5000
+;
+
+--Vypište města a k nim ostatní údaje z tabulky Country,
+--která jsou z východního nebo centrálního regionu,
+--(a zároveň) jejichž název má druhé písmeno t
+--nebo mají ve svém názvu stown,
+--a (zároveň) jsou z oblasti (district) District #05.
+--Výstup seřaďte podle názvu města vzestupně.
+--Pozor, v řetězci District #05 je mezi t a # mezera.
+
 SELECT *
+FROM Country
+WHERE (region = 'East' OR region = 'Central')
+	AND (city LIKE '_t%' OR city LIKE '%stown%')
+	AND district = 'District #05'
+ORDER BY city DESC
+;
 
+--Vyberte ty produkty, kterých bylo najednou prodáno
+--více jak 40 kusů, k tomuto datum tohoto prodeje
+--a počet prodaných kusů a z tabulky Product vyberte
+--odpovídající název produktu.
 
+SELECT s.productID, p.product, s.units, s.date
+FROM sales s
+JOIN product p ON s.productID = p.productID
+WHERE units > 40
+ORDER BY s.units DESC
+;
+
+--Zjisti TOP 100 prodejů dle tržby
+--a k nim náležící informace z tabulky Country.
+SELECT s.revenue, c.state, c.City
+FROM sales s
+JOIN country c ON s.zip = c.zip
+ORDER BY s.revenue DESC
+LIMIT 100
+;
+
+SELECT c.city, COUNT(DISTINCT s.productID) AS Pocet_produktu
+FROM country c
+LEFT JOIN sales s ON s.zip = c.zip
+GROUP BY c.city
+ORDER BY Pocet_produktu DESC;
+
+--Vypište produkty a jejich ID, které se vůbec nepordaly.
+SELECT p.product, p.productID, s.units
+FROM product p
+LEFT JOIN sales s ON p.productID = s.productID
+WHERE s.units ISNULL
+ORDER BY p.product;
+
+DROP VIEW vwNeprodaneProduty;
+
+CREATE VIEW vwNeprodaneProdukty AS
+SELECT p.productid, p.product, s.units, m.manufacturer
+from product p
+left JOIN sales s on p.ProductID = s.ProductID
+JOIN manufacturer m ON p.ManufacturerID = m.ManufacturerID
+WHERE s.units ISNULL;
+
+SELECT product, manufacturer
+FROM vwNeprodaneProdukty
+WHERE manufacturer = 'Fama';
+
+CREATE VIEW vwTrzbyStatVyrobce AS
+SELECT c.state, m.manufacturer, SUM(s.revenue) AS Trzby
+from sales s 
+join country c on s.Zip = c.Zip
+JOIN product p on s.ProductID = p.ProductID
+JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
+GROUP by c.state, m.Manufacturer;
+
+SELECT *
+FROM vwTrzbyStatVyrobce
+ORDER BY Trzby DESC
+LIMIT 10;
+
+DROP VIEW vwTrzbyStatVyrobce;
+
+CREATE VIEW vwTrzbyStatVyrobce AS
+SELECT c.state, m.manufacturer, SUM(s.revenue) AS 'TotalRevenue'
+from sales s 
+join country c on s.Zip = c.Zip
+JOIN product p on s.ProductID = p.ProductID
+JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
+GROUP by c.state, m.Manufacturer;
+
+SELECT manufacturer, sum(TotalRevenue)
+FROM vwTrzbyStatVyrobce
+GROUP by manufacturer
+ORDER BY SUM(TotalRevenue) DESC;
+
+SELECT state, sum(TotalRevenue)
+from vwTrzbyStatVyrobce
+GROUP by state
+order by Sum(TotalRevenue) DESC;
 

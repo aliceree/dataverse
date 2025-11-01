@@ -8,6 +8,8 @@
 - [GROUP BY](#group-by--agregační-funkce)
 - [HAVING](#having)
 - [JOIN](#join)
+- [VIEW](#view)
+- [CTE](#cte)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -576,118 +578,81 @@ RIGHT JOIN tabulka 2 ON tabulka1.sloupec1 = tabulka2.sloupec1;
 
 ![alt text](<SQL CROSS JOIN.png>)
 
-
-
---Jaké jsou v jednotlivých regionech tržby za výrobky společnosti Currus?
---regiony = country
---tržby = sales
---výrobce = manufacturer
---product --> spojení s manufacturer
-
-SELECT c.region, SUM(s.revenue)
-from sales s 
-JOIN country c on s.zip = c.Zip
-join product p on s.ProductID = p.ProductID
-join manufacturer m on p.ManufacturerID = m.ManufacturerID
-WHERE manufacturer = 'Currus'
-GROUP by c.Region
-ORDER by SUM(s.revenue) DESC;
-
---Kteří výrobci jsou nejprodávanější dle počtu různých produktů v regionu east?
-SELECT count(DISTINCT s.productid) AS PocetProduktu, m.manufacturer
-from sales s
-JOIN country c on s.zip = c.Zip
-join product p on s.ProductID = p.ProductID
-join manufacturer m on p.ManufacturerID = m.ManufacturerID
-where region = 'East'
-GROUP by m.manufacturer
-ORDER by PocetProduktu DESC;
-
-# doplnit
-
-Úkol č. 1
-Zpracujte přehled TOP 10 prodejů dle počtu kusů za měsíc duben roku 2014. Ve výstupu uveďte ID produktu, název produktu a počet prodaných kusů.
-(Nejvíce produkt Maximus UM-70, 3027 kusů)
-Úkol č. 2
-Vypište, které produkty a kolik kusů se prodalo ve městě New York (všechna zip) v roce 2013. Ve výstupu bude kód produktu, název produktu a počet prodaných kusů.
-(247 produktů)
-Úkol č. 3
-Vypište TOP 10 nejprodávanějších produktů dle počtu prodaných kusů za rok 2014 z kategorie Youth. Ve výstupu bude kód produktu, název produktu, kategorie a počet prodaných kusů.
-(Nejvíce produkt Natura YY-10, 3443 kusů)
-
-Řešení
-Úkol č. 1
-SELECT p.productid, p.product, SUM(s.units) FROM sales s
-JOIN product p ON p.ProductID = s.ProductID
-WHERE s.date BETWEEN "2014-04-01" and "2014-04-30"
-GROUP BY p.ProductID
-ORDER BY SUM(s.units) DESC
-LIMIT 10;
-Úkol č. 2
-SELECT s.productid, p.product, SUM(s.units) FROM sales s
-JOIN product p ON p.ProductID = s.ProductID
-JOIN country c ON s.Zip = c.Zip
-WHERE c.City like "New York%" AND s.Date LIKE "2013%"
-GROUP BY s.ProductID
-Úkol č. 3
-SELECT p.productid, p.product,p.Category, sum(s.units) FROM sales s
-INNER JOIN product p ON p.ProductID=s.ProductID
-WHERE p.Category = "Youth" and s.Date LIKE "2014%"
-GROUP BY p.ProductID
-ORDER BY sum(s.Units) DESC
-LIMIT 10
-
-# samostatná práce
-Příklad č. 9:
-Kteří jsou nejvíc vydělávající výrobci? Použijte pohled vwStateManufacturer.
-Příklad č. 10: Ve kterých státech jsou nejvyšší tržby? Opět využijte pohled vwStateManufacturer.
-
-
-
-### LEFT JOIN
-
-### RIGHT JOIN
-- vybere z tabulky, která je napravo ve výrazu pro spojení, všechny záznamy a z levé tabulky vybere požadovaná data, pokud existuje spojení (protějšek)
-- pokud neexistuje, budou přiřazeny hodnoty NULL
-- každý RIGHT JOIN můžeme přepsat na LEFT JOIN a naopak
-
-### FULL JOIN
-- podobný INNER JOIN, ale na rozdíl od INNER JOIN vrací z obou tabulek všechny záznamy; ne jen ty, u kterých existuje shoda
-- u záznamů, u kterých neexistuje shoda, bud v příslušných sloupcích
-hodnota NULL
-- je to tedy kombinace LEFT a RIGHT JOINů
-
-### CROSS JOIN
-- CROSS JOIN je vlastně tzv. kartézský součin/spojení
-- záznam z první tabulky spojíme se všemi záznamy z druhé tabulky
-- toto provedeme pro všechny záznamy z první tabulky
-- výsledkem je tabulka/množina všech možných kombinací řádků z obou
-tabulek
-- u CROSS JOIN se neuvádí podmínka spojení ON, je vlastně zbytečná
-
-## WIEWs
-- jsou to taková „kukátka“ do dat v databázi
-- v podstatě jde o uložené dotazy
-- pohled sám o sobě neobsahuje žádná data
-- výsledkem pohledu je tabulka
-- data pomocí pohledu získáváme tak, že uděláme dotaz/SELECT nad tímto pohledem
-- s pohledy lze pracovat téměř stejně jako s tabulkami – SELECT, JOIN apod.
-- DML příkazy vedoucí ke změně dat (INSERT, UPDATE, DELETE) však mají určitá omezení.
-
-**Zadání:** Které výrobky (ProductID, název produktu) se vůbec neprodaly?
-- Nejprve si vytvořím SELECT.
+## VIEW
+- „kukátka“ do dat v databázi
+- uložené dotazy, prostřednictvím kterých se lze dívat na výsledky složitého dotazu, aniž by jej bylo nutné psát pokaždé znovu
+- místo pakovaného kopírování složitého dotazu si jej lze uložit jako `VIEW` a pak jej používat úplně stejně jako běžnou tabulku
 ```sql
-SELECT p.ProductID, p.Product, S.Units
-FROM Product p
-LEFT JOIN Sales s ON p.ProductID = s.ProductID
-WHERE s.Units ISNULL;
+--vytvoření pohledu
+CREATE VIEW nazev_pohledu AS
+SELECT sloupec 1,.., sloupec
+FROM tabulka
+WHERE..;
+
+--získání dat pomocí pohledu
+SELECT *
+FROM nazev_pohledu
+WHERE..;
+
+--smazaní pohledu
+DROP VIEW nazev pohledu;
 ```
 
-- Poté postavím View
+***Zadání:** Které výrobky (productID, název produktu) se vůbec neprodaly? Vytvořte pohled `vwNeprodaneProdukty`.
 ```sql
 CREATE VIEW vwNeprodaneProdukty AS
-SELECT p.ProductID, p.Product, S.Units
-FROM Product p
-LEFT JOIN Sales s ON p.ProductID = s.ProductID
-WHERE s.Units ISNULL;
+SELECT p.productid, p.product, s.units, m.manufacturer
+from product p
+left JOIN sales s on p.ProductID = s.ProductID
+JOIN manufacturer m ON p.ManufacturerID = m.ManufacturerID
+WHERE s.units ISNULL;
+```
+
+Které výrobky vůbec neprodal výrobce „Fama“? Použijte pohled
+`vwNeprodaneProdukty`.
+```sql
+SELECT product, manufacturer
+FROM vwNeprodaneProdukty
+WHERE manufacturer = 'Fama';
+```
+
+### cvičení
+
+**Zadání:** Kteří jsou nejvíc vydělávající výrobci? Použijte pohled vwStateManufacturer.
+```sql
+CREATE VIEW vwTrzbyStatVyrobce AS
+SELECT c.state, m.manufacturer, SUM(s.revenue) AS 'TotalRevenue'
+from sales s 
+join country c on s.Zip = c.Zip
+JOIN product p on s.ProductID = p.ProductID
+JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
+GROUP by c.state, m.Manufacturer;
+```
+
+```sql
+SELECT manufacturer, sum(TotalRevenue)
+FROM vwTrzbyStatVyrobce
+GROUP by manufacturer
+ORDER BY SUM(TotalRevenue) DESC;
+```
+
+**Zadání:** Ve kterých státech jsou nejvyšší tržby? Opět využijte pohled vwStateManufacturer.
+```sql
+SELECT state, sum(TotalRevenue)
+from vwTrzbyStatVyrobce
+GROUP by state
+order by Sum(TotalRevenue) DESC;
+```
+
+## CTE
+- Common Table Expressions, virtuální dočasné tabulky
+- stejné jako `VIEW`, ale po skončení dotazu se smažou
+- slouží pro vytváření pomocných tabulek a dat
+- pracuje se s nimi jako se skutečnými tabulkami (včetně `JOIN` apod.)
+```sql
+--vytvoření CTE
+WITH nazev_CTE AS (SELECT..) --poté musí následovat další SELECT
+
+SELECT *
+FROM nazev_CTE [WHERE..]; --výběr dat z dočasné tabulky
 ```
