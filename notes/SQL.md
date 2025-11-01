@@ -1,14 +1,14 @@
 - [SQL](#sql)
 - [SELECT](#select)
-- [AS](#select-as)
-- [DISTRICT](#select-district)
-- [LIMIT](#select-limit)
+- [ALIAS](#alias)
+- [DISTRICT](#district)
+- [LIMIT](#limit)
 - [ORDER BY](#select-order-by-descasc)
 - [WHERE + AND/OR](#select-where--andor)
 - [WHERE + operátory](#select-where--operátory---between-like-in-is-null)
 - [GROUP BY + agregační funkce](#group-by--agregační-funkce)
 - [HAVING](#having)
-- [JOIN] (#)
+- [JOIN](#join)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -81,7 +81,7 @@ SELECT ProductID, Product
 FROM Sales;
 ```
 
-### SELECT AS
+### ALIAS
 - přejmenování sloupců s pomocí klauzule `AS`
 ```sql
 SELECT
@@ -92,7 +92,7 @@ sloupec4 AS NovyNazevSloupce4
 FROM tabulka;
 ```
 
-## SELECT DISTRICT
+## DISTRICT
 - vybere pouze jedinečné záznamy z tabulky
 - např. vybrat kategorie ze seznamu produktů
 ```sql
@@ -100,7 +100,7 @@ SELECT DISTINCT Category
 FROM Product;
 ```
 
-## SELECT LIMIT
+## LIMIT
 - vybere pouze konkrétní počet záznamů z tabulky
 - např. vybrat první 3 výrobce ze seznamu výrobců
 ```sql
@@ -109,7 +109,7 @@ FROM Manufacturer
 LIMIT 3;
 ```
 
-## SELECT ORDER BY DESC/ASC
+## ORDER BY DESC/ASC
 - řezení výsledků `DESC` (descending) od největšího k nejmenšímu
 - řezení výsledků `ASC` (ascending) od nejmenšího k největšímu
 - např. vybrat z tabulky výrobců jednotlivé výrobce a seřadit je abecedně
@@ -135,7 +135,7 @@ ORDER BY Revenue DESC
 LIMIT 5;
 ```
 
-## SELECT WHERE + AND/OR
+## WHERE + AND/OR
 - podmínka v dotazu
 - např. Vybrat všechny záznamy o prodeji produktu s ProductID 428.
 ```sql
@@ -157,7 +157,7 @@ FROM tabulka
 WHERE sloupec1 = 'Hodnota' OR sloupec2 = 'Hodnota';
 ```
 
-## SELECT WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
+## WHERE + operátory (<, =, BETWEEN, LIKE, IN, IS NULL)
 - s pomocí operátorů lze počítat a porovnávat číselné i textové hodnoty
 - porovnávání **číselných hodnot** např.
 ```sql
