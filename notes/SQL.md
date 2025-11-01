@@ -308,8 +308,8 @@ WHERE Date LIKE '2014%';
 **Zadání:** Jaká byla průměrná tržba za 1 prodej v lichých letech?
 ```sql
 SELECT AVG(revenue)
-from sales 
-where date like '2013%' OR date like '2015%';
+FROM sales 
+WHERE Date LIKE '2013%' OR Date LIKE '2015%';
 ```
 
 **Zadání:** Který produkt (Productid) měl v roce 2014 největší tržby?
@@ -351,7 +351,7 @@ HAVING SUM(sloupec) > 0;
 **Zadání:** Produkty, jejichž celkové tržby přesáhly 10 miliónů.
 ```sql
 SELECT productid, sum(revenue) AS 'Trzby'
-from sales
+FROM sales
 GROUP by productid
 HAVING Trzby > 10000000
 ORDER by Trzby DESC;
@@ -359,7 +359,7 @@ ORDER by Trzby DESC;
 - ještě varianta bez aliasu
 ```sql
 SELECT productid, sum(revenue)
-from sales
+FROM sales
 GROUP by productid
 HAVING sum(revenue) > 10000000
 ORDER by sum(revenue) DESC;
@@ -378,8 +378,8 @@ ORDER BY Pocet_kusu DESC;
 **Zadání:** Kterých 10 výrobců má nejvíce různorodých kategorií výrobků?
 ```sql
 SELECT manufacturerid, COUNT(DISTINCT category) AS 'Pocet_kategorii'
-from product
-group by manufacturerid
+FROM product
+GROUP BY manufacturerid
 ORDER by Pocet_kategorii DESC
 LIMIT 10;
 ```
@@ -391,13 +391,13 @@ SELECT Category, COUNT(productid)
 FROM roduct
 GROUP BY category
 ORDER by COUNT(productid) DESC
-limit 1;
+LIMIT 1;
 ```
 
 **Zadání:** Jaké jsou průměrné tržby za jednotlivé produkty Výsledek seřadte dle průměrné tržby sestupně.
 ```SQL
 SELECT productid, AVG(revenue)
-from sales
+FROM sales
 GROUP by productid
 ORDER by AVG(revenue) DESC;
 ```
@@ -406,7 +406,7 @@ ORDER by AVG(revenue) DESC;
 ```sql
 SELECT productid, AVG(revenue)
 FROM sales
-WHERE date LIKE '2013%' AND units >=5
+WHERE Date LIKE '2013%' AND units >=5
 GROUP BY productid
 ORDER BY sum(revenue) DESC
 LIMIT 1;
@@ -424,17 +424,22 @@ ORDER BY pocet_vyrobcu DESC;
 ```sql
 SELECT * FROM Country
 WHERE (Region = 'East' OR Region = 'Central')
-	AND (City LIKE '_t%'
-		OR City LIKE '%stown%')
+	AND (
+		City LIKE '_t%'
+		OR City LIKE '%stown%'
+	)
 	AND District = 'District #05'
 ORDER BY City ASC;
 
 --řešení s trochu jinou strukturou
 SELECT * FROM country
 WHERE 1=1
-AND (city LIKE '_t%' OR city LIKE '%stown%')
-AND region IN ('East', 'Central')
-AND (District LIKE '%District #05%')
+	AND (
+		City LIKE '_t%'
+		OR city LIKE '%stown%'
+	)
+	AND region IN ('East', 'Central')
+	AND (district LIKE '%District #05%')
 ORDER BY city;
 ```
 ## JOIN
