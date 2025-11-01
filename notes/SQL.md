@@ -598,7 +598,7 @@ WHERE..;
 DROP VIEW nazev pohledu;
 ```
 
-***Zadání:** Které výrobky (productID, název produktu) se vůbec neprodaly? Vytvořte pohled `vwNeprodaneProdukty`.
+**Zadání:** Které výrobky (productID, název produktu) se vůbec neprodaly? Vytvořte pohled `vwNeprodaneProdukty`.
 ```sql
 CREATE VIEW vwNeprodaneProdukty AS
 SELECT p.productid, p.product, s.units, m.manufacturer
