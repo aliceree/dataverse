@@ -348,7 +348,7 @@ GROUP BY sloupec2
 HAVING SUM(sloupec) > 0;
 ```
 
-**Zadání:** Produkty, jejichž celkové tržby přesáhly 10 miliónů.
+**Zadání:** Produkty, jejichž celkové tržby přesáhly 10 milionů.
 ```sql
 SELECT productid, sum(revenue) AS 'Trzby'
 FROM sales
@@ -443,47 +443,47 @@ WHERE 1=1
 ORDER BY city;
 ```
 ## JOIN
- - tzv. vnitřní spojení
+ - tzv. vnitřní spojení (LEFT/RIGHT/FULL JOIN je tzv. vnější spojení)
  - vybere z obou tabulek ty řádky, které mají svého „protějška" v obou tabulkách (tj. primární a cizí klíč)
 ```sql
 SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka.sloupec1
 FROM tabulka1
-INNER JOIN tabulka2
+INNER JOIN tabulka2 --pokud zapíšeme jen JOIN, SQL to pochopí jako INNER JOIN
 ON tabulka1. sloupec1 = tabulka2.sloupec1;
 ```
 
 **Zadání:** Vyber produkty, kterých bylo prodáno najednou více jak 40 kusů, k tomuto datu toho prodeje a počet prodaných kusů a z tabulky Product vyberte odpovídající název produktu.
 ```sql
-SELECT s.ProductID, p.Product, s.Date, s.Units
+SELECT s.productID, p.product, s.date, s.units
 FROM sales AS s
-JOIN product AS p ON s.ProductID = p.ProductID
-WHERE Units > 40
+JOIN product AS p ON s.productID = p.productID
+WHERE units > 40
 ORDER BY s.Units DESC;
 ```
 
 **Zadání:** Zjisti TOP 100 prodejů dle tržby a k nim náležící informace z tabulky Country.
 ```sql
 SELECT *
-from sales s
-join country c on s.zip=c.Zip
+FROM sales s
+JOIN country c ON s.zip = c.zip
 ORDER by revenue DESC
-limit 100;
+LIMIT 100;
 ```
 
 **Zadání:** Ve kterých státech jsme měli největší tržby?
 ```sql
 SELECT c.State, SUM(s.Revenue) AS 'trzby'
 FROM Country AS c
-JOIN Sales AS s ON c.Zip = s.Zip
+JOIN Sales AS s ON c.zip = s.zip
 ORDER BY trzby DESC;
 ```
 
 **Zadání:** Který výrobce vyrábí nejvíce různých/jedinečných výrobků?
 ```sql
-SELECT m.Manufacturer, COUNT(p.ProductID) AS Pocet_vyrobku
-FROM Manufacturer AS m
-JOIN Product AS p ON m.ManufacturerID = p.ManufacturerID
-GROUP BY m.Manufacturer
+SELECT m.manufacturer, COUNT(p.productID) AS Pocet_vyrobku
+FROM manufacturer AS m
+JOIN product AS p ON m.manufacturerID = p.manufacturerID
+GROUP BY m.manufacturer
 ORDER BY Pocet_vyrobku DESC
 LIMIT 10;
 ```
@@ -492,14 +492,26 @@ LIMIT 10;
 
 ```sql
 SELECT p.product, p.category, m.manufacturer, s.date, s.revenue
-from sales s 
-join product p on s.ProductID = p.ProductID
-join manufacturer m on p.ManufacturerID = m.ManufacturerID
-where revenue > 10000
-order by p.Product;
+FROM sales s 
+JOIN product p on s.productID = p.productID
+JOIN manufacturer m on p.manufacturerID = m.manufacturerID
+WHERE revenue > 10000
+ORDER BY p.product;
 ```
 
-příklady:
+### LEFT JOIN
+- vybírá všechny řádky z levé tabulky a k nim přiřazuje odpovídající řádky z pravé tabulky, pokud takové existují
+- pokud v pravé tabulce není odpovídající záznam, doplní se místo chybějících hodnot NULL
+
+```sql
+SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka2.sloupec1
+FROM tabulka1
+LEFT JOIN tabulka2 ON tabulka1.sloupec1 = tabulka2.sloupec1;
+```
+![alt text](<SQL LEFT JOIN.png>)
+
+### cvičení
+
 --Jaké jsou v jednotlivých regionech tržby za výrobky společnosti Currus?
 --regiony = country
 --tržby = sales
