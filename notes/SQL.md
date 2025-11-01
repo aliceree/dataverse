@@ -67,6 +67,7 @@ FROM tabulka;
 ### cvičení
 
 - cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu
+
 ![alt text](<ERDiagram.png>)
 
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
