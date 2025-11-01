@@ -489,7 +489,6 @@ LIMIT 10;
 ```
 
 **Zadání:** Vypište seznam prodktů (název, kategorie, název výrobce), u kterých byla jednorázová tržba větší než 10 000 dolarů. Dále vypiště prodeje, kdy k tomu došlo (sales, product, manufacturer).
-
 ```sql
 SELECT p.product, p.category, m.manufacturer, s.date, s.revenue
 FROM sales s 
@@ -500,9 +499,8 @@ ORDER BY p.product;
 ```
 
 ### LEFT JOIN
-- vybírá všechny řádky z levé tabulky a k nim přiřazuje odpovídající řádky z pravé tabulky, pokud takové existují
+- vybere všechny řádky z levé tabulky a k nim přiřazuje odpovídající řádky z pravé tabulky, pokud takové existují
 - pokud v pravé tabulce není odpovídající záznam, doplní se místo chybějících hodnot NULL
-
 ```sql
 SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka2.sloupec1
 FROM tabulka1
@@ -510,7 +508,75 @@ LEFT JOIN tabulka2 ON tabulka1.sloupec1 = tabulka2.sloupec1;
 ```
 ![alt text](<SQL LEFT JOIN.png>)
 
+**Zadání:** Kolik různorodých produktů se prodalo v každém z měst? Zobrazte i města, kde se neprodal žádný výrobek.
+```sql
+SELECT c.city COUNT(DISTINCT s.productID) AS Pocet_produktu
+FROM country c
+LEFT JOIN sales s ON s.zip = c.zip
+GROUP BY c.city
+ORDER BY Pocet_produktu;
+```
+
 ### cvičení
+
+**Zadání:** Vypište produkty a jejich ID, které se vůbec nepordaly.
+```sql
+SELECT p.product, p.productID, s.units
+FROM product p
+LEFT JOIN sales s ON p.productID = s.productID
+WHERE s.units ISNULL
+ORDER BY p.product;
+```
+
+**Zadání:** Které výrobky výrobce VanARsdel se vůbec nepordaly?
+```sql
+SELECT m.manufacturer, p.product, s.units
+from product p
+left join sales s on p.ProductID = s.ProductID
+JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
+where m.Manufacturer = 'VanArsdel' AND s.units ISNULL;
+```
+
+**Zadání:** Jaká byla výše příjmů v roce 2015 v jednotlivých měsících? Zajímají nás všechny měsíce (i ty, kde nenastaly žádné příjmy). Výstup seřaďte podle měsíců v roce.
+```sql
+SELECT d.MonthName, SUM(s.Revenue) AS total_revenue
+FROM date d
+LEFT JOIN sales s ON s.Date = d.Date
+WHERE d.Year = '2015'
+GROUP BY d.MonthName
+ORDER BY d.MonthNo
+```
+
+**Zadání:** Kolik různorodých produktů se prodalo v každém z měst? Zobrazte i města, kde se neprodal žádný výrobek.
+```sql
+SELECT c.City, COUNT(DISTINCT s.ProductID) 
+FROM Country c
+LEFT JOIN Sales s ON c.Zip = s.Zip
+GROUP BY c.City
+ORDER BY COUNT(DISTINCT s.ProductID);
+```
+
+### RIGHT JOIN
+- chová se stejně, jen vybírá napravo ve výrazu pro spojení
+```sql
+SELECT tabulka1.sloupec1, tabulka1.sloupec2, tabulka2.sloupec1
+FROM tabulka1
+RIGHT JOIN tabulka 2 ON tabulka1.sloupec1 = tabulka2.sloupec1;
+```
+
+### FULL JOIN
+- narozdíl od `INNER JOIN` vrací z onou tabulek všechny záznamy (ne jen ty, u kterých existuje shoda)
+- jedná se tedy o kombinaci `LEFT JOIN` a `RIGHT JOIN`
+
+### CROSS JOIN
+- kartézký součin/spojení
+- záznam z první tabulky je spojen se všemi záznamy z druhé tabulky
+- výsledem je tabulka všech možných kombinací řádků z obou tabulek
+- neuvádí se podmínka pro spojení `ON`
+
+![alt text](<SQL CROSS JOIN.png>)
+
+
 
 --Jaké jsou v jednotlivých regionech tržby za výrobky společnosti Currus?
 --regiony = country
@@ -579,38 +645,6 @@ Příklad č. 10: Ve kterých státech jsou nejvyšší tržby? Opět využijte
 
 
 ### LEFT JOIN
-- vybere z tabulky, která je nalevo ve výrazu pro spojení a z pravé tabulky vybere
-požadovaná data, pokud existuje spojení –
-protějšek, pokud ne, budou přiřazeny hodnoty
-NULL.
-
-**Zadání:** Které výrobky výrobce VanARsdel se vůbec nepordaly?
-```sql
-SELECT m.manufacturer, p.product, s.units
-from product p
-left join sales s on p.ProductID = s.ProductID
-JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
-where m.Manufacturer = 'VanArsdel' AND s.units ISNULL;
-```
-
-**Zadání:** Jaká byla výše příjmů v roce 2015 v jednotlivých měsících? Zajímají nás všechny měsíce (i ty, kde nenastaly žádné příjmy). Výstup seřaďte podle měsíců v roce.
-```sql
-SELECT d.MonthName, SUM(s.Revenue) AS total_revenue
-FROM date d
-LEFT JOIN sales s ON s.Date = d.Date
-WHERE d.Year = '2015'
-GROUP BY d.MonthName
-ORDER BY d.MonthNo
-```
-
-**Zadání:** Kolik různorodých produktů se prodalo v každém z měst? Zobrazte i města, kde se neprodal žádný výrobek.
-```sql
-SELECT c.City, COUNT(DISTINCT s.ProductID) 
-FROM Country c
-LEFT JOIN Sales s ON c.Zip = s.Zip
-GROUP BY c.City
-ORDER BY COUNT(DISTINCT s.ProductID);
-```
 
 ### RIGHT JOIN
 - vybere z tabulky, která je napravo ve výrazu pro spojení, všechny záznamy a z levé tabulky vybere požadovaná data, pokud existuje spojení (protějšek)
