@@ -66,7 +66,8 @@ FROM tabulka;
 
 ### cvičení
 
-- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu  
+- cvičnou databázi poskytuje Czechitas v rámci svého semestrálního kurzu
+![alt text](<ERDiagram.png>)
 
 **Zadání:** Vyber všechny sloupce z tabulky Sales.
 ```sql
@@ -80,7 +81,7 @@ SELECT ProductID, Product
 FROM Sales;
 ```
 
-### ALIAS
+## ALIAS
 - přejmenování sloupců s pomocí klauzule `AS`
 ```sql
 SELECT
@@ -557,7 +558,7 @@ Příklad č. 9:
 Kteří jsou nejvíc vydělávající výrobci? Použijte pohled vwStateManufacturer.
 Příklad č. 10: Ve kterých státech jsou nejvyšší tržby? Opět využijte pohled vwStateManufacturer.
 
-![alt text](<ERDiagram.png>)
+
 
 ### LEFT JOIN
 - vybere z tabulky, která je nalevo ve výrazu pro spojení a z pravé tabulky vybere
