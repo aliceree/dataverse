@@ -9,7 +9,8 @@
 - [HAVING](#having)
 - [JOIN](#join)
 - [VIEW](#view)
-- [řetězce](#práce-s-retězci)
+- [TEXT](#text)
+- [TABLE](#table)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -668,8 +669,9 @@ SELECT *
 FROM nazev_CTE [WHERE..]; --výběr dat z dočasné tabulky
 ```
 
-## práce s retězci
-- často používané funkce
+## TEXT
+- práce s řetězci
+- často používané funkce:
 
 | **Funkce** | **Syntaxe** | **Popis** |
 |-------------|-------------|-----------|
@@ -751,7 +753,7 @@ END AS 'RocniObdobi'
 FROM date;
 ```
 
-## CREATE TABLE
+## TABLE
 - tabulku lze vytvořit celou nebo vyselectovat z existující
 ```sql
 --nová tabulka
@@ -786,13 +788,13 @@ VALUES (2, 'socks', '2025-11-02', 2);
 
 - mazání tabulky s pomocí `DROP TABLE nazev_tabulky`
 
-## ALTER TABLE
+### ALTER TABLE
 - přejmenování původní tabulky `ALTER TABLE nazev_tabulky RENAME TO novy_nazev`
 - přidání sloupce do tabulky `ALTER TABLE nazev_tabulky ADD COLUMN nazev_sloupce NUMERIC`
 - mazání sloupce `ALTER TABLE nazve_tabulky DROP COLUMN nazev_sloupce`
 - přejmenování sloupce `ALTER TABLE nazev_tabulky RENAME COLUMN nazev_sloupce TO novy_nazev_sloupce`
 
-## INSERT INTO TABLE
+### INSERT INTO TABLE
 - vložení hodnot do tabulky
 ```sql
 INSERT INTO Gift(giftID, gift, date, manufacturerID)
@@ -801,7 +803,7 @@ INSERT INTO Gift(giftID, gift, date, manufacturerID)
 VALUES (2, 'socks', '2025-11-02', 2);
 ```
 
-## UPDATE
+### UPDATE
 - změna hodnot v tabulce
 ```sql
 UPDATE nazev_tabulky
@@ -809,7 +811,7 @@ SET sloupec1=hodnota1
 WHERE podmínka(y); --musí být podmínka, jinak se přejmenují všechny sloupce na hodnota1
 ```
 
-## DELETE
+### DELETE
 - mazání dat
 - pozor na podmínky, aby nedošlo ke smazání celého sloupce
 ```sql
