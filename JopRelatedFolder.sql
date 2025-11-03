@@ -448,13 +448,118 @@ JOIN product p on s.ProductID = p.ProductID
 JOIN manufacturer m on p.ManufacturerID = m.ManufacturerID
 GROUP by c.state, m.Manufacturer;
 
-SELECT manufacturer, sum(TotalRevenue)
+SELECT manufacturer, SUM(TotalRevenue)
 FROM vwTrzbyStatVyrobce
-GROUP by manufacturer
+GROUP BY manufacturer
 ORDER BY SUM(TotalRevenue) DESC;
 
-SELECT state, sum(TotalRevenue)
+SELECT state, SUM(TotalRevenue)
 from vwTrzbyStatVyrobce
-GROUP by state
-order by Sum(TotalRevenue) DESC;
+GROUP BY state
+ORDER BY SUM(TotalRevenue) DESC;
 
+--Vytvořte pohled s názvem vwCatalog, který zobrazí
+--katalog produktů (ProductId, název produktu a jeho cenu)
+--a jejich výrobce.
+CREATE VIEW vwCatalog AS
+SELECT p.productID, p.product, p.pricenew, m.manufacturer
+FROM product p
+JOIN manufacturer m ON p.ManufacturerID = m.ManufacturerID;
+
+SELECT manufacturer, product, SUM(pricenew)
+FROM vwCatalog
+GROUP BY manufacturer
+;
+
+--výrobky, kde se prodalo více jak 50 ks
+SELECT p.productID, vwCatalog.product, s.units AS Pocet_prodeju
+FROM vwCatalog
+JOIN sales s ON vwCatalog.productID = s.productID
+WHERE s.units > 50
+GROUP BY p.productID
+ORDER BY Pocet_prodeju DESC
+;
+
+--vyberte výrobky, kde se prodalo více jak 50 kusů, za použitím vwCatalog
+SELECT ID, NazevProduktu, s.Units
+FROM vwCatalog 
+join sales s on vwCatalog.ID = s.ProductID
+WHERE s.units > 50;
+
+SELECT vw.ID, vw.NazevProduktu, vw.Cena, SUM(s.Units)
+from vwCatalog vw
+join sales s on s.ProductID = vw.ID
+group by ID
+HAVING SUM(s.Units) > 50
+ORDER by SUM(s.Units);
+
+--Vyberte všechny výrobce, jejichž název je dlouhý 5 znaků.
+SELECT *
+FROM manufacturer
+WHERE LENGTH(manufacturer) = 5;
+
+--Nahraďte v názvech výrobce řetězec US na USS.
+SELECT REPLACE(manufacturer, 'US', 'USS')
+FROM manufacturer;
+
+--Nahraďte USD na EUR v tabulce product.
+SELECT product, pricenew, REPLACE(currency, 'USD', 'EUR')
+FROM product;
+
+SELECT *
+FROM manufacturer
+WHERE SUBSTR(manufacturer, 1, 2) = 'Va';
+
+--Vyberte všechny výrobce, jejichž název je delší než 4 znaky a mají v názvu písmeno i nebo r.
+SELECT *
+FROM manufacturer
+WHERE LENGTH(manufacturer) > 4
+	AND (manufacturer LIKE '%i%' OR manufacturer LIKE '%r%');
+
+--Produkty dle cenov kategorie levné do 100,
+--střední 100 - 500, drahé váce jak 500.
+SELECT productID, product, pricenew,
+CASE
+	WHEN pricenew < 100 THEN 'levné'
+	WHEN pricenew >= 100 AND pricenew < 500 THEN 'střední cena'
+	WHEN pricenew >= 500 THEN 'drahé'
+END AS 'cenovaKategorie'
+FROM product;
+
+--Zobrazte číslo a název mesíce,
+--vytvořte nový sloupec s ročním obdobím.
+SELECT *
+FROM date;
+
+CREATE VIEW vwRocniObdobi AS
+SELECT DISTINCT monthno, monthname,
+CASE
+	WHEN monthno IN (12, 1, 2) THEN 'zima'
+	WHEN monthno IN (3, 4, 5) THEN 'jaro'
+	WHEN monthno IN (6, 7, 8) THEN 'léto'
+	WHEN monthno IN (9, 10, 11) THEN 'podzim'
+END AS 'RocniObdobi'
+FROM date;
+
+CREATE TABLE Gift(
+giftID NUMERIC PRIMARY KEY,
+gift TEXT(50),
+date DATETIME,
+manufacturerID NUMERIC
+);
+
+SELECT *
+FROM Gift;
+
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (1, 'LEGO', '2025-11-03', 23);
+
+SELECT *
+FROM Gift;
+
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (1, 'LEGO', '2025-11-03', 23);
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (2, 'socks', '2025-11-02', 2);
+
+ALTER TABLE Gift ADD COLUMN units NUMERIC;

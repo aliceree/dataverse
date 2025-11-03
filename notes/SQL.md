@@ -9,7 +9,7 @@
 - [HAVING](#having)
 - [JOIN](#join)
 - [VIEW](#view)
--[řetězce](#práce-s-retězci)
+- [řetězce](#práce-s-retězci)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -682,3 +682,140 @@ FROM nazev_CTE [WHERE..]; --výběr dat z dočasné tabulky
 | [UPPER](#) | `upper(řetězec)` | Vrátí kopii řetězce, kdy všechny jeho znaky jsou nyní velká písmena. |
 | [LOWER](#) | `lower(řetězec)` | Vrátí kopii řetězce, kdy všechny jeho znaky jsou nyní malá písmena. |
 | [INSTR](#) | `instr(řetězec, podřetězec)` | Najde podřetězec v řetězci a vrátí číslo pozice, kde začíná jeho první výskyt. |
+
+**Zadání:** Vyberte všechny výrobce, jejichž název je dlouhý 5 znaků.
+```sql
+SELECT *
+FROM manufacturer
+WHERE LENGTH(manufacturer) = 5;
+```
+
+**Zadání:** Nahraďte v názvech výrobce řetězec US na USS.
+```sql
+SELECT REPLACE(manufacturer, 'US', 'USS') --neupravuje databázi, jen zobrazovanou tabulku
+FROM manufacturer;
+```
+
+**Zadání:** Zobrazte všechny výrobce začínající na Va.
+```sql
+SELECT *
+FROM manufacturer
+WHERE SUBSTR(manufacturer, 1, 2) = 'Va';
+```
+
+**Zadání:** 
+Vyberte všechny výrobce, jejichž název je delší než 4 znaky a mají v názvu písmeno i nebo r.
+```sql
+SELECT *
+FROM manufacturer
+WHERE LENGTH(manufacturer) > 4
+	AND (manufacturer LIKE '%i%' OR manufacturer LIKE '%r%');
+```
+
+**Zadání:** Rozdělte produkty dle jejich ceny do cenových kategorií – levné (méně jak 100$), střední (100 $ .. 500 $), drahé (více jak 500 $); dotazem vznikne nová tabulka, kterou lze dále použít.
+```sql
+SELECT productID, product, pricenew,
+CASE
+	WHEN pricenew < 100 THEN 'levné'
+	WHEN pricenew >= 100 AND pricenew < 500 THEN 'střední cena'
+	WHEN pricenew >= 500 THEN 'drahé'
+END AS 'cenovaKategorie'
+FROM product;
+```
+
+**Zadání:** Zobrazte číslo a název mesíce, vytvořte nový sloupec s ročním obdobím.
+```sql
+SELECT *
+FROM date;
+
+SELECT DISTINCT monthno, monthname,
+CASE
+	WHEN monthno IN (12, 1, 2) THEN 'zima'
+	WHEN monthno IN (3, 4, 5) THEN 'jaro'
+	WHEN monthno IN (6, 7, 8) THEN 'léto'
+	WHEN monthno IN (9, 10, 11) THEN 'podzim'
+END AS 'RocniObdobi'
+FROM date;
+```
+
+**Zadání:** Vytvořte ze zadání výše `VIEW`
+```sql
+CREATE VIEW vwRocniObdobi AS
+SELECT DISTINCT monthno, monthname,
+CASE
+	WHEN monthno IN (12, 1, 2) THEN 'zima'
+	WHEN monthno IN (3, 4, 5) THEN 'jaro'
+	WHEN monthno IN (6, 7, 8) THEN 'léto'
+	WHEN monthno IN (9, 10, 11) THEN 'podzim'
+END AS 'RocniObdobi'
+FROM date;
+```
+
+## CREATE TABLE
+- tabulku lze vytvořit celou nebo vyselectovat z existující
+```sql
+--nová tabulka
+CREATE TABLE jmeno_tabulky
+(
+jmeno_sloupce1 datový_typ1 [PRIMARY_KEY],
+jmeno_sloupce2 datový_typ2,....
+);
+
+--vyseleketovaná tabulka
+Vytvoření tabulky pomocí dotazu
+CREATE TABLE jmeno_tabulky AS SELECT...;
+```
+
+**Zadání:** Vytvořte tabulku Gift se sloupci GiftId, Gift, Date, ManufacturerId.
+```sql
+CREATE TABLE Gift(
+giftID NUMERIC PRIMARY KEY,
+gift TEXT(50),
+date DATETIME,
+manufacturerID NUMERIC
+);
+```
+
+**Zadání:** Vložte do tabulky záznamy.
+```sql
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (1, 'LEGO', '2025-11-03', 23);
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (2, 'socks', '2025-11-02', 2);
+```
+
+- mazání tabulky s pomocí `DROP TABLE nazev_tabulky`
+
+## ALTER TABLE
+- přejmenování původní tabulky `ALTER TABLE nazev_tabulky RENAME TO novy_nazev`
+- přidání sloupce do tabulky `ALTER TABLE nazev_tabulky ADD COLUMN nazev_sloupce NUMERIC`
+- mazání sloupce `ALTER TABLE nazve_tabulky DROP COLUMN nazev_sloupce`
+- přejmenování sloupce `ALTER TABLE nazev_tabulky RENAME COLUMN nazev_sloupce TO novy_nazev_sloupce`
+
+## INSERT INTO TABLE
+- vložení hodnot do tabulky
+```sql
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (1, 'LEGO', '2025-11-03', 23);
+INSERT INTO Gift(giftID, gift, date, manufacturerID)
+VALUES (2, 'socks', '2025-11-02', 2);
+```
+
+## UPDATE
+- změna hodnot v tabulce
+```sql
+UPDATE nazev_tabulky
+SET sloupec1=hodnota1
+WHERE podmínka(y); --musí být podmínka, jinak se přejmenují všechny sloupce na hodnota1
+```
+
+## DELETE
+- mazání dat
+- pozor na podmínky, aby nedošlo ke smazání celého sloupce
+```sql
+DELETE FROM nazev_tabulky WHERE podmínka(y);
+```
+
+
+
+
