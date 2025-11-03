@@ -669,6 +669,7 @@ FROM nazev_CTE [WHERE..]; --výběr dat z dočasné tabulky
 
 ## práce s retězci
 - často používané funkce
+
 | **Funkce** | **Syntaxe** | **Popis** |
 |-------------|-------------|-----------|
 | [SUBSTR](#) | `substr(řetězec, začátek, délka)` | Získá část řetězce, jež začíná na zadané pozici a má zadanou délku. |
