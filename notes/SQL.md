@@ -740,7 +740,7 @@ END AS 'RocniObdobi'
 FROM date;
 ```
 
-**Zadání:** Vytvořte ze zadání výše `VIEW`
+**Zadání:** Vytvořte ze zadání výše `VIEW`.
 ```sql
 CREATE VIEW vwRocniObdobi AS
 SELECT DISTINCT monthno, monthname,
@@ -817,6 +817,7 @@ WHERE podmínka(y); --musí být podmínka, jinak se přejmenují všechny sloup
 ```sql
 DELETE FROM nazev_tabulky WHERE podmínka(y);
 ```
+
 
 
 

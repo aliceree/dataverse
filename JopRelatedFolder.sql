@@ -560,6 +560,45 @@ FROM Gift;
 INSERT INTO Gift(giftID, gift, date, manufacturerID)
 VALUES (1, 'LEGO', '2025-11-03', 23);
 INSERT INTO Gift(giftID, gift, date, manufacturerID)
-VALUES (2, 'socks', '2025-11-02', 2);
+VALUES (3, 'book', '2025-11-05', 5), (4, 'game', '2025-11-10', 12);
 
 ALTER TABLE Gift ADD COLUMN units NUMERIC;
+
+CREATE table catalog AS
+SELECT p.productid AS 'ID', p.product AS 'NazevProduktu', p.pricenew AS 'Cena', m.manufacturer AS 'Vyrobce'
+from product p 
+JOIN manufacturer m ON p.ManufacturerID = m.ManufacturerID;
+
+UPDATE catalog
+SET vyrobce = 'Abul'
+WHERE vyrobce = `Abbas`;
+
+-- Vytvořte tabulku zákazníků, např. s názvem Customers,
+-- se sloupci identifikujícími zákazníka
+-- a vložte údaje o 3 zákaznících.
+CREATE TABLE student(
+studentID NUMERIC PRIMARY KEY,
+name TEXT(20),
+grade NUMERIC
+);
+
+ALTER TABLE student RENAME COLUMN grade TO cs_grade;
+
+INSERT INTO student(studentID, name, cs_grade)
+VALUES
+	(1, 'Anna', 1),
+	(2, 'Boris', 2),
+	(3, 'Cecilie', 3),
+	(4, 'David', 2),
+	(5, 'Eva', 1),
+	(6, 'Filip', 3)
+;
+
+SELECT *
+FROM student;
+
+CREATE TABLE teacher(
+techerID NUMERIC PRIMARY KEY,
+name TEXT(20),
+grade NUMERIC
+);
