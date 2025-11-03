@@ -9,7 +9,6 @@
 - [HAVING](#having)
 - [JOIN](#join)
 - [VIEW](#view)
-- [CTE](#cte)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
@@ -32,7 +31,7 @@
 
 ## druhy příkazů SQL
 - **Data Desinition Language (DDL):** vytváření a změna objetů (tabulek apod.)  
-`CREATE, Drop, AFTER, TRUNCATE`
+`CREATE, DROP, AFTER, TRUNCATE`
 - **Data Manipulation Language:** manipulace s daty (vkládání, mazání, změna)  
 `INSERT, UPDATE, DELETE, CALL, EXPLAIN CALL, LOCK`
 - **Transacton Control Language:** práce s transakcemi  
@@ -641,10 +640,21 @@ ORDER BY SUM(TotalRevenue) DESC;
 SELECT state, sum(TotalRevenue)
 from vwTrzbyStatVyrobce
 GROUP by state
-order by Sum(TotalRevenue) DESC;
+order by SUM(TotalRevenue) DESC;
 ```
 
-## CTE
+**Zadání:** Vytvořte pohled s názvem vwCatalog, který zobrazí katalog produktů (ProductId, název produktu a jeho cenu) a jejich výrobce.
+```sql
+SELECT manufacturer, product, SUM(pricenew)
+FROM vwCatalog
+GROUP BY manufacturer;
+
+SELECT manufacturer, product, pricenew
+FROM vwCatalog
+GROUP BY manufacturer;
+```
+
+### CTE
 - Common Table Expressions, virtuální dočasné tabulky
 - stejné jako `VIEW`, ale po skončení dotazu se smažou
 - slouží pro vytváření pomocných tabulek a dat
@@ -656,3 +666,17 @@ WITH nazev_CTE AS (SELECT..) --poté musí následovat další SELECT
 SELECT *
 FROM nazev_CTE [WHERE..]; --výběr dat z dočasné tabulky
 ```
+
+## práce s retězci
+- často používané funkce
+| **Funkce** | **Syntaxe** | **Popis** |
+|-------------|-------------|-----------|
+| [SUBSTR](#) | `substr(řetězec, začátek, délka)` | Získá část řetězce, jež začíná na zadané pozici a má zadanou délku. |
+| [TRIM](#) | `trim(řetězec, znak)` | Vrátí kopii řetězce, ze kterého bylo odstraněn specifický charakter ze začátku a konce řetězce. |
+| [LTRIM](#) | `ltrim(řetězec, [znak])` | Vrátí kopii řetězce, ze kterého bylo odstraněn specifický charakter ze začátku řetězce. |
+| [RTRIM](#) | `rtrim(řetězec, [znak])` | Vrátí kopii řetězce, ze kterého bylo odstraněn specifický charakter z konce řetězce. |
+| [LENGTH](#) | `length(řetězec)` | Vrátí počet znaků v řetězci. |
+| [REPLACE](#) | `replace(řetězec, pattern, replacement)` | Vrátí kopii řetězce, kdy každý výskyt podřetězce je nahrazen jiným podřetězcem. |
+| [UPPER](#) | `upper(řetězec)` | Vrátí kopii řetězce, kdy všechny jeho znaky jsou nyní velká písmena. |
+| [LOWER](#) | `lower(řetězec)` | Vrátí kopii řetězce, kdy všechny jeho znaky jsou nyní malá písmena. |
+| [INSTR](#) | `instr(řetězec, podřetězec)` | Najde podřetězec v řetězci a vrátí číslo pozice, kde začíná jeho první výskyt. |
