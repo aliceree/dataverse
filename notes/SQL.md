@@ -9,6 +9,7 @@
 - [HAVING](#having)
 - [JOIN](#join)
 - [VIEW](#view)
+-[řetězce](#práce-s-retězci)
 
 ## základní pojmy
 - **data:** údaje, používané pro popis jevu nebo vlastnosti pozorovaného objektu; získávají se zápisem, měřením nebo pozorováním  
