@@ -182,6 +182,3 @@ marian = Manager("Marian Přísný", "vedoucí", 25, 2, "Škoda Octavia")
 print(frantisek.take_holiday(20))
 print(marian)
 ```
-
-## abstraktní třídy
-- 
