@@ -1,18 +1,47 @@
-class Employee:
-    def __init__(self, name: str, position, holiday_entitlement, manager):
-        self.name = name
-        self.position = position
-        self.holiday_entitlement = holiday_entitlement
-        self.manager = manager
-        
-class Manager(Employee):
-    def __init__(self, name: str, position, holiday_entitlement, manager, subordinates, car):
-        super().__init__(name, position, holiday_entitlement, manager)
-        self.subordinates = subordinates
-        self.car = car
+import math
 
-marian = Manager("Marian Přísný", "vedoucí konstrukčního oddělení", 25, None, 5, "Škoda Octavia 1.5 TSI")
-marketa = Manager("Markéta Polková", "teamleader", 25, marian, 12, "Škoda Octavia RS")
-frantisek = Employee("František Novák", "konstruktér", 25, marketa)
+class Locality: # lokalita
+    def __init__(self, locality, locality_coefficient):
+        self.locality = locality
+        self.locality_coefficient = locality_coefficient
 
-print(frantisek.manager.name)
+class Property():
+    def __init__(self, locality):
+        self.locality = locality
+
+class Estate(Property): # pozemek
+    estate_types = {
+        "land": 0.85,
+        "building site": 9,
+        "forrest": 0.35,
+        "garden": 2
+    }
+
+    def __init__(self, locality, estate_type, area):
+        super().__init__(locality)
+        self.estate_type = estate_type
+        self.area = area
+
+    def calculate_tax(self):
+        estate_tax = self.area * self.locality.locality_coefficient * self.estate_types[self.estate_type]
+        return math.ceil(estate_tax)
+
+class Residence(Property): # byt, dům
+    def __init__(self, locality, commercial, area):
+        super().__init__(locality)
+        self.area = area
+        self.commercial = commercial
+
+    def calculate_tax(self):
+        resience_tax = self.area * self.locality.locality_coefficient * 15
+        if self.commercial==True:
+            resience_tax *= 2
+        return math.ceil(resience_tax)
+
+farmland = Estate(Locality("Manětín", 0.8), "land", 900)
+house = Residence(Locality("Manětín", 0.8), False, 120)
+office = Residence(Locality("Brno", 3), True, 90)
+
+print(farmland.calculate_tax())
+print(house.calculate_tax())
+print(office.calculate_tax())
