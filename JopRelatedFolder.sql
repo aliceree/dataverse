@@ -602,3 +602,26 @@ techerID NUMERIC PRIMARY KEY,
 name TEXT(20),
 grade NUMERIC
 );
+
+SELECT m.manufacturer, SUM(s.revenue) AS total_revenue
+FROM product p
+JOIN manufacturer m ON m.manufacturerID = p.manufacturerID
+JOIN sales s ON p.productID = s.productID
+JOIN country c ON c.zip = s.zip
+WHERE s.date >= '2013-01-01'
+    AND s.date < '2014-01-01'
+    AND c.region = 'East'
+GROUP BY m.manufacturer
+HAVING SUM(s.revenue) > 4000000
+;
+
+SELECT p.product, m.manufacturer, s.revenue, c.region
+FROM product p
+JOIN manufacturer m ON m.manufacturerID = p.manufacturerID
+JOIN sales s ON p.productID = s.productID
+JOIN country c ON c.zip = s.zip
+WHERE s.date >= '2013-01-01'
+    AND s.date < '2014-01-01'
+    AND c.region = 'East'
+GROUP BY m.manufacturer
+HAVING SUM(s.revenue) > 4000000;
