@@ -12,4 +12,4 @@ for vykaz in vykazy:
     celkova_mzda += hodinova_mzda * vykaz
     
 print(celkova_mzda)
-print(celkova_mzda / len(vykazy))
+print(celkova_mzda / len(vykazy))100
