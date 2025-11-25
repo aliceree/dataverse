@@ -1,5 +1,5 @@
-import humanize
-number = 1234567890876543234567898734567654
-print(humanize.intword(number))
-
-print(humanize.apnumber(23))
+lines = []
+with open("Datová analýza/GitHub/mereni.txt", encoding="utf-8") as file:
+    for line in file:
+        lines.append(line)
+print(lines)
