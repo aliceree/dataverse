@@ -7,3 +7,5 @@ with open("/Users/borovickova/Library/Mobile Documents/com~apple~CloudDocs/studi
 
 zahlavi = radky[0]  # první řádek obsahuje názvy sloupců
 print(zahlavi)
+
+#
