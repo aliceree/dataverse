@@ -1,11 +1,7 @@
-# Python
-
-- [řetězce](#řetězce)fun
+- [řetězce](#řetězce)
 - [funkce](#funkce)
 - [slovníky](#slovníky)
 - [objektově orientované programování](#objektově-orientované-programování)
-
-- kurz vychází z těchto podkladů: https://kodim.cz/czechitas/uvod-do-progr-2
 
 # řetězce
 ## slicing seznamů a řetězců
@@ -1232,3 +1228,5 @@ frantisek = Employee("František Novák", "konstruktér", 25, marketa)
 
 print(frantisek.manager.name)
 ```
+
+- kurz vychází z podkladů připravených pro Czechitas: https://kodim.cz/czechitas/uvod-do-progr-2
