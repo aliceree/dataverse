@@ -1,14 +1,14 @@
 # Python
 
-- [slicing seznamů a řetězců](#slicing-seznamů-a-řetězců)
-- [metody pro řetězce](#metody-pro-řetězce)
+- [řetězce](#řetězce)fun
 - [funkce](#funkce)
 - [slovníky](#slovníky)
 - [objektově orientované programování](#objektově-orientované-programování)
 
 - kurz vychází z těchto podkladů: https://kodim.cz/czechitas/uvod-do-progr-2
 
-# slicing seznamů a řetězců
+# řetězce
+## slicing seznamů a řetězců
 = vybírání části (výřezu) z nějaké sekvence
 
 K zaznamenávání množství věnečků sněděných za posledních 7 dní slouží následující zápis.
@@ -67,7 +67,7 @@ if "@" not in email:
     print("V e-mailu chybí zavináč!")
 ```
 
-# metody pro řetězce
+## metody pro řetězce
 = způsob analýzy řetězce
 ```python
 print("martin".upper()) # všechna písmena verzálkama  
@@ -136,14 +136,14 @@ def sum_two_numbers(a, b):
 print(sum_two_numbers(1, 1))
 ```
 
-### fuknce kódu
+## fuknce kódu
 Může se stát, že je evidentní potřeba nějaké funkce, ale zatím není protstor proto ji naprogramovat, pro takový případ slouží funkce `pass`.  
 ```python
 def code_me_later(par1, par2):
     pass
 ```
 
-### dělení
+## dělení
 Konkrétní příklad dělení se zadáním dělence a dělitele.  
 ```python
 def divide_two_numbers(a, b):
@@ -157,7 +157,7 @@ result = divide_two_numbers(a, b)
 print("Výsledek dělení je:", result)
 ```
 
-# cvičení
+### cvičení
 **Zadání:** Napište funkci `mult`, která bude mít dva číselné parametry. Funkce oba parametry vynásobí a vrátí výsledek.  
 ```python
 def mult(a, b):
@@ -268,7 +268,7 @@ print(deco[my_key])
 empty_dict = {}
 ```
 
-## cvičení
+### cvičení
 **Zadání:** Vytvořte `dictionary` vysvědčení. `key` slovníku bude název předmětu a `value` známka z daného předmětu. Vypište obsah slovníku pomocí funkce `print()`.
 ```python
 vysvedceni = {"M": 1, "ČJ": 2, "D": 1}
@@ -337,7 +337,7 @@ else:
     print("Bohužel Vaše číslo není výherní.")
 ```
 
-# slovníky a cykly
+## slovníky a cykly
 - syntax cyklu pro vypsání všech položek `dictionaries`
 ```python
 for key in sales:
@@ -441,7 +441,7 @@ for item in books:
 print(f"Celkové tržby nakladatelství za rok 2019 jsou: {total} Kč.")
 ```
 
-## cvičení
+### cvičení
 **Zadání:** Napište program, který spočítá průměrnou známku ze všech předmětů. Dále jej doplňte o to, aby vypsal všechny předměty, ve kterých získal student známku 1.
 ```python
 school_report = {
@@ -492,7 +492,7 @@ print(f"Počet knih s hodnocením alespoň 8: {favourite_books}.")
 
 # objektově orientované programování
 
-# objekty a třídy
+## objekty a třídy
 - základ OOP je užití tříd a objektů
 - vztah mezi objekty a třídami lze připodobnit formuláři (objekt) a jeho kolonkám (třídám)
 - objekty jsou na sobě nezávislé (encapsulation), úprava jednoho neovlivní druhý
@@ -523,7 +523,7 @@ print(teo.get_info())
 print(greta.get_info())
 ```
 
-## cvičení
+### cvičení
 
 **Zadání:** Návrh software pro zásilkovou společnost.
 - Vytvořte třídu `Package`, která bude mít tři atributy `address`, `weight` a `state`
@@ -629,7 +629,7 @@ teo = Employee("Teodor Will", "designér", 25)
 print(teo)
 ```
 
-## cvičení
+### cvičení
 
 **Zadání:** U třídy Package přejmenujte metodu `get_info()` na `__str__()` a vyzkoušejte jestli nyní stačí k získání informací o balíku funkce `print()`.
 - Přidejte metodu `deliver()`. Půjde o obdobu tlačítka, které řidič/ka zmáčkne při doručení balíku a zaznamená tak jeho doručení. Metoda nejprve zkontroluje, zda balík náhodou již není ve stavu doručen. Pokud ano, metoda vrátí zprávu "Balík již byl doručen". Tím bude řidič/ka informován/a o tom, že se pravděpodobně spletl/a a snaží se zaznamenat doručení u špatného balíku. Pokud balík není ve stavu doručen, změňte jeho stav právě na doručen a vraťte zprávu "Doručení uloženo".
@@ -754,7 +754,7 @@ print(Car2)
 print(Car1)
 ```
 
-# dědičnost
+## dědičnost
 - slouží k vytvoření další třídy, jejíž některé metody bere z dříve vytvořené a tedy úplně jiné třídy (např. `Employee` a `Manager`)
 - s pomocí `super().__init__` odkážu na atriuty zmíněné již v super (matěřské) třídě
 
@@ -821,7 +821,7 @@ marian = Manager("Marian Přísný", "vedoucí", 25, 2, "Škoda Octavia")
 print(marian)
 ```
 
-## cvičení
+### cvičení
 
 **Zadání:** Pokračujte ve své práci pro zásilkovou společnost. Společnost nově doručuje i cenné balíky, které mají zadanou určitou hodnotu.
 - Vytvořte třídu `ValuablePackage`, která dědí od třídy `Package`. `ValuablePackage` má navíc atribut `value`, ostatní atributy dědí od třídy `Package`.
@@ -901,7 +901,7 @@ class Ticket: # jízdy autobusem
             super
 ```
 
-# datové třídy
+## datové třídy
 - `dataclass` si vytvoří obsah metody samy
 
 ```python
@@ -939,7 +939,7 @@ print(frantisek.take_holiday(20))
 print(marian)
 ```
 
-# funkce pro práci s objekty
+## funkce pro práci s objekty
 
 ## isinstance()
 - zkontroluje, jestli daný objekt patří ke konkrétní třídě (nebo její podtřídě)
